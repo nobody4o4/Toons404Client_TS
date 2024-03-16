@@ -13,10 +13,11 @@ export type novelCard = {
     };
 }
 
-export type novelPageDetails = {
+export type NovelDetails={
     id: string;
     title: string;
     coverImage: string;
+    likes: number;
     genre: {
         name: string;
     };
@@ -25,6 +26,30 @@ export type novelPageDetails = {
     };
     series: {
         title: string;
+    };
+    author: {
+        username: string;
+    };
+    description: string;
+}
+
+
+export type novelPageDetails = {
+    id: string;
+    title: string;
+    coverImage: string;
+    likes: number;
+    createdAt: Date;
+    genre: {
+        name: string;
+    };
+    subGenre: {
+        name: string;
+    };
+    series: {
+        title: string;
+        coverImage: string;
+        description: string;
     };
     description: string;
     author: {
@@ -49,6 +74,17 @@ export type genreDetails ={
     updatedAt: string;
 }
 
+export type seriesDetails ={
+    id: string;
+    title: string;
+    coverImage: string;
+    author: string;
+    
+    description: string;
+    createdAt: string;
+    updatedAt: string;
+}
+
 export type genreCard = {
     id: string;
     name: string;
@@ -68,13 +104,36 @@ export interface addGenre  extends FormData {
     coverImage: string;
 }
 
+export interface addSeries  extends FormData {
+    name: string;
+    description: string;
+    coverImage: string;
+}
+
 
 export type chapterCard = {
     id: string;
     title: string;
     number: number;
+    likes: number;
     thumbnail: string;
     createdAt: string;
+}
+
+export type chapter = {
+    id: string;
+    title: string;
+    number: number;
+    novel:{
+        title: string;
+        author:{
+            username: string;
+        }
+    }
+    Author: string;
+    content: string;
+    thumbnail: string;
+    createdAt: Date;
 }
 
 export type MyFunctionType = () => Promise<JSON>; 

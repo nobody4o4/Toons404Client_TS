@@ -1,6 +1,6 @@
-import { chapterCard } from "@/types";
+import { chapter } from "@/types";
 
-function ReadingBlock(chapter: chapterCard) {
+function ReadingBlock(chapter: chapter) {
   console.log(chapter, "chapterssss");
   return (
     <div className="border-3 m-20 border-red-600">

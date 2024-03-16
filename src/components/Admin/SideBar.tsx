@@ -40,20 +40,19 @@ function SideBar() {
 
         <div className="mt-6 flex flex-1 flex-col justify-between">
           <nav className="-mx-3 flex-1 space-y-3 ">
-            <Link
+            {/* <Link
               className="flex transform items-center rounded-lg px-3 py-2 text-gray-600 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-200"
               to="/"
             >
               <PiHouse className="h-5 w-5" />
               <span className="mx-2 text-lg font-medium">Home</span>
-            </Link>
+            </Link> */}
 
             <Link
               className="flex transform items-center rounded-lg px-3 py-2 text-gray-600 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-              to="/"
+              to="/dashboard/admin/"
             >
               <RxDashboard className="h-5 w-5" />
-
               <span className="mx-2 text-lg font-medium">Dashboard</span>
             </Link>
             <Link
@@ -66,7 +65,7 @@ function SideBar() {
             </Link>
             <Link
               className="flex transform items-center rounded-lg px-3 py-2 text-gray-600 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-              to="/"
+              to="/dashboard/admin/series"
             >
               <GiBookshelf className="h-5 w-5" />
 
@@ -74,7 +73,7 @@ function SideBar() {
             </Link>
             <Link
               className="flex transform items-center rounded-lg px-3 py-2 text-gray-600 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-              to="/"
+              to="/dashboard/admin/novel"
             >
               <GiBlackBook className="h-5 w-5" />
 

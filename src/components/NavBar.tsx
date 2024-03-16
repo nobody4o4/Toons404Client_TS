@@ -42,7 +42,7 @@ function NavBar() {
   return (
     <header className="sticky top-0 z-20 flex w-full items-center justify-between gap-5 border-b-2 border-gray-200 bg-background px-9 py-4 text-text max-md:max-w-full max-md:flex-wrap max-md:px-5">
       <Link to="/" className="navbar">
-        <h1 className="my-auto grow self-stretch whitespace-nowrap  text-4xl">
+        <h1 className="font-logoFont my-auto grow self-stretch whitespace-nowrap  text-4xl">
           TOONS<span className="text-primary">404</span>
         </h1>
       </Link>

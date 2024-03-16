@@ -31,26 +31,28 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import AllGenreDetails from "@/Services/Genre/getAllGenreServices";
-import { genreDetails } from "@/types";
+import AllSeriesDetails from "@/Services/Series/getAllSeries.services";
+import { seriesDetails } from "@/types";
 
-// Modify the Payment type to Genre
-export type Genre = {
-  id: string;
-  name: string;
-  description?: string;
-  coverImage: string; // Assuming coverImage is a string representing the image URL
-  createdAt: string; // You might want to use Date type if appropriate
-  updatedAt: string; // You might want to use Date type if appropriate
-};
+// Modify the Payment type to Series
+// export type Series = {
+//   id: string;
+//   title: string;
+//   description?: string;
+//   coverImage: string; // Assuming coverImage is a string representing the image URL
+//   createdAt: string; // You might want to use Date type if appropriate
+//   updatedAt: string; // You might want to use Date type if appropriate
+// };
 
 // Modify the columns accordingly
-export const columns: ColumnDef<genreDetails>[] = [
+export const columns: ColumnDef<seriesDetails>[] = [
   {
-    accessorKey: "name",
-    header: "Name",
+    accessorKey: "title",
+    header: "Title",
     // You can render coverImage here if you want
-    cell: ({ row }) => <div className="capitalize">{row.getValue("name")}</div>,
+    cell: ({ row }) => (
+      <div className="capitalize">{row.getValue("title")}</div>
+    ),
   },
   {
     accessorKey: "coverImage",
@@ -67,6 +69,13 @@ export const columns: ColumnDef<genreDetails>[] = [
     header: "Description",
     cell: ({ row }) => (
       <div className="lowercase">{row.getValue("description")}</div>
+    ),
+  },
+  {
+    accessorKey: "author",
+    header: "Author",
+    cell: ({ row }) => (
+      <div className="lowercase">{row.getValue("author")}</div>
     ),
   },
   {
@@ -110,8 +119,8 @@ export const columns: ColumnDef<genreDetails>[] = [
   },
 ];
 
-export function GenreDetailsTable() {
-  const { data, loading, error } = AllGenreDetails();
+export function SeriesDetailsTable() {
+  const { data, loading, error } = AllSeriesDetails();
 
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
@@ -148,10 +157,10 @@ export function GenreDetailsTable() {
       <div className="flex items-center justify-between space-x-2">
         <div className="flex items-center py-4">
           <Input
-            placeholder="Filter genres..."
-            value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
+            placeholder="Filter seriess..."
+            value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
             onChange={(event) =>
-              table.getColumn("name")?.setFilterValue(event.target.value)
+              table.getColumn("title")?.setFilterValue(event.target.value)
             }
             className="max-w-sm"
           />

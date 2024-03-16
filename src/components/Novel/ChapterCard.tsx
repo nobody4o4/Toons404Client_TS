@@ -9,7 +9,7 @@ const ChapterCard = (chapter: chapterCard) => {
   return (
     <Link
       to={`/novel/${novelId.id}/${chapter.number}`}
-      className="flex w-full max-w-[819px] items-center justify-between gap-5 border-b border-t border-solid border-b-neutral-100 border-t-neutral-100 sm:flex-wrap"
+      className="flex w-full items-center justify-between gap-5 border-b border-t border-solid border-b-neutral-100 border-t-neutral-100 p-2 sm:flex-wrap"
     >
       <div className="flex items-center justify-between gap-2 self-stretch px-5">
         <img
@@ -34,7 +34,7 @@ const ChapterCard = (chapter: chapterCard) => {
           <div className="flex w-1/2 justify-between gap-1">
             {true && <FaHeart className="text-lg" />}
             {!true && <FaRegHeart className="text-lg" />}
-            <span className="grow">112</span>
+            <span className="grow">{chapter.likes}</span>
           </div>
         </div>
         <p className="my-auto self-stretch text-right text-lg tracking-wider text-neutral-700">

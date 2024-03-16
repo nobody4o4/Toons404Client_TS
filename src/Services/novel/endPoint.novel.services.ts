@@ -1,8 +1,13 @@
 import { url } from "../index/index.services";
 
-function getNovelsurl() {
+function getAllNovelsurl() {
   return url.get(`/novel/all`);
 }
+
+function getNovelDetailsurl(){
+  return url.get(`/novel/fulldetail`);
+}
+
 function getNovelCardsurl() {
   return url.get(`/novel/novelcard`);
 }
@@ -32,9 +37,10 @@ function deleteNovelByIdurl(id: string) {
 }
 
 export {
-  getNovelsurl,
+  getAllNovelsurl,
   getNovelCardsurl,
   getNovelByTitleurl,
+  getNovelDetailsurl,
   getNovelByIdurl,
   createNovelurl,
   updateNovelByIdurl,

@@ -26,7 +26,7 @@ function CardGrid() {
 
   return (
     <Fragment>
-      <div className="mx-72a mx-auto grid max-w-[1100px] grid-cols-2 gap-x-6 gap-y-10 px-2 pb-20 sm:grid-cols-3 sm:px-8 lg:mt-16 lg:grid-cols-4 lg:gap-x-6 lg:px-0">
+      <div className=" mx-auto grid max-w-[1100px] grid-cols-2 gap-x-10 gap-y-4 px-2 pb-20 sm:grid-cols-3 sm:px-8 lg:mt-16 lg:grid-cols-4 lg:gap-x-10 lg:px-0">
         {Array.isArray(adata) &&
           adata?.map((data: novelCard, index: number) => (
             <Toonscard

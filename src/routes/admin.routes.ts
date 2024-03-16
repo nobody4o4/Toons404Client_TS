@@ -1,7 +1,13 @@
+import NovelDetails from "@/components/Novel/NovelDetails";
 import Admindashboardlayout from "@/layout/dashboard/Admin.dashboard.layout";
+import AddNovelAdmin from "@/pages/admin/AddNovel.admin";
 // import AddGenreAdmin from "@/pages/admin/addGenre.admin";
 import DashBoard from "@/pages/admin/dashBoard";
+import editNovelAdmin from "@/pages/admin/editNovel.admin";
 import GenreAdmin from "@/pages/admin/genre.admin";
+import NovelAdmin from "@/pages/admin/novel.admin";
+import AdminNovelDetails from "@/pages/admin/novelDetails.admin";
+import SeriesAdmin from "@/pages/admin/series.admin";
 
 export const adminRoutes = [
     {
@@ -34,7 +40,16 @@ export const adminRoutes = [
     {
         id: "series",
         path: "/dashboard/admin/series",
-        component: DashBoard,
+        component: SeriesAdmin,
+        hasHomeLayout: false,
+        hasAdminLayout: true,
+        layout:Admindashboardlayout,
+        requiredAuth: true,
+    },
+    {
+        id: "novel",
+        path: "/dashboard/admin/novel",
+        component: NovelAdmin,
         hasHomeLayout: false,
         hasAdminLayout: true,
         layout:Admindashboardlayout,
@@ -42,9 +57,29 @@ export const adminRoutes = [
         requiredAuth: true,
     },
     {
-        id: "novel",
-        path: "/dashboard/admin/novel",
-        component: DashBoard,
+        id: "novelDetails",
+        path: "/dashboard/admin/novel/:id",
+        component: AdminNovelDetails,
+        hasHomeLayout: false,
+        hasAdminLayout: true,
+        layout:Admindashboardlayout,
+
+        requiredAuth: true,
+    },
+    {
+        id: "editNovel",
+        path: "/dashboard/admin/edit/novel/:id",
+        component: editNovelAdmin,
+        hasHomeLayout: false,
+        hasAdminLayout: true,
+        layout:Admindashboardlayout,
+
+        requiredAuth: true,
+    },
+    {
+        id: "addNovel",
+        path: "/dashboard/admin/novel/add",
+        component: AddNovelAdmin,
         hasHomeLayout: false,
         hasAdminLayout: true,
         layout:Admindashboardlayout,

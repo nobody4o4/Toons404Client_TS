@@ -31,26 +31,30 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import AllGenreDetails from "@/Services/Genre/getAllGenreServices";
-import { genreDetails } from "@/types";
+import { NovelDetails } from "@/types";
 
-// Modify the Payment type to Genre
-export type Genre = {
-  id: string;
-  name: string;
-  description?: string;
-  coverImage: string; // Assuming coverImage is a string representing the image URL
-  createdAt: string; // You might want to use Date type if appropriate
-  updatedAt: string; // You might want to use Date type if appropriate
-};
+import AllNovelDetails from "@/Services/novel/getAllNovelDetails.services";
+import { Link } from "react-router-dom";
+
+// Modify the Payment type to Series
+// export type Series = {
+//   id: string;
+//   title: string;
+//   description?: string;
+//   coverImage: string; // Assuming coverImage is a string representing the image URL
+//   createdAt: string; // You might want to use Date type if appropriate
+//   updatedAt: string; // You might want to use Date type if appropriate
+// };
 
 // Modify the columns accordingly
-export const columns: ColumnDef<genreDetails>[] = [
+export const columns: ColumnDef<NovelDetails>[] = [
   {
-    accessorKey: "name",
-    header: "Name",
+    accessorKey: "title",
+    header: "Title",
     // You can render coverImage here if you want
-    cell: ({ row }) => <div className="capitalize">{row.getValue("name")}</div>,
+    cell: ({ row }) => (
+      <div className="capitalize">{row.getValue("title")}</div>
+    ),
   },
   {
     accessorKey: "coverImage",
@@ -70,6 +74,25 @@ export const columns: ColumnDef<genreDetails>[] = [
     ),
   },
   {
+    accessorKey: "author",
+    header: "Author",
+    cell: ({ row }) => (
+      <div className="lowercase">{row.getValue("author.username")}</div>
+    ),
+  },
+  {
+    accessorKey: "numberOfChapters",
+    header: "No. of Chapter",
+    cell: ({ row }) => (
+      <div className="lowercase">{row.getValue("chapters.length")}</div>
+    ),
+  },
+  {
+    accessorKey: "likes",
+    header: "Likes",
+    cell: ({ row }) => <div className="lowercase">{row.getValue("likes")}</div>,
+  },
+  {
     accessorKey: "createdAt",
     header: "Created At",
     cell: ({ row }) => <div>{row.getValue("createdAt")}</div>,
@@ -83,7 +106,7 @@ export const columns: ColumnDef<genreDetails>[] = [
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
-      const payment = row.original;
+      const novel = row.original;
 
       return (
         <DropdownMenu>
@@ -96,12 +119,14 @@ export const columns: ColumnDef<genreDetails>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
+              onClick={() => navigator.clipboard.writeText(novel.id)}
             >
               Copy payment ID
             </DropdownMenuItem>
+            <Link to={`/dashboard/admin/novel/${novel.id}`}>
+              <DropdownMenuItem>Edit</DropdownMenuItem>
+            </Link>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
             <DropdownMenuItem>View payment details</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
@@ -110,8 +135,8 @@ export const columns: ColumnDef<genreDetails>[] = [
   },
 ];
 
-export function GenreDetailsTable() {
-  const { data, loading, error } = AllGenreDetails();
+export function NovelDetailsTable() {
+  const { data, loading, error } = AllNovelDetails();
 
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
@@ -148,10 +173,10 @@ export function GenreDetailsTable() {
       <div className="flex items-center justify-between space-x-2">
         <div className="flex items-center py-4">
           <Input
-            placeholder="Filter genres..."
-            value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
+            placeholder="Filter seriess..."
+            value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
             onChange={(event) =>
-              table.getColumn("name")?.setFilterValue(event.target.value)
+              table.getColumn("title")?.setFilterValue(event.target.value)
             }
             className="max-w-sm"
           />

@@ -1,9 +1,9 @@
  //Get data of all the novels from the database through the API
 import { useEffect, useState } from "react";
-import { getNovelsurl } from "./endPoint.novel.services";
+import { getAllNovelsurl } from "./endPoint.novel.services";
 import { novelCard} from "@/types";
 
-function AllNovel(){
+function FetchNovelDetails(){
 
     const [data, setdata] = useState<novelCard>();
     const [loading, setloading] = useState(true);
@@ -12,7 +12,7 @@ function AllNovel(){
     useEffect(() => {
        const fetchData = async () => {
             try {
-                const response = await getNovelsurl();
+                const response = await getAllNovelsurl();
                 console.log(data);
                 setdata(response.data);
                 setloading(false);
@@ -30,4 +30,4 @@ function AllNovel(){
     return { data, loading, error };
 }
 
-export default AllNovel;
+export default FetchNovelDetails;

@@ -1,5 +1,5 @@
 import AllGenreDetails from "@/Services/Genre/getAllGenreServices";
-import { DataTableDemo } from "@/components/Admin/DataTable";
+import { GenreDetailsTable } from "@/components/Admin/DataTable";
 // import { TableDashboard } from "@/components/Admin/Table";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
@@ -18,7 +18,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { AddGenreValidator } from "@/schema/user.schema";
 import { useFormik } from "formik";
-import AddGenre from "@/Services/Genre/addGenre.services";
+// import AddGenre from "@/Services/Genre/addGenre.services";
 import { createGenreurl } from "@/Services/Genre/endPoint.genre.services";
 
 function GenreAdmin() {
@@ -187,7 +187,7 @@ function GenreAdmin() {
       </div>
 
       <div className="w-full">
-        <DataTableDemo />
+        <GenreDetailsTable />
       </div>
     </div>
   );

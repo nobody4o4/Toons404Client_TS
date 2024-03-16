@@ -1,10 +1,10 @@
 // this service is used to get novel by id
 import { useEffect, useState } from "react";
 import { getChapterByNumberUrl } from "./endPoint.chapter.services";
-import { chapterCard } from "@/types";
+import { chapter } from "@/types";
 
 function GetChapterByNumber(novelId:string, number : number) {
-    const [data, setdata] = useState<chapterCard>();
+    const [data, setdata] = useState<chapter>();
     const [loading, setloading] = useState(true);
     const [error, seterror] = useState("");
     
@@ -14,6 +14,7 @@ function GetChapterByNumber(novelId:string, number : number) {
             try {
                 console.log(novelId,number,"novelId, number")
                 const response = await getChapterByNumberUrl(novelId,number);
+                console.log(response.data,"response.data")
                 setdata(response.data);
                 console.log(data);
                 setloading(false);

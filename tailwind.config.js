@@ -24,6 +24,11 @@ module.exports = {
         secondary: "var(--secondary)",
         accent: "var(--accent)",
       },
+      fontFamily: {
+        logoFont: ["Paladins", "sans-serif"],
+        // primaryFont: ["Courier Prime Sans", "sans-serif"],
+        // primaryFont2: ["Mechanical", "sans-serif"],
+      },
 
       keyframes: {
         "accordion-down": {

@@ -113,13 +113,13 @@ const ChapterList = (NovelId: { NovelId: string }) => {
   // );
   return (
     <div className="mx-32 flex w-1/2 flex-col border-r-2 border-solid border-r-neutral-100  px-5 py-2.5 max-md:pr-5">
-      a
       {Array.isArray(data) &&
         data?.map((chapters: chapterCard, index: number) => (
           <ChapterCard
             key={index}
             id={chapters.id}
             title={chapters.title}
+            likes={chapters.likes}
             number={chapters.number}
             thumbnail={chapters.thumbnail}
             createdAt={chapters.createdAt}

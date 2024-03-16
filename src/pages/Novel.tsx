@@ -1,6 +1,7 @@
 import GetNovelDetails from "@/Services/novel/getNovelDetailsById";
 import ChapterList from "@/components/Novel/ChapterList";
 import NovelDetails from "@/components/Novel/NovelDetails";
+import { format } from "date-fns";
 import { useParams } from "react-router-dom";
 
 function Novel() {
@@ -33,6 +34,8 @@ function Novel() {
 
   console.log(data, "id");
 
+  const formattedDate = format(data?.createdAt, "EEE MMM-dd yyyy");
+
   // Use the decoded user name
   return (
     <div className="bg-background">
@@ -45,7 +48,11 @@ function Novel() {
         subGenre={{
           name: data?.subGenre?.name ?? "",
         }}
-        series={{ title: data?.series?.title ?? "" }}
+        series={{
+          title: data?.series?.title ?? "",
+          coverImage: data?.series?.coverImage ?? "",
+          description: data?.series?.description ?? "",
+        }}
         coverImage={data?.coverImage ?? ""}
         chapters={{
           id: data?.chapters?.id ?? "",
@@ -54,6 +61,8 @@ function Novel() {
           thumbnail: data?.chapters?.thumbnail ?? "",
           createdAt: data?.chapters?.createdAt ?? "",
         }}
+        likes={0}
+        createdAt={data?.createdAt}
       />
       <ChapterList NovelId={data?.id ?? ""} />
     </div>

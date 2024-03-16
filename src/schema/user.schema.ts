@@ -83,4 +83,26 @@ export const AddGenreValidator = object().shape({
     .max(500, "Description must be at most 500 characters."),
 });
 
+export const AddSeriesValidator = object().shape({
+  title: string()
+    .trim()
+    .required("Title is required.")
+    .min(2, "Title must be at least 2 characters.")
+    .max(30, "Title must be at most 30 characters."),
+    description: string()
+    .trim()
+    .required("Description is required.")
+    .min(20, "Description must be at least 20 characters.")
+    .max(500, "Description must be at most 500 characters."),
+});
+
 // export { RegisterValidator, LoginValidator };
+
+
+export const comment = object().shape({
+  content: string()
+    .trim()
+    .required("Comment is required.")
+    .min(2, "Comment must be at least 2 characters.")
+    .max(300, "Comment must be at most 300 characters."),
+});
