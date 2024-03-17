@@ -19,18 +19,24 @@ export type NovelDetails={
     coverImage: string;
     likes: number;
     genre: {
+        id:string,
         name: string;
     };
     subGenre: {
+        id:string,
         name: string;
     };
     series: {
+        id:string,
         title: string;
     };
     author: {
         username: string;
     };
     description: string;
+    _count :{
+        chapters: number;
+    }
 }
 
 
@@ -41,12 +47,15 @@ export type novelPageDetails = {
     likes: number;
     createdAt: Date;
     genre: {
+        id:string,
         name: string;
     };
     subGenre: {
+        id:string,
         name: string;
     };
     series: {
+        id:string,
         title: string;
         coverImage: string;
         description: string;
@@ -79,7 +88,6 @@ export type seriesDetails ={
     title: string;
     coverImage: string;
     author: string;
-    
     description: string;
     createdAt: string;
     updatedAt: string;
@@ -110,6 +118,20 @@ export interface addSeries  extends FormData {
     coverImage: string;
 }
 
+export interface addNovel  extends FormData {
+    title: string;
+    description: string;
+    coverImage: string;
+    genreId: string;
+    subGenreId: string;
+    seriesId: string;
+}
+
+export interface addChapter  extends FormData {
+    title: string;
+    content: string;
+    coverImage: string;
+}
 
 export type chapterCard = {
     id: string;

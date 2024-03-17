@@ -5,6 +5,10 @@ function getAllGenresurl() {
   return url.get(`/genre/all`);
 }
 
+function getAllGenreNameurl() {
+  return url.get(`/genre/select`);
+}
+
 
 function getGenreByIdurl(id: string) {
   return url.get(`/genre/${id}`);
@@ -25,6 +29,7 @@ function deleteGenreByIdurl(id: string) {
 export {
   getAllGenresurl,
   getGenreByIdurl,
+  getAllGenreNameurl,
   createGenreurl,
   updateGenreByIdurl,
   deleteGenreByIdurl,

@@ -20,7 +20,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -52,9 +51,6 @@ export const columns: ColumnDef<NovelDetails>[] = [
     accessorKey: "title",
     header: "Title",
     // You can render coverImage here if you want
-    cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("title")}</div>
-    ),
   },
   {
     accessorKey: "coverImage",
@@ -69,38 +65,26 @@ export const columns: ColumnDef<NovelDetails>[] = [
   {
     accessorKey: "description",
     header: "Description",
-    cell: ({ row }) => (
-      <div className="lowercase">{row.getValue("description")}</div>
-    ),
   },
   {
-    accessorKey: "author",
+    accessorKey: "author.username",
     header: "Author",
-    cell: ({ row }) => (
-      <div className="lowercase">{row.getValue("author.username")}</div>
-    ),
   },
   {
-    accessorKey: "numberOfChapters",
+    accessorKey: "_count.chapters",
     header: "No. of Chapter",
-    cell: ({ row }) => (
-      <div className="lowercase">{row.getValue("chapters.length")}</div>
-    ),
   },
   {
     accessorKey: "likes",
     header: "Likes",
-    cell: ({ row }) => <div className="lowercase">{row.getValue("likes")}</div>,
   },
   {
     accessorKey: "createdAt",
     header: "Created At",
-    cell: ({ row }) => <div>{row.getValue("createdAt")}</div>,
   },
   {
     accessorKey: "updatedAt",
     header: "Updated At",
-    cell: ({ row }) => <div>{row.getValue("updatedAt")}</div>,
   },
   {
     id: "actions",

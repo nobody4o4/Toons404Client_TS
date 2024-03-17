@@ -24,11 +24,11 @@ function getNovelByTitleurl(title: string) {
   return url.get(`/novel/${title}`);
 }
 
-function createNovelurl(novel: object) {
+function createNovelurl(novel: FormData) {
   return url.post(`/novel/add`, novel);
 }
 
-function updateNovelByIdurl(id: string, novel: object) {
+function updateNovelByIdurl(id: string, novel: FormData) {
   return url.patch(`/novel/update/${id}`, novel);
 }
 

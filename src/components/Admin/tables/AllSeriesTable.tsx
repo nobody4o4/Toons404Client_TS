@@ -72,11 +72,8 @@ export const columns: ColumnDef<seriesDetails>[] = [
     ),
   },
   {
-    accessorKey: "author",
+    accessorKey: "author.username",
     header: "Author",
-    cell: ({ row }) => (
-      <div className="lowercase">{row.getValue("author")}</div>
-    ),
   },
   {
     accessorKey: "createdAt",

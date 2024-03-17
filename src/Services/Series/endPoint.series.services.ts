@@ -1,8 +1,11 @@
 // import { series } from "@/types";
 import {url} from "../index/index.services";
 
-function getAllSeriessurl() {
+function getAllSeriesurl() {
   return url.get(`/series/all`);
+}
+function getAllSeriesNameurl() {
+  return url.get(`/series/select`);
 }
 
 function getSeriesByIdurl(id: string) {
@@ -22,7 +25,8 @@ function deleteSeriesByIdurl(id: string) {
 }
 
 export {
-  getAllSeriessurl,
+  getAllSeriesurl,
+  getAllSeriesNameurl,
   getSeriesByIdurl,
   createSeriesurl,
   updateSeriesByIdurl,

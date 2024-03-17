@@ -1,6 +1,7 @@
 import NovelDetails from "@/components/Novel/NovelDetails";
 import Admindashboardlayout from "@/layout/dashboard/Admin.dashboard.layout";
 import AddNovelAdmin from "@/pages/admin/AddNovel.admin";
+import AddChapterAdmin from "@/pages/admin/addChapter.admin";
 // import AddGenreAdmin from "@/pages/admin/addGenre.admin";
 import DashBoard from "@/pages/admin/dashBoard";
 import editNovelAdmin from "@/pages/admin/editNovel.admin";
@@ -60,6 +61,16 @@ export const adminRoutes = [
         id: "novelDetails",
         path: "/dashboard/admin/novel/:id",
         component: AdminNovelDetails,
+        hasHomeLayout: false,
+        hasAdminLayout: true,
+        layout:Admindashboardlayout,
+
+        requiredAuth: true,
+    },
+    {
+        id: "addchapter",
+        path: "/dashboard/admin/novel/:id/add-chapter",
+        component: AddChapterAdmin,
         hasHomeLayout: false,
         hasAdminLayout: true,
         layout:Admindashboardlayout,

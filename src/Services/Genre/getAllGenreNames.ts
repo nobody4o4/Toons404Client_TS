@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
-import { getAllSeriesurl } from "./endPoint.series.services";
-import { seriesDetails } from "@/types";
+import { getAllGenreNameurl} from "./endPoint.genre.services";
 
-function AllSeriesDetails(){
-    const [data, setdata] = useState<seriesDetails>();
+
+function AllGenreNames(){
+    const [genre, setgenre] = useState<{id: string, name:string}>();
     const [loading, setloading] = useState(true);
     const [error, seterror] = useState("");
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await getAllSeriesurl();
-                setdata(response.data);
-                console.log(data);
+                const response = await getAllGenreNameurl();
+                setgenre(response.data);
+                console.log(genre);
                 setloading(false);
             } catch (error) {
                 if (error instanceof Error) {
@@ -24,7 +24,7 @@ function AllSeriesDetails(){
         }
         fetchData();
     },[])
-    return { data, loading, error };
+    return { genre, loading, error };
 }
 
-export default AllSeriesDetails;
+export default AllGenreNames;

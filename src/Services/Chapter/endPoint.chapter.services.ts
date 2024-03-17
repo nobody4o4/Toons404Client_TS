@@ -12,9 +12,8 @@ function getChapterByNumberUrl(novelId:string,number: number){
     return url.get(`/chapter/${novelId}/${number}`);
 }
 
-
-function createChapterUrl(chapter: object){
-    return url.post(`/chapter/add`, chapter);
+function createChapterUrl(chapter: FormData ,novelId: string){
+    return url.post(`/chapter/${novelId}/add`, chapter);
 }
 
 function updateChapterByIdUrl(id: string, chapter: object){

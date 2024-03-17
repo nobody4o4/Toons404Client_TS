@@ -28,7 +28,7 @@ export default function AdminNovelDetails() {
     <>
       <div className="px-4">
         <div className="flex  items-center justify-between space-x-4 pb-8">
-          <Link className="text-lg font-semibold" to={".."}>
+          <Link className="text-lg font-semibold" to="/dashboard/admin/novel">
             <Button className="text-base" variant={"outline"}>
               {" "}
               <FaArrowLeft className="mr-2 text-lg" /> back to novels
@@ -36,7 +36,7 @@ export default function AdminNovelDetails() {
           </Link>
           <Link
             className="text-lg font-semibold"
-            to="/dashboard/admin/edit/novel/:id"
+            to={`/dashboard/admin/edit/novel/${novelId}`}
           >
             <Button className="text-base">Edit</Button>
           </Link>
@@ -177,7 +177,9 @@ export default function AdminNovelDetails() {
           <CardHeader className=" p-4">
             <div className="flex justify-between">
               <h2 className="font-lg text-lg font-semibold">Chapters</h2>
-              <Button className="w-fit">Edit Chapters</Button>
+              <Link to="add-chapter">
+                <Button className="w-fit">Add Chapters</Button>
+              </Link>
             </div>
           </CardHeader>
           <CardContent className="p-0">

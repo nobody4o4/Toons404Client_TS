@@ -41,25 +41,26 @@ function SeriesAdmin() {
     validationSchema: AddSeriesValidator,
     onSubmit: async (values) => {
       try {
+        setIsLoading(true);
         const formData = new FormData();
         formData.append("title", values.title);
         formData.append("description", values.description);
         console.log("values", values);
+        console.log("values", formData);
         if (values.coverImage) {
           formData.append("Single_file", values.coverImage); // Append avatar to FormData
         }
-        setIsLoading(true);
         const response = await createSeriesurl(formData);
         console.log("response", response);
         toast.success("Series Added successfully.");
         resetForm();
       } catch (error) {
-        setIsLoading(false);
         console.error(error);
         toast.error("Failed to add genre.", {
           description: "Please Try Again",
         });
       }
+      setIsLoading(false);
     },
   });
 
@@ -79,8 +80,8 @@ function SeriesAdmin() {
           <SheetContent>
             <form
               onSubmit={handleSubmit}
-              className="my-auto flex flex-col self-stretch max-md:mt-10 max-md:max-w-full"
               encType="multipart/form-data"
+              className="my-auto flex flex-col self-stretch max-md:mt-10 max-md:max-w-full"
             >
               <SheetHeader>
                 <SheetTitle>Add Series</SheetTitle>

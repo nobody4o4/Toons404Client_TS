@@ -96,6 +96,39 @@ export const AddSeriesValidator = object().shape({
     .max(500, "Description must be at most 500 characters."),
 });
 
+export const AddNovelValidator = object().shape({
+  title: string()
+    .trim()
+    .required("Title is required.")
+    .min(2, "Title must be at least 2 characters.")
+    .max(30, "Title must be at most 30 characters."),
+    description: string()
+    .trim()
+    .required("Description is required.")
+    .min(20, "Description must be at least 20 characters.")
+    .max(500, "Description must be at most 500 characters."),
+    seriesId: string()
+    .trim()
+    .required("Series is required."),
+    genreId: string()
+    .trim()
+    .required("Genre is required."),
+    subGenreId: string()
+    .trim()
+    .required("Sub Genre is required."),
+
+
+});
+export const AddChapterValidator = object().shape({
+  title: string()
+    .trim()
+    .required("Title is required.")
+    .min(2, "Title must be at least 2 characters.")
+    .max(30, "Title must be at most 30 characters."),
+   content: object()
+    .required("Content is required.")
+
+});
 // export { RegisterValidator, LoginValidator };
 
 
