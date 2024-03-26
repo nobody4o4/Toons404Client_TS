@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useFormik } from "formik";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { loginUser } from "../Services/user/user.services";
 import { LoginValidator } from "../schema/user.schema";
 import { clearUserData, getUserData, setUserData } from "../utils/authStorage";
@@ -16,6 +16,10 @@ function LoginForm() {
     setUsername(userData.username || "");
   }, [userData]);
 
+  const token = getUserData().token;
+
+  const authentication = token ? true : false;
+
   const handleLogout = () => {
     clearUserData();
     setUsername("");
@@ -24,8 +28,8 @@ function LoginForm() {
   const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
     useFormik({
       initialValues: {
-        email: "",
-        password: "",
+        email: "email@admin",
+        password: "Password1@",
       },
       validationSchema: LoginValidator,
       onSubmit: async (values) => {
@@ -38,7 +42,7 @@ function LoginForm() {
             token: token,
           });
           setUsername(user.username);
-          navigate("/");
+          window.location.replace("/");
         } catch (error) {
           console.error(error);
           // Handle login error
@@ -49,6 +53,10 @@ function LoginForm() {
   const navigateToRegister = () => {
     navigate("/register");
   };
+
+  if (authentication) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <div className="container mx-auto">

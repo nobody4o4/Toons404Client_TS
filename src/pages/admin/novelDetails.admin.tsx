@@ -1,9 +1,3 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/V6EIXVg1eO6
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
-
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import GetNovelDetails from "@/Services/novel/getNovelDetailsById";
@@ -22,7 +16,10 @@ export default function AdminNovelDetails() {
   if (error) return <div>Error: {error}</div>;
 
   console.log(data, "data");
-  const formattedDate = format(data?.createdAt, " MMM-dd, yyyy");
+  let formattedDate = "";
+  if (data?.createdAt) {
+    formattedDate = format(data.createdAt, " MMM-dd, yyyy");
+  }
 
   return (
     <>
@@ -86,7 +83,7 @@ export default function AdminNovelDetails() {
                     alt="Author"
                     className="w-28 rounded-full"
                     height="100"
-                    src={data?.coverImage}
+                    src={data?.author.avatar}
                     style={{
                       aspectRatio: "100/100",
                       objectFit: "cover",
@@ -114,7 +111,7 @@ export default function AdminNovelDetails() {
                     alt="Author"
                     className="w-28 rounded-lg"
                     height="100"
-                    src={data?.coverImage}
+                    src={data?.series.coverImage}
                     style={{
                       aspectRatio: "1/1.3",
                       objectFit: "cover",
@@ -198,7 +195,7 @@ export default function AdminNovelDetails() {
                 </>
               ))}
 
-            <div className="divide-y">
+            {/* <div className="divide-y">
               <div className="flex items-center space-x-4 p-4">
                 <div className="flex items-center space-x-2">
                   <BookOpenIcon className="h-5 w-5" />
@@ -262,7 +259,7 @@ export default function AdminNovelDetails() {
                 </div>
                 <Button size="sm">Read</Button>
               </div>
-            </div>
+            </div> */}
           </CardContent>
         </Card>
       </div>

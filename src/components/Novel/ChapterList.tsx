@@ -1,6 +1,7 @@
 import ChapterCard from "./ChapterCard";
 import { chapterCard } from "@/types";
 import GetAllChaptersByNovelId from "@/Services/Chapter/getAllChapterByNovel";
+import ChapterCardMain from "./chapterCard.novel";
 
 const ChapterList = (NovelId: { NovelId: string }) => {
   const { data, loading, error } = GetAllChaptersByNovelId(NovelId.NovelId);
@@ -116,6 +117,18 @@ const ChapterList = (NovelId: { NovelId: string }) => {
       {Array.isArray(data) &&
         data?.map((chapters: chapterCard, index: number) => (
           <ChapterCard
+            key={index}
+            id={chapters.id}
+            title={chapters.title}
+            likes={chapters.likes}
+            number={chapters.number}
+            thumbnail={chapters.thumbnail}
+            createdAt={chapters.createdAt}
+          />
+        ))}
+      {Array.isArray(data) &&
+        data?.map((chapters: chapterCard, index: number) => (
+          <ChapterCardMain
             key={index}
             id={chapters.id}
             title={chapters.title}

@@ -6,17 +6,28 @@ import NotFound from "@/pages/error/NotFound";
 import LoginForm from "@/pages/login";
 import HomeLayout from "@/layout/client/Home.Layout";
 import { Fragment } from "react";
+import UserProfile from "@/pages/UserProfile";
 
 export const userRoutes = [
     {
         id: "home",
         path: "/",
-        component: Home,
+        component: Home, 
         hasHomeLayout: true,
         hasAdminLayout: false,
         layout: HomeLayout,
         requiredAuth: false,
     }, 
+    {
+        id: "userProfile"
+        ,path: '/profile/:username'
+        ,component: UserProfile
+        ,hasHomeLayout: true
+        ,hasAdminLayout: false
+        ,layout: HomeLayout
+        ,requiredAuth: true
+
+    },
 
     {
         id: "register",

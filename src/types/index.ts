@@ -63,6 +63,7 @@ export type novelPageDetails = {
     description: string;
     author: {
         username: string;
+        avatar: string;
     };
     chapters: {
         id: string;

@@ -18,6 +18,10 @@ function getUserById(id: string) {
   return url.get(`/user/${id}`);
 }
 
+function hehe() {
+  return url.get(`/user/hehe`);
+}
+
 function updateUserById(id: string, user: object) {
   return url.patch(`/user/update/${id}`, user);
 }
@@ -34,7 +38,9 @@ function me() {
   return url.get(`/user/me`);
 }
 
+function role() {
+  return url.get(`/user/role`);
+}
 
 
-
-export { registerUser, loginUser,me, logoutUser, getUserById, updateUserById, deleteUserById, getAllUsers};
+export { registerUser, role, loginUser,me,hehe, logoutUser, getUserById, updateUserById, deleteUserById, getAllUsers};

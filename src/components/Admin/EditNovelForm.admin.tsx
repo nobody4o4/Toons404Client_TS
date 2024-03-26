@@ -102,7 +102,7 @@ export default function EditNovelForm() {
         }
         const response = await updateNovelByIdurl(novelId, formData);
         console.log("response", response);
-        toast.success("Novel Added successfully.");
+        toast.success("Successfully Edited");
         resetForm();
       } catch (error) {
         console.error(error);

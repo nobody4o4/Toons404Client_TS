@@ -27,22 +27,22 @@ function NavBar() {
     token: "",
   });
 
+  const { username, avatar } = userData;
+
   useEffect(() => {
     const userDataFromStorage = getUserData();
     setUserData(userDataFromStorage);
-  }, []);
+  }, [username]);
 
   const handleLogout = () => {
     clearUserData();
     setUserData({ username: "", avatar: "", token: "" });
   };
 
-  const { username, avatar } = userData;
-
   return (
     <header className="sticky top-0 z-20 flex w-full items-center justify-between gap-5 border-b-2 border-gray-200 bg-background px-9 py-4 text-text max-md:max-w-full max-md:flex-wrap max-md:px-5">
       <Link to="/" className="navbar">
-        <h1 className="font-logoFont my-auto grow self-stretch whitespace-nowrap  text-4xl">
+        <h1 className="my-auto grow self-stretch whitespace-nowrap font-logoFont  text-4xl">
           TOONS<span className="text-primary">404</span>
         </h1>
       </Link>
@@ -63,17 +63,11 @@ function NavBar() {
 
       <div className="flex w-fit justify-between bg-background">
         <Input placeholder="Search" className="mr-3" />
-        {avatar ? (
+        {avatar || username ? (
           <div className="flex justify-end">
             {/* <div className="text-lg text-black">{username}</div> */}
             <DropdownMenu>
               <DropdownMenuTrigger>
-                {" "}
-                {/* <img
-                  src={avatar}
-                  alt=""
-                  className="aspect-square h-[41px] w-full rounded-full dark:bg-gray-500"
-                /> */}
                 <Avatar>
                   <AvatarImage
                     src={avatar}
@@ -89,7 +83,7 @@ function NavBar() {
                 <DropdownMenuGroup>
                   <DropdownMenuItem>
                     {/* <User className="mr-2 h-4 w-4" /> */}
-                    <span>Profile</span>
+                    <Link to={`/profile`}>Profile</Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
                     {/* <CreditCard className="mr-2 h-4 w-4" /> */}

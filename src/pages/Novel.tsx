@@ -62,7 +62,7 @@ function Novel() {
           createdAt: data?.chapters?.createdAt ?? "",
         }}
         likes={0}
-        createdAt={data?.createdAt}
+        createdAt={data?.createdAt ?? new Date()}
       />
       <ChapterList NovelId={data?.id ?? ""} />
     </div>

@@ -54,7 +54,6 @@ export const adminRoutes = [
         hasHomeLayout: false,
         hasAdminLayout: true,
         layout:Admindashboardlayout,
-
         requiredAuth: true,
     },
     {
@@ -64,7 +63,6 @@ export const adminRoutes = [
         hasHomeLayout: false,
         hasAdminLayout: true,
         layout:Admindashboardlayout,
-
         requiredAuth: true,
     },
     {
@@ -84,7 +82,6 @@ export const adminRoutes = [
         hasHomeLayout: false,
         hasAdminLayout: true,
         layout:Admindashboardlayout,
-
         requiredAuth: true,
     },
     {
@@ -94,7 +91,6 @@ export const adminRoutes = [
         hasHomeLayout: false,
         hasAdminLayout: true,
         layout:Admindashboardlayout,
-
         requiredAuth: true,
     },
     {
@@ -104,7 +100,6 @@ export const adminRoutes = [
         hasHomeLayout: false,
         hasAdminLayout: true,
         layout:Admindashboardlayout,
-
         requiredAuth: true,
     },
     {
