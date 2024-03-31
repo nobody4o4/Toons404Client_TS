@@ -1,48 +1,55 @@
-import { Button } from "@/components/ui/button";
 import { AvatarImage, Avatar } from "@/components/ui/avatar";
+import ProfileSidebar from "@/components/ProfileSidebar";
+import GetCurrentUserProfile from "@/Services/user/getCurrentUserProfile.services";
+import Toonscard from "@/components/Toonscard";
+import { novelCard } from "@/types";
 
 export default function UserProfile() {
+  const { data, loading, error } = GetCurrentUserProfile();
+  const novel = data?.novels;
+  console.log(data, "data");
+  console.log(loading, "loading");
+  console.log(error, "error");
+
   return (
-    <div key="1" className="bg-white p-8">
+    <div key="1" className="min-h-[100vh] bg-white p-8">
       <div className="grid grid-cols-4 gap-8">
-        <div className="col-span-1">
-          <div className="flex flex-col items-stretch space-y-4">
-            <Button className="bg-blue-500 text-white">Profile</Button>
-            <Button variant="outline">Edit Profile</Button>
-            <Button variant="outline">Reading list</Button>
-            <Button variant="outline">Continue Reading</Button>
-            <Button variant="outline">Notification</Button>
-            <Button variant="outline">Connection</Button>
-            <Button variant="outline">Settings</Button>
-          </div>
-        </div>
-        <div className="space-yß-8 col-span-3">
+        <ProfileSidebar />
+        <div className="col-span-3 space-y-8">
           <div className="flex items-center space-x-4">
             <Avatar className="h-32 w-32">
-              <AvatarImage
-                alt="Profile picture"
-                src="/placeholder.svg?height=100&width=100"
-              />
+              <AvatarImage alt="Profile picture" src={data?.avatar} />
             </Avatar>
-            <div className="flex flex-col space-y-4">
-              <h1 className="text-3xl font-bold">Samir Gautam</h1>
-              <p className="text-gray-500">@nbdyy404</p>
+            <div className="flex flex-col space-y-2">
+              <h1 className="text-3xl font-bold">
+                {data?.firstName} {data?.lastName}
+              </h1>
+              <p className="text-gray-500">@{data?.username}</p>
               <div className="flex space-x-8">
-                <span>66 followers</span>
-                <span>66 following</span>
+                <span>0 followers</span>
+                <span>0 following</span>
               </div>
-              <p>
-                Milo, she must decide how far she's willing to go to protect her
-                heart and her career when she finds herself falling deeper into
-                his dangerous world. Milo, she must decide how far she's willing
-                to go to protect her heart and her career when she finds herself
-                falling deeper into his dangerous world.
-              </p>
+              <p>{data?.bio}</p>
             </div>
           </div>
           <div>
-            <h2 className="mb-4 text-2xl font-semibold">Favourites</h2>
-            <div className="grid grid-cols-3 gap-4" />
+            <h2 className="mb-4 mt-10 text-2xl font-semibold">Novels</h2>
+            <div className=" mx-auto grid max-w-[1100px] grid-cols-2 gap-x-10 gap-y-4 px-2 pb-20 sm:grid-cols-3 sm:px-8 lg:mt-10 lg:grid-cols-4 lg:gap-x-10 lg:px-0">
+              {Array.isArray(novel) &&
+                novel?.map((data: novelCard, index: number) => (
+                  <Toonscard
+                    id={data.id}
+                    title={data.title}
+                    genre={{ name: data.genre.name }}
+                    subGenre={{ name: data.subGenre.name }}
+                    series={{ title: data.series?.title }}
+                    coverImage={data.coverImage}
+                    key={index}
+                    // handleHover={handleHover}
+                    // handleLeave={handleLeave}
+                  />
+                ))}
+            </div>
           </div>
         </div>
       </div>

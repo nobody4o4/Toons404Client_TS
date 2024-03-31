@@ -25,10 +25,12 @@ import AllGenreNames from "@/Services/Genre/getAllGenreNames";
 import AllSeriesNames from "@/Services/Series/getAllSeriesName.services";
 import { createNovelurl } from "@/Services/novel/endPoint.novel.services";
 import { FaX } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 export default function AddNovelForm() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { genre } = AllGenreNames();
+  const navigate = useNavigate();
 
   const { series } = AllSeriesNames();
   console.log(genre, "grenreaddd");
@@ -70,6 +72,7 @@ export default function AddNovelForm() {
         console.log("response", response);
         toast.success("Novel Added successfully.");
         resetForm();
+        navigate(-1);
       } catch (error) {
         console.error(error);
         toast.error("Failed to add novel.", {
@@ -179,9 +182,6 @@ export default function AddNovelForm() {
                     <SelectContent>
                       <SelectGroup>
                         <SelectLabel>Series</SelectLabel>
-                        <SelectItem disabled value="fantasy">
-                          Fantasy
-                        </SelectItem>
                         {Array.isArray(series) &&
                           series.map((item, index) => {
                             return (

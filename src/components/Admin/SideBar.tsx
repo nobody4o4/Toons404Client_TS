@@ -10,6 +10,7 @@ import { clearUserData, getUserData } from "@/utils/authStorage";
 import { LogOut } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ModeToggle } from "../mode_toggle";
+import { Button } from "../ui/button";
 
 function SideBar() {
   const [userData, setUserData] = useState({
@@ -33,7 +34,7 @@ function SideBar() {
     <div>
       <aside className="flex h-screen w-64 flex-col overflow-y-auto border-r bg-white px-5 py-8 dark:border-gray-700 dark:bg-gray-900 rtl:border-l rtl:border-r-0">
         <Link to="/">
-          <h1 className="my-auto grow self-stretch whitespace-nowrap  text-4xl">
+          <h1 className="my-auto grow self-stretch whitespace-nowrap font-logoFont  text-4xl">
             TOONS<span className="text-primary">404</span>
           </h1>
         </Link>
@@ -55,6 +56,7 @@ function SideBar() {
               <RxDashboard className="h-5 w-5" />
               <span className="mx-2 text-lg font-medium">Dashboard</span>
             </Link>
+
             <Link
               className="flex transform items-center rounded-lg px-3 py-2 text-gray-600 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-200"
               to="/dashboard/admin/genre"
@@ -81,14 +83,14 @@ function SideBar() {
             </Link>
             <Link
               className="flex transform items-center rounded-lg px-3 py-2 text-gray-600 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-              to="/"
+              to="#"
             >
               <GiEvilBook className="h-5 w-5" />
               <span className="mx-2 text-lg font-medium">Comics</span>
             </Link>
             <Link
               className="flex transform items-center rounded-lg px-3 py-2 text-gray-600 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-              to="/"
+              to="#"
             >
               <BsFilePost className="h-5 w-5" />
 
@@ -97,7 +99,7 @@ function SideBar() {
 
             <Link
               className="flex transform items-center rounded-lg px-3 py-2 text-gray-600 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-              to="/"
+              to="#"
             >
               <FaRegUser className="h-5 w-5" />
 
@@ -105,7 +107,7 @@ function SideBar() {
             </Link>
             <Link
               className="flex transform items-center rounded-lg px-3 py-2 text-gray-600 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-              to="/"
+              to="#"
             >
               <MdOutlineReport className="h-5 w-5" />
               <span className="mx-2 text-lg font-medium">Report</span>

@@ -14,7 +14,7 @@ function Toonscard({
   console.log(id, title, genre, "a");
   // const encodedName = encodeURIComponent(title.replace(/\s/g, "_"));
   return (
-    <Link to={`novel/${id}`} className="group relative cursor-pointer">
+    <Link to={`/novel/${id}`} className="group relative cursor-pointer">
       <div className="aspect-[1/1.3] overflow-hidden ">
         <img
           className="h-full w-full object-cover duration-500 group-hover:scale-125 group-hover:brightness-75"

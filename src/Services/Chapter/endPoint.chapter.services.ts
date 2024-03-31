@@ -16,7 +16,7 @@ function createChapterUrl(chapter: FormData ,novelId: string){
     return url.post(`/chapter/${novelId}/add`, chapter);
 }
 
-function updateChapterByIdUrl(id: string, chapter: object){
+function updateChapterByIdUrl(id: string, chapter: FormData){
     return url.patch(`/chapter/update/${id}`, chapter);
 }
 

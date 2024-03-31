@@ -1,4 +1,5 @@
 import { Button } from "./ui/button";
+// import logo from "../assets/logo.png";
 import { Input } from "./ui/input";
 import { useEffect, useState } from "react";
 import { clearUserData, getUserData } from "../utils/authStorage";
@@ -45,6 +46,7 @@ function NavBar() {
         <h1 className="my-auto grow self-stretch whitespace-nowrap font-logoFont  text-4xl">
           TOONS<span className="text-primary">404</span>
         </h1>
+        {/* <img src={logo} alt="logo" className="w-[300px]" /> */}
       </Link>
       <nav className="my-auto flex justify-between gap-5 self-stretch">
         <Link to="#" className="link">
@@ -81,22 +83,21 @@ function NavBar() {
                 <DropdownMenuLabel>{username}</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
-                  <DropdownMenuItem>
-                    {/* <User className="mr-2 h-4 w-4" /> */}
-                    <Link to={`/profile`}>Profile</Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    {/* <CreditCard className="mr-2 h-4 w-4" /> */}
+                  <Link to={`/my-profile`}>
+                    <DropdownMenuItem>
+                      {/* <User className="mr-2 h-4 w-4" /> */}
+                      Profile
+                    </DropdownMenuItem>
+                  </Link>
+                  {/* <DropdownMenuItem>
                     <span>Billing</span>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
-                    {/* <Settings className="mr-2 h-4 w-4" /> */}
                     <span>Settings</span>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
-                    {/* <Keyboard className="mr-2 h-4 w-4" /> */}
                     <span>Keyboard shortcuts</span>
-                  </DropdownMenuItem>
+                  </DropdownMenuItem> */}
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
@@ -106,34 +107,29 @@ function NavBar() {
                       <Link to="/dashboard/admin">Dashboard</Link>
                     </DropdownMenuItem>
                   </Link>
-                  <DropdownMenuSub>
+                  {/* <DropdownMenuSub>
                     <DropdownMenuSubTrigger>
-                      {/* <UserPlus className="mr-2 h-4 w-4" /> */}
                       <span>Invite users</span>
                     </DropdownMenuSubTrigger>
                     <DropdownMenuPortal>
                       <DropdownMenuSubContent>
                         <DropdownMenuItem>
-                          {/* <Mail className="mr-2 h-4 w-4" /> */}
                           <span>Email</span>
                         </DropdownMenuItem>
                         <DropdownMenuItem>
-                          {/* <MessageSquare className="mr-2 h-4 w-4" /> */}
                           <span>Message</span>
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem>
-                          {/* <PlusCircle className="mr-2 h-4 w-4" /> */}
                           <span>More...</span>
                         </DropdownMenuItem>
                       </DropdownMenuSubContent>
                     </DropdownMenuPortal>
                   </DropdownMenuSub>
                   <DropdownMenuItem>
-                    {/* <Plus className="mr-2 h-4 w-4" /> */}
                     <span>New Team</span>
                     <DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>
-                  </DropdownMenuItem>
+                  </DropdownMenuItem> */}
                 </DropdownMenuGroup>
 
                 <DropdownMenuSeparator />

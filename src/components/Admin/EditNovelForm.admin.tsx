@@ -19,7 +19,7 @@ import { toast } from "sonner";
 import AllGenreNames from "@/Services/Genre/getAllGenreNames";
 import AllSeriesNames from "@/Services/Series/getAllSeriesName.services";
 import { updateNovelByIdurl } from "@/Services/novel/endPoint.novel.services";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import GetNovelDetails from "@/Services/novel/getNovelDetailsById";
 import { FaX } from "react-icons/fa6";
 
@@ -27,49 +27,27 @@ export default function EditNovelForm() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { genre } = AllGenreNames();
   const { series } = AllSeriesNames();
+  const naviage = useNavigate();
   const params = useParams();
   const novelId = params.id || "";
   const { data, loading, error } = GetNovelDetails(novelId);
 
-  // const getRoom = async () => {
-  //   try {
-  //     const res = await getSpecificRoomByName(hotel_name, room_id, jwt);
-  //     console.log(res.data);
-  //     setRoomDetails(res?.data?.data);
-  //     setFieldValue("description", res.data.data.description);
-  //     setFieldValue("price_per_night", res.data.data.price_per_night);
-  //     setFieldValue("room_pictures", res.data.data.other_pictures);
-  //     setFieldValue("amenities", res.data.data.room_amenities);
-  //     setFieldValue("room_type", res.data.data.roomType.type_name);
-  //     setFieldValue("bed_types", res.data.data.room_beds);
-
-  //     //   setRoom_Types(res.data.data.roomType);
-  //     setOtherPicturesPreview(
-  //       res.data.data.other_pictures.map((picture) => picture.room_picture)
-  //     );
-  //   } catch (e) {
-  //     const errorMessage = e.response.data.message;
-  //     console.log(errorMessage);
-  //     console.log(errorMessage);
-  //   }
-  // };
-
   useEffect(() => {
     setFieldValue("title", data?.title);
     setFieldValue("description", data?.description);
-    setFieldValue("genreId", data?.genre?.name);
-    setFieldValue("subGenreId", data?.subGenre?.name);
+    setFieldValue("genreId", data?.genre?.id);
+    setFieldValue("subGenreId", data?.subGenre?.id);
     setFieldValue("seriesId", data?.series?.id);
     // setFieldValue("coverImage", data?.coverImage);
   }, [data]);
 
   console.log(data, "data");
-
   console.log(genre, "grenreaddd");
   console.log(series, "series");
 
   const {
     handleSubmit,
+    handleReset,
     handleChange,
     handleBlur,
     values,
@@ -102,16 +80,20 @@ export default function EditNovelForm() {
         }
         const response = await updateNovelByIdurl(novelId, formData);
         console.log("response", response);
+        console.log("values66666666666666", values);
         toast.success("Successfully Edited");
         resetForm();
+        naviage(-1);
       } catch (error) {
         console.error(error);
         toast.error("Failed to add novel.", {
           description: "Please Try Again",
         });
       }
-
       setIsLoading(false);
+    },
+    onReset: () => {
+      naviage(-1);
     },
   });
   if (loading) return <div>...loading</div>;
@@ -119,7 +101,11 @@ export default function EditNovelForm() {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <form onSubmit={handleSubmit} encType="multipart/form-data">
+    <form
+      onSubmit={handleSubmit}
+      onReset={handleReset}
+      encType="multipart/form-data"
+    >
       <Card>
         <CardHeader>
           <div className="space-y-1.5">
@@ -149,10 +135,13 @@ export default function EditNovelForm() {
               <div className="flex space-x-12">
                 <div className="space-y-2">
                   <Label htmlFor="genreId">Genre</Label>
+
                   <Select
+                    defaultValue={data?.genre?.id}
                     name="genreId"
-                    onValueChange={handleChange}
-                    defaultValue={values?.genreId}
+                    onValueChange={(value) => {
+                      setFieldValue("genreId", value);
+                    }}
                   >
                     <SelectTrigger className="w-[180px]">
                       <SelectValue placeholder="Select a genre" />
@@ -163,7 +152,11 @@ export default function EditNovelForm() {
                         {Array.isArray(genre) &&
                           genre.map((item, index) => {
                             return (
-                              <SelectItem key={index} value={item.id}>
+                              <SelectItem
+                                key={index}
+                                value={item.id}
+                                id="genreId"
+                              >
                                 {item.name}
                               </SelectItem>
                             );
@@ -175,9 +168,9 @@ export default function EditNovelForm() {
                 <div className="space-y-2">
                   <Label htmlFor="subGenreId">Sub Genre</Label>
                   <Select
-                    defaultValue={data?.subGenre.id}
+                    defaultValue={data?.subGenre?.id}
                     onValueChange={(value) => {
-                      setFieldValue("subGenreId", value, true);
+                      setFieldValue("subGenreId", value);
                     }}
                     name="subGenreId"
                   >
@@ -199,11 +192,40 @@ export default function EditNovelForm() {
                     </SelectContent>
                   </Select>
                 </div>
+                {/* <div className="space-y-2">
+                  <Label htmlFor="subGenreId">Genre</Label>
+                  <Select
+                    defaultValue={data?.genre.id}
+                    onValueChange={(value) => {
+                      setFieldValue("genreId", value, true);
+                    }}
+                    name="genreId"
+                  >
+                    <SelectTrigger className="w-[180px]">
+                      <SelectValue placeholder="Select a genre" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectLabel>Sub Genre</SelectLabel>
+                        {Array.isArray(genre) &&
+                          genre.map((item, index) => {
+                            return (
+                              <SelectItem key={index} value={item.id}>
+                                {item.name}
+                              </SelectItem>
+                            );
+                          })}
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                </div> */}
                 <div className="space-y-2">
                   <Label htmlFor="series">Series</Label>
                   <Select
-                    onValueChange={handleChange}
-                    defaultValue={values?.seriesId}
+                    onValueChange={(value) => {
+                      setFieldValue("seriesId", value);
+                    }}
+                    defaultValue={data?.series?.id}
                     name="seriesId"
                   >
                     <SelectTrigger className="w-[180px]">
@@ -212,9 +234,6 @@ export default function EditNovelForm() {
                     <SelectContent>
                       <SelectGroup>
                         <SelectLabel>Series</SelectLabel>
-                        <SelectItem disabled value="fantasy">
-                          Fantasy
-                        </SelectItem>
                         {Array.isArray(series) &&
                           series.map((item, index) => {
                             return (
@@ -257,7 +276,6 @@ export default function EditNovelForm() {
                     id="coverImage"
                     name="coverImage"
                     type="file"
-                    defaultValue={values.coverImage}
                     onChange={(event) => {
                       const file = event.currentTarget.files?.[0]; // Add null check before accessing files
                       if (file) {
@@ -283,6 +301,7 @@ export default function EditNovelForm() {
                       onClick={() => {
                         data.coverImage = "";
                       }}
+                      type="button"
                       variant={"ghost"}
                       className="absolute right-1 top-1 z-10 flex rounded-md p-0 hover:bg-transparent"
                     >
@@ -299,6 +318,7 @@ export default function EditNovelForm() {
                     />
                     <Button
                       onClick={() => setFieldValue("coverImage", null)}
+                      type="button"
                       variant={"ghost"}
                       className="absolute right-2 top-0 z-10 m-0 flex rounded-md p-0 hover:bg-transparent"
                     >
@@ -312,7 +332,11 @@ export default function EditNovelForm() {
             </div>
           </div>
           <div className="flex flex-col justify-end gap-4 md:flex-row md:items-center">
-            <Button className="w-full md:w-[200px]" variant="outline">
+            <Button
+              type="reset"
+              className="w-full md:w-[200px]"
+              variant="outline"
+            >
               Cancel
             </Button>
             <Button

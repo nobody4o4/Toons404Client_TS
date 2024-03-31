@@ -1,7 +1,6 @@
 import { CardHeader, CardContent, Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { AddChapterValidator } from "@/schema/user.schema";
 import { useFormik } from "formik";
@@ -10,13 +9,14 @@ import { toast } from "sonner";
 import { FaX } from "react-icons/fa6";
 import EditorJS, { OutputData } from "@editorjs/editorjs";
 import { createChapterUrl } from "@/Services/Chapter/endPoint.chapter.services";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function AddChapterForm() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [content, setContent] = useState<OutputData>();
   const ejInstance = React.useRef<EditorJS>();
-  const novelId = useParams().id || "";
+  const navigate = useNavigate();
+  const novelId = useParams().novelId || "";
   console.log(novelId);
 
   const {
@@ -49,6 +49,7 @@ export default function AddChapterForm() {
         console.log("response", response);
         toast.success("Novel Added successfully.");
         resetForm();
+        navigate(-1);
       } catch (error) {
         console.error(error);
         toast.error("Failed to add novel.", {
@@ -222,7 +223,9 @@ export default function AddChapterForm() {
                   className=" rounded-md border border-slate-200 p-2"
                 ></div>
                 {errors?.content && touched.content && (
-                  <div className="text-sm text-red-500">{errors.content}</div>
+                  <div className="text-sm text-red-500">
+                    {errors.content.toString()}
+                  </div>
                 )}
               </div>
             </div>

@@ -1,12 +1,15 @@
 import { format } from "date-fns";
 import { Button } from "../ui/button";
+import { Link } from "react-router-dom";
 
 function ChapterCardAdmin({
+  id,
   title,
   coverImage,
   createdAt,
   number,
 }: {
+  id: string;
   title: string;
   coverImage: string;
   createdAt: string;
@@ -35,7 +38,9 @@ function ChapterCardAdmin({
           </p>
         </div>
       </div>
-      <Button variant="outline">Edit</Button>
+      <Link to={`edit-chapter/${id}`}>
+        <Button variant="outline">Edit</Button>
+      </Link>
     </div>
   );
 }

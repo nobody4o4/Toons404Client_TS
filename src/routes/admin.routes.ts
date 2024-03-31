@@ -1,14 +1,16 @@
-import NovelDetails from "@/components/Novel/NovelDetails";
 import Admindashboardlayout from "@/layout/dashboard/Admin.dashboard.layout";
 import AddNovelAdmin from "@/pages/admin/AddNovel.admin";
-import AddChapterAdmin from "@/pages/admin/addChapter.admin";
-// import AddGenreAdmin from "@/pages/admin/addGenre.admin";
-import DashBoard from "@/pages/admin/dashBoard";
-import editNovelAdmin from "@/pages/admin/editNovel.admin";
-import GenreAdmin from "@/pages/admin/genre.admin";
-import NovelAdmin from "@/pages/admin/novel.admin";
-import AdminNovelDetails from "@/pages/admin/novelDetails.admin";
-import SeriesAdmin from "@/pages/admin/series.admin";
+import EditChapterAdmin from "@/pages/admin/EditChapter.admin";
+import AddChapterAdmin from "@/pages/admin/AddChapter.admin";
+import DashBoard from "@/pages/admin/DashBoard";
+import EditNovelAdmin from "@/pages/admin/EditNovel.admin";
+import GenreAdmin from "@/pages/admin/Genre.admin";
+import NovelAdmin from "@/pages/admin/Novel.admin";
+import AdminNovelDetails from "@/pages/admin/NovelDetails.admin";
+import SeriesAdmin from "@/pages/admin/Series.admin";
+import AddSeries from "@/pages/admin/AddSeries.admin";
+import SeriesDetails from "@/pages/admin/SeriesDetails.admin";
+import EditSeriesAdmin from "@/pages/admin/EditSeries.admin";
 
 export const adminRoutes = [
     {
@@ -48,6 +50,24 @@ export const adminRoutes = [
         requiredAuth: true,
     },
     {
+        id: "addSeries",
+        path: "/dashboard/admin/add-series",
+        component: AddSeries,
+        hasHomeLayout: false,
+        hasAdminLayout: true,
+        layout:Admindashboardlayout,
+        requiredAuth: true,
+    },
+    {
+        id: "seriesDetails",
+        path: "/dashboard/admin/series/:id",
+        component: SeriesDetails,
+        hasHomeLayout: false,
+        hasAdminLayout: true,
+        layout:Admindashboardlayout,
+        requiredAuth: true,
+    },
+    {
         id: "novel",
         path: "/dashboard/admin/novel",
         component: NovelAdmin,
@@ -67,18 +87,35 @@ export const adminRoutes = [
     },
     {
         id: "addchapter",
-        path: "/dashboard/admin/novel/:id/add-chapter",
+        path: "/dashboard/admin/novel/:novelId/add-chapter",
         component: AddChapterAdmin,
         hasHomeLayout: false,
         hasAdminLayout: true,
         layout:Admindashboardlayout,
-
+        requiredAuth: true,
+    },
+    {
+        id: "editchapter",
+        path: "/dashboard/admin/novel/:id/edit-chapter/:chapterId",
+        component: EditChapterAdmin,
+        hasHomeLayout: false,
+        hasAdminLayout: true,
+        layout:Admindashboardlayout,
         requiredAuth: true,
     },
     {
         id: "editNovel",
         path: "/dashboard/admin/edit/novel/:id",
-        component: editNovelAdmin,
+        component: EditNovelAdmin,
+        hasHomeLayout: false,
+        hasAdminLayout: true,
+        layout:Admindashboardlayout,
+        requiredAuth: true,
+    },
+    {
+        id: "editSeries",
+        path: "/dashboard/admin/edit/series/:id",
+        component: EditSeriesAdmin,
         hasHomeLayout: false,
         hasAdminLayout: true,
         layout:Admindashboardlayout,

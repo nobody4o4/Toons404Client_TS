@@ -13,6 +13,27 @@ export type novelCard = {
     };
 }
 
+export type UserProfile={
+    id: string;
+    username: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    avatar: string;
+    bio: string;
+    followers: number;
+    following: number;
+    novels: novelCard;
+}
+
+export type UpdateUser = {
+    username: string;
+    firstName: string;
+    lastName: string;
+    avatar: string;
+    bio: string;
+}
+
 export type NovelDetails={
     id: string;
     title: string;
@@ -113,6 +134,14 @@ export interface addGenre  extends FormData {
     coverImage: string;
 }
 
+export interface EditUser extends FormData {
+    username: string;
+    firstName: string;
+    lastName: string;
+    avatar: string;
+    bio: string;
+}
+
 export interface addSeries  extends FormData {
     name: string;
     description: string;
@@ -166,3 +195,22 @@ export type MyFunctionType = () => Promise<JSON>;
 //     children?: ReactNode;
 //     location: LocationState;
 // }
+
+
+
+export type StatsCounts = {
+    genreCount: number;
+    seriesCount: number;
+    novelCount: number;
+    userCount: number;
+}
+
+
+export type Series={
+    id: string;
+    title: string;
+    coverImage: string;
+    description: string;
+    author: string;
+    novel: novelCard;
+}

@@ -12,7 +12,6 @@ export default function AdminNovelDetails() {
   const novelId = params.id || "";
   const { data, loading, error } = GetNovelDetails(novelId);
   if (loading) return <div>...loading</div>;
-
   if (error) return <div>Error: {error}</div>;
 
   console.log(data, "data");
@@ -20,7 +19,6 @@ export default function AdminNovelDetails() {
   if (data?.createdAt) {
     formattedDate = format(data.createdAt, " MMM-dd, yyyy");
   }
-
   return (
     <>
       <div className="px-4">
@@ -75,8 +73,8 @@ export default function AdminNovelDetails() {
           </Card>
 
           <div className="space-y-4">
-            <Card className=" p-10 pl-0 ">
-              {/* <CardHeader className="font-bold">Author details</CardHeader> */}
+            <Card className=" p-10 pl-0 pt-0 ">
+              <CardHeader className="font-bold">Author details</CardHeader>
               <div className="flex items-start gap-4 pr-3">
                 <div className="mx-5 flex items-center justify-center">
                   <img
@@ -103,31 +101,40 @@ export default function AdminNovelDetails() {
                 </div>
               </div>
             </Card>
-            <Card className=" p-10 pl-0 ">
-              {/* <CardHeader className="font-bold">Author details</CardHeader> */}
-              <div className="flex items-start gap-4 pr-3">
-                <div className="mx-5 flex items-center justify-center">
-                  <img
-                    alt="Author"
-                    className="w-28 rounded-lg"
-                    height="100"
-                    src={data?.series.coverImage}
-                    style={{
-                      aspectRatio: "1/1.3",
-                      objectFit: "cover",
-                    }}
-                    width="100"
-                  />
-                </div>
-                <div className="col-span-2 space-y-2">
-                  <h3 className="text-xl font-bold leading-none">
-                    {data?.series?.title}
-                  </h3>
-                  <div className="prose prose-sm">
-                    <p>{data?.series?.description}</p>
+            <Card className=" p-10 pl-0 pt-0 ">
+              <CardHeader className="font-bold">Series details</CardHeader>
+
+              {data?.series?.title ||
+              data?.series?.description ||
+              data?.series?.coverImage ? (
+                <div className="flex items-start gap-4 pr-3">
+                  <div className="mx-5 flex items-center justify-center">
+                    <img
+                      alt="Author"
+                      className="w-28 rounded-lg"
+                      height="100"
+                      src={data?.series?.coverImage}
+                      style={{
+                        aspectRatio: "1/1.3",
+                        objectFit: "cover",
+                      }}
+                      width="100"
+                    />
+                  </div>
+                  <div className="col-span-2 space-y-2">
+                    <h3 className="text-xl font-bold leading-none">
+                      {data?.series?.title}
+                    </h3>
+                    <div className="prose prose-sm">
+                      <p>{data?.series?.description}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              ) : (
+                <div className="h-full">
+                  <p className="mx-5 flex">Doesnt belong to any series.</p>
+                </div>
+              )}
             </Card>
           </div>
         </div>
@@ -139,37 +146,6 @@ export default function AdminNovelDetails() {
             </div>
           </CardContent>
         </Card>
-        {/* <Card className="p-l mt-4 p-5 pl-0  pt-0">
-              <CardHeader className="font-bold">Author details</CardHeader>
-              <div className="flex items-start gap-4 pr-3">
-                <div className="mx-5 flex items-center justify-center">
-                  <img
-                    alt="Author"
-                    className="rounded-full"
-                    height="100"
-                    src={data?.coverImage}
-                    style={{
-                      aspectRatio: "100/100",
-                      objectFit: "cover",
-                    }}
-                    width="100"
-                  />
-                </div>
-                <div className="col-span-2 space-y-2">
-                  <h3 className="text-xl font-bold leading-none">
-                    {data?.author?.username}
-                  </h3>
-                  <div className="prose prose-sm">
-                    <p>
-                      Brandon Sanderson is an American author of epic fantasy
-                      and science fiction. He is best known for his Mistborn
-                      series, the Stormlight Archive, and for finishing Robert
-                      Jordan's Wheel of Time series.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </Card> */}
         <Card className="mt-4">
           <CardHeader className=" p-4">
             <div className="flex justify-between">
@@ -185,7 +161,7 @@ export default function AdminNovelDetails() {
                 <>
                   <ChapterCardAdmin
                     key={index}
-                    // id={chapters.id}
+                    id={chapters.id}
                     title={chapters.title}
                     // likes={chapters.likes}
                     number={chapters.number}
@@ -261,47 +237,11 @@ export default function AdminNovelDetails() {
               </div>
             </div> */}
           </CardContent>
+          {Array.isArray(data?.chapters) && data?.chapters.length === 0 && (
+            <div className="p-4">No chapters found</div>
+          )}
         </Card>
       </div>
     </>
-  );
-}
-
-function BookOpenIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
-      <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
-    </svg>
-  );
-}
-
-function ChevronDownIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="m6 9 6 6 6-6" />
-    </svg>
   );
 }

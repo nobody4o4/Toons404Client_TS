@@ -20,7 +20,6 @@ export function AdminChecker({ children }: { children: React.ReactNode }) {
         setRedirect(true);
       }
     }, 500); // Adjust delay time as needed
-
     // Clear timeout on component unmount or if data changes
     return () => clearTimeout(timeout);
   }, [data]);

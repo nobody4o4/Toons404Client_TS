@@ -1,33 +1,36 @@
 // this service is used to get novel by id
 import { useEffect, useState } from "react";
-import { getUserRoleById } from "./user.services";
+import { Series } from "@/types";
+import { getSeriesByIdurl } from "./endPoint.series.services";
 
-function GetUserRole() {
-    
-    const [data, setdata] = useState("");
+function GetSeriesById(seriesId:string) {
+    const [data, setdata] = useState<Series>();
     const [loading, setloading] = useState(true);
     const [error, seterror] = useState("");
+    
 
     useEffect(() => {
        const fetchData = async () => {
             try {
-                const response = await getUserRoleById();
-                console.log(data);
+                console.log(seriesId,"seriesId")
+                const response = await getSeriesByIdurl(seriesId);
+                console.log(response.data,"response.data")
                 setdata(response.data);
+                console.log(data);
                 setloading(false);
             } catch (error ) {
                 if(error instanceof Error){
                     console.log(error.message,"eror");
-                seterror(error.message || "There was a problem");
+                    seterror(error.message || "There was a problem");
             }
                 setloading(false);
             }
         }
         fetchData();
-    }, [data, error, loading]);
+    }, []);
 
     return { data, loading, error };
 
 }
 
-export default GetUserRole;
+export default GetSeriesById;

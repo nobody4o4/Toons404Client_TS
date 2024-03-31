@@ -1,17 +1,18 @@
 // this service is used to get novel by id
 import { useEffect, useState } from "react";
-import { getUserRoleById } from "./user.services";
+import { getCurrentUserProfileUrl} from "./user.services";
+import { UserProfile } from "@/types";
 
-function GetUserRole() {
+function GetCurrentUserProfile() {
     
-    const [data, setdata] = useState("");
+    const [data, setdata] = useState<UserProfile>();
     const [loading, setloading] = useState(true);
     const [error, seterror] = useState("");
 
     useEffect(() => {
        const fetchData = async () => {
             try {
-                const response = await getUserRoleById();
+                const response = await getCurrentUserProfileUrl();
                 console.log(data);
                 setdata(response.data);
                 setloading(false);
@@ -24,10 +25,10 @@ function GetUserRole() {
             }
         }
         fetchData();
-    }, [data, error, loading]);
+    },[]);
 
     return { data, loading, error };
 
 }
 
-export default GetUserRole;
+export default GetCurrentUserProfile;

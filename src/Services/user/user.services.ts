@@ -18,12 +18,17 @@ function getUserById(id: string) {
   return url.get(`/user/${id}`);
 }
 
-function hehe() {
-  return url.get(`/user/hehe`);
+function getUserRoleById() {
+  return url.get(`/user/role`);
 }
 
-function updateUserById(id: string, user: object) {
-  return url.patch(`/user/update/${id}`, user);
+function getCurrentUserProfileUrl(){
+  return url.get(`/user/my-profile`);
+
+}
+
+function updateUserByIdUrl(user: FormData ) {
+  return url.patch(`/user/update-profile`, user );
 }
 
 function deleteUserById(id: string) {
@@ -43,4 +48,4 @@ function role() {
 }
 
 
-export { registerUser, role, loginUser,me,hehe, logoutUser, getUserById, updateUserById, deleteUserById, getAllUsers};
+export { registerUser, role, loginUser,me,getUserRoleById,getCurrentUserProfileUrl, logoutUser, getUserById, updateUserByIdUrl, deleteUserById, getAllUsers};

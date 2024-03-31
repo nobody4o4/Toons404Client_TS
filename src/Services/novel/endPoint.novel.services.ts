@@ -25,6 +25,7 @@ function getNovelByTitleurl(title: string) {
 }
 
 function createNovelurl(novel: FormData) {
+  console.log(novel, "novel urlll")
   return url.post(`/novel/add`, novel);
 }
 
