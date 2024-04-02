@@ -127,7 +127,7 @@ function EditUserForm() {
               )}
             </div>
             <Input
-              className="w-full"
+              className="w-full text-text"
               id="avatar"
               name="avatar"
               type="file"

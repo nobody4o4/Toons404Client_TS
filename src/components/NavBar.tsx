@@ -145,6 +145,9 @@ function NavBar() {
             <Button className="bg-sky-500 hover:bg-sky-300"> Sign In</Button>
           </Link>
         )}
+        <Link to="/subscribtion" className="mx-2 ">
+          <Button>Subscribtion</Button>
+        </Link>
         <div className="ml-3">
           <ModeToggle />
         </div>

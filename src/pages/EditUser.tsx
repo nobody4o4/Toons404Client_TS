@@ -4,7 +4,7 @@ import ProfileSidebar from "@/components/ProfileSidebar";
 export default function EditUserProfile() {
   return (
     <>
-      <div key="1" className="min-h-[100vh] bg-white p-8">
+      <div key="1" className="min-h-[100vh] bg-background p-8 text-text">
         <div className="grid grid-cols-4 gap-8">
           <ProfileSidebar />
           <div className="col-span-3 w-full px-4 ">

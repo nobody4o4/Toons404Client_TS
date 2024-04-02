@@ -109,7 +109,9 @@ export type seriesDetails ={
     id: string;
     title: string;
     coverImage: string;
-    author: string;
+    author: {
+        username: string;
+    };
     description: string;
     createdAt: string;
     updatedAt: string;
@@ -196,6 +198,29 @@ export type MyFunctionType = () => Promise<JSON>;
 //     location: LocationState;
 // }
 
+// pidx=z4cSF2RLNqE7nMc9fsCUMh
+// &
+// transaction_id=8GPLWvVMCQKtsiYXLv4ruH
+// &tidx=8GPLWvVMCQKtsiYXLv4ruH
+// &amount=1000
+// &total_amount=1000
+// &mobile=98XXXXX248
+// &status=Completed
+// &purchase_order_id=00a27811-bdb3-4825-ae0e-a9152f4f0827
+// &purchase_order_name=Subscription%20Premium
+
+
+export type KhaltiCallBack = {
+    pidx: string;
+    transaction_id: string;
+    tidx: string;
+    amount: number;
+    total_amount: number;
+    mobile: string;
+    status: string;
+    purchase_order_id: string;
+    purchase_order_name: string;
+}
 
 
 export type StatsCounts = {
@@ -206,11 +231,19 @@ export type StatsCounts = {
 }
 
 
-export type Series={
+export type Series = {
     id: string;
     title: string;
     coverImage: string;
     description: string;
     author: string;
     novel: novelCard;
+}
+
+export type Genre = {
+    id: string;
+    name: string;
+    description: string;
+    coverImage: string;
+    novel:novelCard;
 }

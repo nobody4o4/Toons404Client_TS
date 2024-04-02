@@ -31,7 +31,6 @@ export default function AddNovelForm() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { genre } = AllGenreNames();
   const navigate = useNavigate();
-
   const { series } = AllSeriesNames();
   console.log(genre, "grenreaddd");
   console.log(series, "series");

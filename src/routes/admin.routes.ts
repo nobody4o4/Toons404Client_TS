@@ -11,6 +11,8 @@ import SeriesAdmin from "@/pages/admin/Series.admin";
 import AddSeries from "@/pages/admin/AddSeries.admin";
 import SeriesDetails from "@/pages/admin/SeriesDetails.admin";
 import EditSeriesAdmin from "@/pages/admin/EditSeries.admin";
+import AddGenreAdmin from "@/pages/admin/AddGenre.admin";
+import EditGenreAdmin from "@/pages/admin/EditGenre.admin";
 
 export const adminRoutes = [
     {
@@ -31,15 +33,15 @@ export const adminRoutes = [
         layout:Admindashboardlayout,
         requiredAuth: true,
     },
-    // {
-    //     id: "addGenre",
-    //     path: "/dashboard/admin/genre/add",
-    //     component: AddGenreAdmin,
-    //     hasHomeLayout: false,
-    //     hasAdminLayout: true,
-    //     layout:Admindashboardlayout,
-    //     requiredAuth: true,
-    // },
+    {
+        id: "addGenre",
+        path: "/dashboard/admin/genre/add",
+        component: AddGenreAdmin,
+        hasHomeLayout: false,
+        hasAdminLayout: true,
+        layout:Admindashboardlayout,
+        requiredAuth: true,
+    },
     {
         id: "series",
         path: "/dashboard/admin/series",
@@ -51,7 +53,7 @@ export const adminRoutes = [
     },
     {
         id: "addSeries",
-        path: "/dashboard/admin/add-series",
+        path: "/dashboard/admin/series/add",
         component: AddSeries,
         hasHomeLayout: false,
         hasAdminLayout: true,
@@ -116,6 +118,15 @@ export const adminRoutes = [
         id: "editSeries",
         path: "/dashboard/admin/edit/series/:id",
         component: EditSeriesAdmin,
+        hasHomeLayout: false,
+        hasAdminLayout: true,
+        layout:Admindashboardlayout,
+        requiredAuth: true,
+    },
+    {
+        id: "editGenre",
+        path: "/dashboard/admin/edit/genre/:id",
+        component: EditGenreAdmin,
         hasHomeLayout: false,
         hasAdminLayout: true,
         layout:Admindashboardlayout,

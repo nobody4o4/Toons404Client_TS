@@ -7,7 +7,7 @@ function SeriesAdmin() {
     <div className="flex flex-col gap-y-5">
       <h1 className="text-4xl underline underline-offset-8">Series</h1>
       <div className="flex">
-        <Link to={`/dashboard/admin/add-series/`}>
+        <Link to={`add`}>
           <Button>Add Series</Button>
         </Link>
       </div>

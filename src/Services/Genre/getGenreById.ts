@@ -1,12 +1,13 @@
 //Get data of all the novels from the database through the API
 import { useEffect, useState } from "react";
 import { getGenreByIdurl } from "./endPoint.genre.services";
-import { genreCard } from "@/types";
+import { Genre } from "@/types";
+
 
 
 function GenreById(id: string) {
 
-    const [data, setdata] = useState<genreCard>();
+    const [data, setdata] = useState<Genre>();
     const [loading, setloading] = useState(true);
     const [error, seterror] = useState("");
 

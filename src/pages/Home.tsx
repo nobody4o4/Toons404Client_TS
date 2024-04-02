@@ -4,7 +4,10 @@ import Hero from "@/components/Home/Hero";
 
 export default function Home() {
   return (
-    <div className="bg-white dark:bg-slate-900 dark:text-stone-200 ">
+    <div
+      className="bg-background text-text
+     "
+    >
       <Hero />
       <Category />
       <CardGrid />

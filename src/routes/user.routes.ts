@@ -8,12 +8,42 @@ import HomeLayout from "@/layout/client/Home.Layout";
 import { Fragment } from "react";
 import UserProfile from "@/pages/UserProfile";
 import EditUserProfile from "@/pages/EditUser";
+import Subscribtion from "@/pages/Subscription";
+import CongratsForSub from "@/pages/SuccessSubscribtion";
+import Test from "@/pages/Test";
 
 export const userRoutes = [
     {
         id: "home",
         path: "/",
         component: Home, 
+        hasHomeLayout: true,
+        hasAdminLayout: false,
+        layout: HomeLayout,
+        requiredAuth: false,
+    }, 
+    {
+        id: "home",
+        path: "/test",
+        component: Test, 
+        hasHomeLayout: true,
+        hasAdminLayout: false,
+        layout: HomeLayout,
+        requiredAuth: false,
+    }, 
+    {
+        id: "subscribtion",
+        path: "/subscribtion",
+        component: Subscribtion, 
+        hasHomeLayout: true,
+        hasAdminLayout: false,
+        layout: HomeLayout,
+        requiredAuth: false,
+    }, 
+    {
+        id: "subscribtion",
+        path: "/subscribtion/success",
+        component: CongratsForSub, 
         hasHomeLayout: true,
         hasAdminLayout: false,
         layout: HomeLayout,
