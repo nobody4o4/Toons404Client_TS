@@ -1,4 +1,3 @@
-
 import { Toaster } from "./components/ui/sonner.js";
 import "./index.css";
 import MainRouter from "./routes/index.routes.jsx";

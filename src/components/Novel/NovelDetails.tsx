@@ -1,18 +1,67 @@
-import { novelPageDetails } from "@/types";
+import { novelPageDetail, novelPageDetails } from "@/types";
 import { Button } from "../ui/button";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import GetChapterByNumber from "@/Services/Chapter/getChapterByNumber";
+import {
+  addLikesurl,
+  removeLikesurl,
+} from "@/Services/Like/endPoint.like.services";
+import { format } from "date-fns";
+import { toast } from "sonner";
 
 // GenreBadge Component for displaying genres
 const GenreBadge = ({ genre }: { genre: string }) => (
-  <div className="aspect-[2.53] justify-center rounded-md bg-black px-1 py-1.5">
+  <div className=" justify-center rounded-md bg-primary px-1 py-1.5">
     {genre}
   </div>
 );
 
 // Main Component
-const NovelDetails = (novel: novelPageDetails) => {
-  console.log(novel, "novel");
+const NovelDetails = (novel: novelPageDetail) => {
+  const [isLiked, setIsLiked] = useState<boolean>();
+  const [likes, setLikes] = useState<number>(0);
+  const [isLiking, setIsLiking] = useState(false);
 
+  useEffect(() => {
+    if (novel?._count?.Likes) {
+      setLikes(novel._count.Likes);
+    }
+    setIsLiked(novel.hasLiked);
+  }, [novel]);
+
+  const handleAddLike = async () => {
+    try {
+      setIsLiking(true);
+      setLikes((prevLikes) => prevLikes + 1);
+      await addLikesurl("novel", novel.id);
+      setIsLiked(true);
+      setIsLiking(false);
+      toast.success("Subscribed successfully.");
+    } catch (error) {
+      setIsLiking(false);
+      setLikes((prevLikes) => prevLikes - 1);
+      console.error(error);
+      toast.error("An error occurred while adding the like.");
+    }
+  };
+
+  const handleRemoveLike = async () => {
+    try {
+      setIsLiking(true);
+      setLikes((prevLikes) => prevLikes - 1);
+      await removeLikesurl("novel", novel.id);
+      setIsLiked(false);
+      setIsLiking(false);
+      toast.success("Unsubscribed successfully.");
+    } catch (error) {
+      setIsLiking(false);
+      setLikes((prevLikes) => prevLikes + 1);
+      console.error(error);
+      toast.error("An error occurred while removing the like.");
+    }
+  };
+  console.log(novel, "novelklll");
   return (
     <div className="flex bg-primary p-20">
       <div className="mx-48 flex h-52 w-full gap-5 rounded-md  bg-white p-4 max-md:mt-10 max-md:max-w-full max-md:flex-col max-md:gap-0 max-md:pr-5">
@@ -29,14 +78,6 @@ const NovelDetails = (novel: novelPageDetails) => {
           <div className="my-auto flex flex-col self-stretch text-black max-md:mt-10 max-md:max-w-full">
             <h3 className="text-2xl max-md:max-w-full">{novel.title}</h3>
             <p className="mt-2 text-sm max-md:max-w-full">
-              {/* When successful realtor Adele is hand-picked to represent
-              mysterious mafia don Milo, she must decide how far she's willing
-              to go to protect her heart and her career when she finds herself
-              falling deeper into his dangerous world. Season 1 of A Dangerous
-              Bargain *** Adele Buchanan's goal has always been to become a top
-              New York realtor. So when a bold deal catches the attention of
-              merciless Italian mafia don Milo DeLuca and he offers her a job as
-              his agent, it feels like the chance of a lifetime. */}
               {novel.description}
             </p>
             <div className="mt-4 flex w-full justify-between gap-5 whitespace-nowrap text-white max-md:max-w-full max-md:flex-wrap">
@@ -46,11 +87,32 @@ const NovelDetails = (novel: novelPageDetails) => {
                   <GenreBadge genre={novel.subGenre.name} />
                 )}
               </div>
-              <Link to="/" className="rounded-3xl">
-                <Button className="justify-center rounded-3xl bg-primary px-4 text-center text-sm font-medium leading-10">
-                  First episode
-                </Button>
-              </Link>
+              <div className="flex gap-x-5">
+                <Link to="/" className="rounded-3xl">
+                  <Button className="justify-center rounded-md bg-primary px-4 text-center text-sm font-medium leading-10 dark:bg-primary dark:text-text dark:hover:bg-primary">
+                    First episode
+                  </Button>
+                </Link>
+
+                {isLiked ? (
+                  <Button
+                    variant={"outline"}
+                    onClick={handleRemoveLike}
+                    disabled={isLiking}
+                    className="justify-center rounded-md  px-4 text-center text-sm font-medium leading-10 text-black dark:bg-transparent dark:text-black dark:hover:bg-primary  "
+                  >
+                    Subscribed
+                  </Button>
+                ) : (
+                  <Button
+                    onClick={handleAddLike}
+                    disabled={isLiking}
+                    className="justify-center rounded-md bg-primary px-4 text-center text-sm font-medium leading-10 dark:bg-primary dark:text-text dark:hover:bg-primary"
+                  >
+                    Subscribe
+                  </Button>
+                )}
+              </div>
             </div>
           </div>
         </div>

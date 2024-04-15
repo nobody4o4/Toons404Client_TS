@@ -1,18 +1,20 @@
 import Admindashboardlayout from "@/layout/dashboard/Admin.dashboard.layout";
-import AddNovelAdmin from "@/pages/admin/AddNovel.admin";
-import EditChapterAdmin from "@/pages/admin/EditChapter.admin";
-import AddChapterAdmin from "@/pages/admin/AddChapter.admin";
+import AddNovelAdmin from "@/pages/admin/Novel/AddNovel.admin";
+import EditChapterAdmin from "@/pages/admin/Chapter/EditChapter.admin";
+import AddChapterAdmin from "@/pages/admin/Chapter/AddChapter.admin";
 import DashBoard from "@/pages/admin/DashBoard";
-import EditNovelAdmin from "@/pages/admin/EditNovel.admin";
-import GenreAdmin from "@/pages/admin/Genre.admin";
-import NovelAdmin from "@/pages/admin/Novel.admin";
-import AdminNovelDetails from "@/pages/admin/NovelDetails.admin";
-import SeriesAdmin from "@/pages/admin/Series.admin";
-import AddSeries from "@/pages/admin/AddSeries.admin";
-import SeriesDetails from "@/pages/admin/SeriesDetails.admin";
-import EditSeriesAdmin from "@/pages/admin/EditSeries.admin";
-import AddGenreAdmin from "@/pages/admin/AddGenre.admin";
-import EditGenreAdmin from "@/pages/admin/EditGenre.admin";
+import EditNovelAdmin from "@/pages/admin/Novel/EditNovel.admin";
+import GenreAdmin from "@/pages/admin/Genre/Genre.admin";
+import NovelAdmin from "@/pages/admin/Novel/Novel.admin";
+import AdminNovelDetails from "@/pages/admin/Novel/NovelDetails.admin";
+import SeriesAdmin from "@/pages/admin/Series/Series.admin";
+import AddSeries from "@/pages/admin/Series/AddSeries.admin";
+import SeriesDetails from "@/pages/admin/Series/SeriesDetails.admin";
+import EditSeriesAdmin from "@/pages/admin/Series/EditSeries.admin";
+import AddGenreAdmin from "@/pages/admin/Genre/AddGenre.admin";
+import EditGenreAdmin from "@/pages/admin/Genre/EditGenre.admin";
+import UserAdmin from "@/pages/admin/User/User.admin";
+import AdminUserDetails from "@/pages/admin/User/UserDetails.admin";
 
 export const adminRoutes = [
     {
@@ -153,7 +155,16 @@ export const adminRoutes = [
     {
         id: "user",
         path: "/dashboard/admin/user",
-        component: DashBoard,
+        component: UserAdmin,
+        hasHomeLayout: false,
+        hasAdminLayout: true,
+        layout:Admindashboardlayout,
+        requiredAuth: true,  
+    },
+    {
+        id: "user",
+        path: "/dashboard/admin/user/details/:id",
+        component: AdminUserDetails,
         hasHomeLayout: false,
         hasAdminLayout: true,
         layout:Admindashboardlayout,

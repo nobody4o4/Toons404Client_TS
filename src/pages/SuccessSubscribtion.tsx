@@ -5,6 +5,7 @@ import { FaArrowRight } from "react-icons/fa6";
 import { KhaltiCallBack } from "@/types";
 import { useMemo } from "react";
 import ConfirmSubscription from "@/Services/Subscription/confirmSubcription.services";
+import Loading from "./Loading";
 
 export default function CongratsForSub() {
   const [searchParams] = useSearchParams();
@@ -26,7 +27,7 @@ export default function CongratsForSub() {
   console.log(loading, "loading");
   console.log(error, "error");
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <Loading />;
 
   return (
     <div className=" bg-background py-12 text-text md:py-24">

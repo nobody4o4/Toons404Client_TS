@@ -7,7 +7,6 @@ import { novelCard } from "@/types";
 function CardGrid() {
   const { data, loading } = AllNovelCard();
   //   const [hover, setHover] = useState<number | null>(null);
-  const adata = data;
 
   if (loading) {
     return <p>Loading...</p>; //  render a loading indicator while fetching data
@@ -21,24 +20,21 @@ function CardGrid() {
   //     setHover(null);
   //   };
 
-  console.log(adata?.coverImage, "ss");
-  console.log(adata, "ss");
-
   return (
     <Fragment>
       <div className=" mx-auto grid max-w-[1100px] grid-cols-2 gap-x-10 gap-y-4 px-2 pb-20 sm:grid-cols-3 sm:px-8 lg:mt-16 lg:grid-cols-4 lg:gap-x-10 lg:px-0">
-        {Array.isArray(adata) &&
-          adata?.map((data: novelCard, index: number) => (
+        {Array.isArray(data) &&
+          data?.map((novel: novelCard, index: number) => (
             <Toonscard
-              id={data.id}
-              title={data.title}
-              genre={{ name: data.genre.name }}
-              subGenre={{ name: data.subGenre.name }}
-              series={{ title: data.series?.title }}
-              coverImage={data.coverImage}
+              id={novel.id}
+              title={novel.title}
+              genre={{ name: novel.genre.name }}
+              subGenre={{ name: novel.subGenre.name }}
+              series={{ title: novel.series?.title }}
+              coverImage={novel.coverImage}
               key={index}
-              // handleHover={handleHover}
-              // handleLeave={handleLeave}
+              _count={novel._count}
+              Likes={novel.Likes}
             />
           ))}
       </div>

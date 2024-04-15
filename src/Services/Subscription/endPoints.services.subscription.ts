@@ -12,4 +12,8 @@ export function ConfirmSubscriptionUrl(paymentDetails : KhaltiCallBack){
   return url.post(`/subscription/callback`, { params: paymentDetails });
 }
 
+export function getSubscriptionByIdurl( ){
+  return url.get(`/subscription/get`,);
+}
+
  

@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/sonner";
 
 function Admindashboardlayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex">
+    <div className="flex bg-background text-text">
       <div className="sticky bottom-0 left-0 top-0 h-screen">
         <SideBar />
       </div>

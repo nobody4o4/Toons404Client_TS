@@ -15,9 +15,8 @@ const ChapterCard = (chapter: chapterCard) => {
         <img
           loading="lazy"
           src={chapter.thumbnail}
-          // src="https://cdn.builder.io/api/v1/image/assets/TEMP/a47d06d9976494254de218c49f1fdd2f1012bb2930a2730d293f2b2a023b046d?apiKey=3969ba43007a4a76b36a3bcb3912a1e3&"
           alt={`Episode ${chapter.number} thumbnail`}
-          className="aspect-[1.05] w-[77px] self-stretch"
+          className="aspect-[1.05] w-[77px] self-stretch rounded-md object-cover "
         />
         <p className="my-auto self-stretch text-lg text-text">
           {chapter.title}

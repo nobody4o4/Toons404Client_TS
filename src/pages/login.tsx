@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import { Navigate } from "react-router-dom";
-import { loginUser } from "../Services/user/user.services";
+import { loginUser } from "../Services/user/endpoint.user.services";
 import { LoginValidator } from "../schema/user.schema";
 import { getUserData, setUserData } from "../utils/authStorage";
 import { Button } from "@/components/ui/button";

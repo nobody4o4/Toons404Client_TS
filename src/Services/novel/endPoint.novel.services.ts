@@ -7,8 +7,11 @@ function getAllNovelsurl() {
 function getNovelDetailsurl(){
   return url.get(`/novel/fulldetail`);
 }
+function getReadingListurl(){
+  return url.get(`/novel/reading-list`);
+}   
 
-function getNovelCardsurl() {
+function getNovelCardsurl() { 
   return url.get(`/novel/novelcard`);
 }
 
@@ -38,6 +41,7 @@ function deleteNovelByIdurl(id: string) {
 }
 
 export {
+  getReadingListurl,
   getAllNovelsurl,
   getNovelCardsurl,
   getNovelByTitleurl,

@@ -34,7 +34,7 @@ function SideBar() {
     <div>
       <aside className="flex h-screen w-64 flex-col overflow-y-auto border-r bg-white px-5 py-8 dark:border-gray-700 dark:bg-gray-900 rtl:border-l rtl:border-r-0">
         <Link to="/">
-          <h1 className="my-auto grow self-stretch whitespace-nowrap font-logoFont  text-4xl">
+          <h1 className="my-auto grow self-stretch whitespace-nowrap font-logoFont  text-2xl">
             TOONS<span className="text-primary">404</span>
           </h1>
         </Link>
@@ -99,10 +99,9 @@ function SideBar() {
 
             <Link
               className="flex transform items-center rounded-lg px-3 py-2 text-gray-600 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-              to="#"
+              to="/dashboard/admin/user"
             >
               <FaRegUser className="h-5 w-5" />
-
               <span className="mx-2 text-lg font-medium">User</span>
             </Link>
             <Link

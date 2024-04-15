@@ -12,7 +12,7 @@ function MainWrapper({
     hasHomeLayout: boolean;
     hasAdminLayout: boolean;
     requiredAuth: boolean;
-    layout: ReactComponentElement<>;
+    layout: ReactComponentElement;
   };
   children: React.ReactNode;
 }) {

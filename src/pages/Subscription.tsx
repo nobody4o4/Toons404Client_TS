@@ -1,5 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { createSubscriptionurl } from "@/Services/Subscription/endPoints.services.subscription";
+import GetSubscriptionById from "@/Services/Subscription/getSubscriptionById.services";
+import { FaCheck } from "react-icons/fa6";
+import { Link } from "react-router-dom";
+import Loading from "./Loading";
 
 export default function Subscribtion() {
   const planId: string = "b14b54ca-47a3-499a-84d4-a04d32a94ecf";
@@ -9,6 +13,37 @@ export default function Subscribtion() {
     window.location.href = response.data.data.payment_url;
     console.log("Clicked");
   };
+
+  const { data, loading } = GetSubscriptionById();
+
+  console.log("data", data?.message);
+
+  if (data?.message === "Active") {
+    return (
+      <div className="w-full py-6">
+        <div className="container flex flex-col items-center gap-4 px-4 md:px-6">
+          <FaCheck className="h-16 w-16 rounded-full bg-gray-100 dark:bg-gray-800" />
+          <div className="flex flex-col items-center gap-2 text-center">
+            <h1 className="text-3xl font-bold tracking-tighter">
+              Subscription Confirmation
+            </h1>
+            <p className="text-gray-500/relaxed max-w-[600px] dark:text-gray-400">
+              You are already subscribed to our plan. Thank you for choosing our
+              service!
+            </p>
+            <Link to="/" className="mt-4">
+              <Button>Back to Home</Button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <div className="h-screen w-full">
       <div className="relative overflow-hidden">

@@ -1,6 +1,6 @@
 // this service is used to get novel by id
 import { useEffect, useState } from "react";
-import { getUserRoleById } from "./user.services";
+import { getUserRoleById } from "./endpoint.user.services";
 
 function GetUserRole() {
     

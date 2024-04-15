@@ -28,9 +28,8 @@ function ProfileSidebar() {
               Edit Profile
             </Button>
           </Link>
-          <Link to="#">
+          <Link to="/reading-list">
             <Button
-              disabled
               variant="outline"
               className={`${isActive("/reading-list")} w-full`}
             >

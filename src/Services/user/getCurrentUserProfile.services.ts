@@ -1,11 +1,11 @@
 // this service is used to get novel by id
 import { useEffect, useState } from "react";
-import { getCurrentUserProfileUrl} from "./user.services";
-import { UserProfile } from "@/types";
+import { getCurrentUserProfileUrl} from "./endpoint.user.services";
+import { MyProfile } from "@/types";
 
 function GetCurrentUserProfile() {
     
-    const [data, setdata] = useState<UserProfile>();
+    const [data, setdata] = useState<MyProfile>();
     const [loading, setloading] = useState(true);
     const [error, seterror] = useState("");
 

@@ -2,6 +2,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Fragment } from "react";
 import Toonscard from "../Toonscard";
 import AllNovelCard from "@/Services/novel/getAllNovelCard.services";
+import Loading from "@/pages/Loading";
 
 function Category() {
   const { data, loading } = AllNovelCard();
@@ -9,7 +10,7 @@ function Category() {
   const adata = data;
 
   if (loading) {
-    return <p>Loading...</p>; //  render a loading indicator while fetching data
+    return <Loading></Loading>; //  render a loading indicator while fetching data
   }
   return (
     <div className="">

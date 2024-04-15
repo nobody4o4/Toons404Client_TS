@@ -11,8 +11,24 @@ export type novelCard = {
     series: {
         title: string;
     };
+    _count: {
+        Likes: number;
+    };
+    Likes:[{
+        userId: string;
+    }]
 }
 
+export type MyProfile={
+    id: string;
+    username: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    avatar: string;
+    bio: string;
+    novels: novelCard;
+}
 export type UserProfile={
     id: string;
     username: string;
@@ -21,11 +37,54 @@ export type UserProfile={
     email: string;
     avatar: string;
     bio: string;
-    followers: number;
-    following: number;
     novels: novelCard;
+    isFollowing : boolean;
+    _count :{
+        Followers: number;
+        Followings: number
+    }
 }
 
+export type UserTable = {
+    id: string;
+    username: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    avatar: string;
+    bio: string;
+    _count :{
+        Followers: number;
+        Followings: number;
+        Novels: number;
+        Series: number;
+    };
+    role: string;
+
+
+}
+
+export type UserDetail = {
+    id: string;
+    username: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    avatar: string;
+    bio: string;
+    _count :{
+        Followers: number;
+        Followings: number;
+        Novels: number;
+        Series: number;
+    };
+    role: string;
+    novels: novelCard;
+    Series: SeriesCard;
+    createdAt: Date;
+    updatedAt: Date;
+
+}
 export type UpdateUser = {
     username: string;
     firstName: string;
@@ -58,6 +117,9 @@ export type NovelDetails={
     _count :{
         chapters: number;
     }
+    Likes:[{
+        userId: string;
+    }]
 }
 
 
@@ -93,6 +155,65 @@ export type novelPageDetails = {
         thumbnail: string;
         createdAt: string;
     };
+    _count :{
+        Likes: number;
+    }
+    Likes:[{
+        userId: string;
+    }]
+}
+
+export type novelPageDetail = {
+    id: string;
+    title: string;
+    coverImage: string;
+    likes: number;
+    createdAt: Date;
+    genre: {
+        id:string,
+        name: string;
+    };
+    subGenre: {
+        id:string,
+        name: string;
+    };
+    series: {
+        id:string,
+        title: string;
+        coverImage: string;
+        description: string;
+    };
+    description: string;
+    author: {
+        username: string;
+        avatar: string;
+    };
+    chapters: {
+        id: string;
+        title: string;
+        number: number;
+        thumbnail: string;
+        createdAt: string;
+    };
+    _count :{
+        Likes: number;
+    }
+    hasLiked: boolean;
+}
+export type SeriesPageDetail = {
+    id: string;
+    title: string;
+    coverImage: string;
+    createdAt: Date;
+    description: string;
+    author: {
+        username: string;
+        avatar: string;
+    };
+    _count :{
+        Likes: number;
+    }
+    hasLiked: boolean;
 }
 
 
@@ -170,20 +291,34 @@ export type chapterCard = {
     title: string;
     number: number;
     likes: number;
+    views: number;
     thumbnail: string;
     createdAt: string;
+    _count: {
+        Likes: number;
+    };
+    Likes:[{
+        userId: string;
+    }]
 }
 
 export type chapter = {
     id: string;
     title: string;
     number: number;
+    views : number;
     novel:{
         title: string;
         author:{
             username: string;
         }
     }
+    _count:{
+        Likes: number;
+    }
+    Likes:[{
+        userId: string;
+    }]
     Author: string;
     content: string;
     thumbnail: string;
@@ -236,8 +371,30 @@ export type Series = {
     title: string;
     coverImage: string;
     description: string;
-    author: string;
-    novel: novelCard;
+    author: {
+        username: string;
+        avatar: string;
+    };
+    novels: novelCard;
+    _count:{
+        Likes: number;
+    }
+    Likes:[{
+        userId: string;
+    }]
+    createdAt: Date;
+}
+
+export type SeriesCard = {
+    id: string;
+    title: string;
+    coverImage: string;
+    _count: {
+        Likes: number;
+    };
+    Likes: [{
+        userId: string;
+    }];
 }
 
 export type Genre = {
@@ -246,4 +403,41 @@ export type Genre = {
     description: string;
     coverImage: string;
     novel:novelCard;
+}
+
+export type Comment = {
+    id: string;
+    content: string;
+    user: {
+        username: string;
+        avatar: string;
+    };
+    createdAt: string;
+    _count: {
+        Likes: number;
+    };
+    Likes:[{
+        userId: string;
+    }]
+
+}
+
+export type Comments = {
+    id: string;
+    content: string;
+    user: {
+        username: string;
+        avatar: string;
+    };
+    createdAt: string;
+    _count: {
+        Likes: number;
+    };
+    hasLiked: boolean;
+}
+
+export type LikedList = {
+    id: string;
+    title: string;
+    coverImage: string;
 }

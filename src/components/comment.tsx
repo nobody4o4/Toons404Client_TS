@@ -1,68 +1,102 @@
-import { useState, useEffect } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
+import { addCommenturl } from "@/Services/Comment/endPoint.comment.services";
+import GetAllCommentsByChapter from "@/Services/Comment/getAllCommentsByChapter.services";
+import { useEffect, useState } from "react";
+import { Comment } from "@/types";
+import CommentList from "./commentList";
 
-const validationSchema = Yup.object().shape({
+const commentSchema = Yup.object().shape({
   comment: Yup.string()
-    .min(10, "Comment must be at least 10 characters.")
+    .required("Comment is required.")
+    .min(3, "Comment must be at least 3 characters.")
     .max(160, "Comment must not be longer than 160 characters."),
 });
 
-function CommentForm() {
-  const [formData, setFormData] = useState(null);
+function CommentForm({ chapterId }: { chapterId: string }) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { data, loading, error } = GetAllCommentsByChapter(chapterId);
 
-  useEffect(() => {
-    // Handle form submission success
-    if (formData) {
-      toast.success("Form submitted successfully!");
-    }
-  }, [formData]);
+  console.log(data, "datashshshshshhshhs");
+  console.log(loading, "loading");
+  console.log(error, "error");
+
+  const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
+    useFormik({
+      initialValues: {
+        comment: "",
+      },
+      validationSchema: commentSchema,
+      onSubmit: async (values) => {
+        try {
+          setIsSubmitting(true);
+          const response = await addCommenturl(chapterId, values);
+          if (response.status === 201) {
+            toast.success("Comment added successfully.");
+            // resetForm();
+          } else {
+            toast.error("An error occurred. Please try again.");
+          }
+        } catch (error) {
+          setIsSubmitting(false);
+          console.error(error);
+          toast.error("An error occurred. Please try again.");
+        }
+        setIsSubmitting(false);
+      },
+    });
 
   return (
     <div className="mt-10">
-      <Formik
-        initialValues={{ comment: "" }}
-        validationSchema={validationSchema}
-        onSubmit={(values, { setSubmitting }) => {
-          setFormData(values);
-          setSubmitting(false);
-        }}
-      >
-        {({ isSubmitting, handleBlur }) => (
-          <Form className="">
-            <div className="mb-4">
-              <label
-                htmlFor="comment"
-                className="mb-2 block text-sm font-bold text-gray-700"
-              >
-                Comment
-              </label>
-              <Field
-                id="comment"
-                name="comment"
-                as={Textarea}
-                placeholder="Tell us a little bit about yourself"
-                className="resize-none"
-                onBlur={handleBlur}
-              />
-              <ErrorMessage
-                name="comment"
-                component="div"
-                className="text-red-500"
-              />
-              <div className="text-gray-500">
-                You can <span>@mention</span> other users and organizations.
-              </div>
-            </div>
-            <Button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? "Submitting..." : "Submit"}
-            </Button>
-          </Form>
+      <form onSubmit={handleSubmit} className="">
+        <div className="mb-4">
+          <label
+            htmlFor="comment"
+            className="mb-2 block text-sm font-bold text-gray-700"
+          >
+            Comment
+          </label>
+          <Textarea
+            id="comment"
+            name="comment"
+            placeholder="Tell us a little bit about yourself"
+            className="resize-none"
+            onBlur={handleBlur}
+            value={values.comment}
+            onChange={handleChange}
+          />
+
+          <div className="text-gray-500">
+            You can <span>@mention</span> other users and organizations.
+          </div>
+        </div>
+        {errors.comment && touched.comment && (
+          <div className="text-red-500">{errors.comment}</div>
         )}
-      </Formik>
+        <Button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? "Submitting..." : "Submit"}
+        </Button>
+      </form>
+
+      {!loading && (
+        <div className="mt-10 space-y-4 ">
+          {Array.isArray(data) &&
+            data.map((comment: Comment) => (
+              <CommentList
+                key={comment.id}
+                id={comment.id}
+                content={comment.content}
+                user={comment.user}
+                _count={comment._count}
+                createdAt={comment.createdAt}
+                Likes={comment.Likes}
+              ></CommentList>
+            ))}
+        </div>
+      )}
     </div>
   );
 }

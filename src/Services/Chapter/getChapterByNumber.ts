@@ -27,7 +27,7 @@ function GetChapterByNumber(novelId:string, number : number) {
             }
         }
         fetchData();
-    }, []);
+    }, [number]);
 
     return { data, loading, error };
 

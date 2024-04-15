@@ -4,12 +4,17 @@ import {url} from "../index/index.services";
 function getAllSeriesurl() {
   return url.get(`/series/all`);
 }
+function getSeriesCardurl() {
+  return url.get(`/series/seriescard`);
+}
 function getAllSeriesNameurl() {
   return url.get(`/series/select`);
 }
-
 function getSeriesByIdurl(id: string) {
   return url.get(`/series/${id}`);
+}
+function getSeriesDetailByIdurl(id: string) {
+  return url.get(`/series/fulldetail/${id}`);
 }
 
 function createSeriesurl(series:FormData) {
@@ -31,4 +36,6 @@ export {
   createSeriesurl,
   updateSeriesByIdurl,
   deleteSeriesByIdurl,
+  getSeriesDetailByIdurl,
+  getSeriesCardurl,
 };

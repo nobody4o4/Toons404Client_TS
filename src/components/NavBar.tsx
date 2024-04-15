@@ -1,5 +1,6 @@
 import { Button } from "./ui/button";
-// import logo from "../assets/logo.png";
+import logo from "/ToonsLogov2.png";
+
 import { Input } from "./ui/input";
 import { useEffect, useState } from "react";
 import { clearUserData, getUserData } from "../utils/authStorage";
@@ -43,10 +44,12 @@ function NavBar() {
   return (
     <header className="sticky top-0 z-20 flex w-full items-center justify-between gap-5 border-b-2 border-gray-200 bg-background px-9 py-4 text-text max-md:max-w-full max-md:flex-wrap max-md:px-5">
       <Link to="/" className="navbar">
-        <h1 className="my-auto grow self-stretch whitespace-nowrap font-logoFont  text-4xl">
+        {/* <h1 className="my-auto grow self-stretch whitespace-nowrap font-logoFont  text-4xl">
           TOONS<span className="text-primary">404</span>
-        </h1>
-        {/* <img src={logo} alt="logo" className="w-[300px]" /> */}
+        </h1> */}
+        <div className=" w-[100px] ">
+          <img src={logo} alt="logo" className=" h-full w-full object-cover" />
+        </div>
       </Link>
       <nav className="my-auto flex justify-between gap-5 self-stretch">
         <Link to="#" className="link">
@@ -55,10 +58,10 @@ function NavBar() {
         <Link to="#" className="link">
           Novels
         </Link>
-        <Link to="#" className="link">
-          Browse
+        <Link to="/series" className="link">
+          Series
         </Link>
-        <Link to="#" className="link">
+        <Link to="/feed" className="link">
           Feed
         </Link>
       </nav>
@@ -76,7 +79,7 @@ function NavBar() {
                     alt="@shadcn"
                     className="h-full w-full object-cover"
                   />
-                  <AvatarFallback>CN</AvatarFallback>
+                  <AvatarFallback>{username}</AvatarFallback>
                 </Avatar>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-56">
