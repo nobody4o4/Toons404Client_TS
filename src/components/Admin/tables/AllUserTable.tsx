@@ -25,6 +25,7 @@ import {
 import { UserTable } from "@/types";
 import { Link } from "react-router-dom";
 import AllUsersDetails from "@/Services/user/getAllUser.services";
+import Loading from "@/pages/Loading";
 
 export const columns: ColumnDef<UserTable>[] = [
   {
@@ -114,7 +115,7 @@ export function UserDetailsTable() {
     },
   });
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loading />;
   if (error) return <p>Error : {error}</p>;
   return (
     <div className="w-full">

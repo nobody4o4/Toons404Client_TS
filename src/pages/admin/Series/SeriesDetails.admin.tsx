@@ -16,15 +16,15 @@ function SeriesDetails() {
   return (
     <div>
       <div className="flex  items-center justify-between space-x-4 pb-8">
-        <Link className="text-lg font-semibold" to="/dashboard/admin/novel">
+        <Link className="text-lg font-semibold" to="/dashboard/admin/book">
           <Button className="text-base" variant={"outline"}>
             {" "}
-            <FaArrowLeft className="mr-2 text-lg" /> back to novels
+            <FaArrowLeft className="mr-2 text-lg" /> back to books
           </Button>
         </Link>
         <Link
           className="text-lg font-semibold"
-          to={`/dashboard/admin/edit/novel/`}
+          to={`/dashboard/admin/edit/book/`}
         >
           <Button className="text-base">Edit</Button>
         </Link>
@@ -67,7 +67,7 @@ function SeriesDetails() {
           <Card>
             <CardContent className="space-y-4">
               <div className="w-full space-y-2">
-                <h2 className="text-2xl font-bold tracking-tight">Novels</h2>
+                <h2 className="text-2xl font-bold tracking-tight">Books</h2>
                 <div className="grid gap-2">
                   <div className="flex items-start space-x-4">
                     <img

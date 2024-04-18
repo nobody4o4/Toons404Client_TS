@@ -52,7 +52,7 @@ function SeriesDetails(series: SeriesPageDetail) {
       toast.error("An error occurred while removing the like.");
     }
   };
-  console.log(series, "novelklll");
+  console.log(series, "bookklll");
   return (
     <>
       <div className="sticky bottom-0 top-20 flex min-h-screen flex-col p-5  text-text ">

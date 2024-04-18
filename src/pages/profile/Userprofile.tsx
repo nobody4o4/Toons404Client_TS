@@ -1,6 +1,6 @@
 import { AvatarImage, Avatar } from "@/components/ui/avatar";
 import Toonscard from "@/components/Toonscard";
-import { novelCard } from "@/types";
+import { bookCard } from "@/types";
 import GetUserProfile from "@/Services/user/geUserProfile.services";
 import { useNavigate, useParams } from "react-router-dom";
 import { getUserData } from "@/utils/authStorage";
@@ -27,7 +27,7 @@ export default function UserProfile() {
   }
 
   const { data, loading, error } = GetUserProfile(username ?? "");
-  const novel = data?.novels;
+  const book = data?.books;
   const following = data?._count.Followers;
   const follower: number = data?._count.Followings ?? 0;
   console.log(data, "data");
@@ -141,18 +141,16 @@ export default function UserProfile() {
         </Card>
         <Card>
           <CardTitle className=" p-5 pl-10  text-2xl font-semibold">
-            Novels
+            Books
           </CardTitle>
-          {Array.isArray(novel) && novel?.length === 0 ? (
+          {Array.isArray(book) && book?.length === 0 ? (
             <div className="mb-20 flex w-full items-center ">
-              <h1 className="mx-auto text-2xl font-semibold">
-                No novels found
-              </h1>
+              <h1 className="mx-auto text-2xl font-semibold">No books found</h1>
             </div>
           ) : (
             <div className=" mx-auto grid max-w-[1100px] grid-cols-2 gap-x-10 gap-y-4 px-2 pb-20 sm:grid-cols-3 sm:px-8 lg:mt-5 lg:grid-cols-4 lg:gap-x-10 lg:px-0">
-              {Array.isArray(novel) &&
-                novel?.map((data: novelCard, index: number) => (
+              {Array.isArray(book) &&
+                book?.map((data: bookCard, index: number) => (
                   <Toonscard
                     id={data.id}
                     title={data.title}
@@ -160,16 +158,16 @@ export default function UserProfile() {
                     subGenre={{ name: data.subGenre.name }}
                     series={{ title: data.series?.title }}
                     coverImage={data.coverImage}
-                    _count={novel._count}
-                    Likes={novel?.Likes}
+                    _count={book._count}
+                    Likes={book?.Likes}
                     key={index}
                   />
                 ))}
             </div>
           )}
           {/* <div className=" mx-auto grid max-w-[1100px] grid-cols-2 gap-x-10 gap-y-4 px-2 pb-20 sm:grid-cols-3 sm:px-8 lg:mt-5 lg:grid-cols-4 lg:gap-x-10 lg:px-0">
-            {Array.isArray(novel) &&
-              novel?.map((data: novelCard, index: number) => (
+            {Array.isArray(book) &&
+              book?.map((data: bookCard, index: number) => (
                 <Toonscard
                   id={data.id}
                   title={data.title}
@@ -177,8 +175,8 @@ export default function UserProfile() {
                   subGenre={{ name: data.subGenre.name }}
                   series={{ title: data.series?.title }}
                   coverImage={data.coverImage}
-                  _count={novel._count}
-                  Likes={novel?.Likes}
+                  _count={book._count}
+                  Likes={book?.Likes}
                   key={index}
                 />
               ))}

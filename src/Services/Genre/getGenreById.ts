@@ -1,4 +1,4 @@
-//Get data of all the novels from the database through the API
+//Get data of all the books from the database through the API
 import { useEffect, useState } from "react";
 import { getGenreByIdurl } from "./endPoint.genre.services";
 import { Genre } from "@/types";

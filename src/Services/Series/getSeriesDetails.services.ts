@@ -1,4 +1,4 @@
-// this service is used to get novel by id
+// this service is used to get book by id
 import { useEffect, useState } from "react";
 import { Series } from "@/types";
 import {  getSeriesDetailByIdurl } from "./endPoint.series.services";

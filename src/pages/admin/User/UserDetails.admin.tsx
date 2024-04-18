@@ -12,7 +12,7 @@ const AdminUserDetails = () => {
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
-  const novels = data?.novels;
+  const books = data?.books;
 
   const formattedCreatedAt = format(data?.createdAt, "MMM-dd, yyyy");
   const formattedUpdatedAt = format(data?.updatedAt, "MMM-dd, yyyy");
@@ -20,14 +20,14 @@ const AdminUserDetails = () => {
   return (
     <div className="px-4">
       <div className="flex items-center justify-between space-x-4 pb-8">
-        <Link className="text-lg font-semibold" to="/dashboard/admin/novel">
+        <Link className="text-lg font-semibold" to="/dashboard/admin/book">
           <Button className="text-base" variant="outline">
-            <FaArrowLeft className="mr-2 text-lg" /> Back to Novels
+            <FaArrowLeft className="mr-2 text-lg" /> Back to Books
           </Button>
         </Link>
         <Link
           className="text-lg font-semibold"
-          to={`/dashboard/admin/edit/novel/${id}`}
+          to={`/dashboard/admin/edit/book/${id}`}
         >
           <Button className="text-base">Edit</Button>
         </Link>
@@ -71,7 +71,7 @@ const AdminUserDetails = () => {
                     Followings: {data?._count.Followings}
                   </p>
                   <p className="text-sm font-medium leading-none text-gray-500 dark:text-gray-400">
-                    Novels: {data?._count.Novels}
+                    Books: {data?._count.Books}
                   </p>
                   <p className="text-sm font-medium leading-none text-gray-500 dark:text-gray-400">
                     Series: {data?._count.Series}
@@ -91,24 +91,24 @@ const AdminUserDetails = () => {
       </Card>
 
       <Card className="mt-4">
-        <CardHeader className="font-bold">Novels</CardHeader>
+        <CardHeader className="font-bold">Books</CardHeader>
         <CardContent className="grid grid-cols-2 gap-x-10 gap-y-4 px-2 pb-20 sm:grid-cols-3 sm:px-8 lg:mt-10 lg:grid-cols-4 lg:gap-x-10 lg:px-0">
-          {Array.isArray(novels) &&
-            novels.map((novel, index) => (
+          {Array.isArray(books) &&
+            books.map((book, index) => (
               <Toonscard
                 key={index}
-                id={novel.id}
-                genre={novel.genre}
-                series={novel.series}
-                Likes={novel._count?.Likes}
-                _count={novel._count}
-                subGenre={novel.subGenre}
-                title={novel.title}
-                coverImage={novel.coverImage}
+                id={book.id}
+                genre={book.genre}
+                series={book.series}
+                Likes={book._count?.Likes}
+                _count={book._count}
+                subGenre={book.subGenre}
+                title={book.title}
+                coverImage={book.coverImage}
               />
             ))}
-          {Array.isArray(novels) && novels.length === 0 && (
-            <div className="p-4">The user has no novels.</div>
+          {Array.isArray(books) && books.length === 0 && (
+            <div className="p-4">The user has no books.</div>
           )}
         </CardContent>
       </Card>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { format } from "date-fns";
 import Blocks, { DataProp } from "editorjs-blocks-react-renderer";
@@ -9,7 +9,7 @@ import {
   FaHeart,
   FaRegHeart,
 } from "react-icons/fa6";
-import TextareaForm from "@/components/comment";
+import CommentForm from "@/components/comment";
 import {
   addLikesurl,
   removeLikesurl,
@@ -20,7 +20,7 @@ import { Link } from "react-router-dom";
 import Loading from "./Loading";
 
 function Chapter() {
-  const [novelId, setNovelId] = useState<string>();
+  const [bookId, setBookId] = useState<string>();
   const [chapterNumber, setChapterNumber] = useState<number>();
   const [isLiked, setIsLiked] = useState<boolean>();
   const [likes, setLikes] = useState<number>(0);
@@ -28,14 +28,18 @@ function Chapter() {
 
   const parsedNumber: number = Number(number || 0);
   useEffect(() => {
-    setNovelId(id);
+    setBookId(id);
     setChapterNumber(parsedNumber);
   }, [id, parsedNumber]);
 
-  console.log("novelId", novelId);
+  console.log("bookId", bookId);
   console.log("chapterNumber", chapterNumber);
 
-  const { data, loading, error } = GetChapterByNumber(id || "", parsedNumber);
+  const { data, loading, error } = GetChapterByNumber(
+    id || "",
+    parsedNumber,
+    "Novel",
+  );
 
   useEffect(() => {
     if (data?._count.Likes) {
@@ -50,10 +54,10 @@ function Chapter() {
   const formattedDate = format(data.createdAt, "EEE MMM-dd yyyy");
 
   const handleNextChapter = () => {
-    window.location.replace(`/novel/${id}/${parsedNumber + 1}`);
+    window.location.replace(`/book/${id}/${parsedNumber + 1}`);
   };
   const handlePreviousChapter = () => {
-    window.location.replace(`/novel/${id}/${parsedNumber - 1}`);
+    window.location.replace(`/book/${id}/${parsedNumber - 1}`);
   };
 
   const handleAddLike = async () => {
@@ -94,10 +98,10 @@ function Chapter() {
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <div className="space-y-2">
             <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-              {data.novel.title}
+              {data.book.title}
             </h1>
             <p className="text-gray-500 dark:text-gray-400">
-              by {data.novel.author.username}
+              by {data.book.author.username}
             </p>
           </div>
         </div>
@@ -186,7 +190,7 @@ function Chapter() {
             </div>
             <div className="flex items-center justify-between space-x-2">
               <Link
-                to={`/novel/${id}/${parsedNumber - 1}`}
+                to={`/book/${id}/${parsedNumber - 1}`}
                 onClick={handlePreviousChapter}
               >
                 <Button
@@ -199,7 +203,7 @@ function Chapter() {
                 </Button>
               </Link>
               <Link
-                to={`/novel/${id}/${parsedNumber + 1}`}
+                to={`/book/${id}/${parsedNumber + 1}`}
                 onClick={handleNextChapter}
               >
                 <Button
@@ -214,7 +218,7 @@ function Chapter() {
             </div>
           </div>
         </div>
-        <TextareaForm chapterId={data.id} />
+        <CommentForm chapterId={data.id} type={data.book.type} />
       </div>
     </div>
   );

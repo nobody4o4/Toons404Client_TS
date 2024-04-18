@@ -42,21 +42,20 @@ function NavBar() {
   };
 
   return (
-    <header className="sticky top-0 z-20 flex w-full items-center justify-between gap-5 border-b-2 border-gray-200 bg-background px-9 py-4 text-text max-md:max-w-full max-md:flex-wrap max-md:px-5">
+    <header className=" sticky top-0 z-20 flex h-20 w-full justify-between gap-5 border-b-2 border-gray-200 bg-background px-9 py-4 text-text max-md:max-w-full max-md:flex-wrap max-md:px-5">
       <Link to="/" className="navbar">
         {/* <h1 className="my-auto grow self-stretch whitespace-nowrap font-logoFont  text-4xl">
           TOONS<span className="text-primary">404</span>
         </h1> */}
-        <div className=" w-[100px] ">
-          <img src={logo} alt="logo" className=" h-full w-full object-cover" />
-        </div>
+
+        <img src={logo} alt="logo" className=" h-full w-full object-cover" />
       </Link>
       <nav className="my-auto flex justify-between gap-5 self-stretch">
         <Link to="#" className="link">
           Comics
         </Link>
         <Link to="#" className="link">
-          Novels
+          Books
         </Link>
         <Link to="/series" className="link">
           Series

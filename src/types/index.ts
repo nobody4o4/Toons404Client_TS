@@ -1,7 +1,8 @@
-export type novelCard = {
+export type bookCard = {
     id: string;
     title: string;
     coverImage: string;
+    type: string;
     genre: {
         name: string;
     };
@@ -27,7 +28,7 @@ export type MyProfile={
     email: string;
     avatar: string;
     bio: string;
-    novels: novelCard;
+    books: bookCard;
 }
 export type UserProfile={
     id: string;
@@ -37,7 +38,7 @@ export type UserProfile={
     email: string;
     avatar: string;
     bio: string;
-    novels: novelCard;
+    books: bookCard;
     isFollowing : boolean;
     _count :{
         Followers: number;
@@ -56,7 +57,7 @@ export type UserTable = {
     _count :{
         Followers: number;
         Followings: number;
-        Novels: number;
+        Books: number;
         Series: number;
     };
     role: string;
@@ -75,11 +76,11 @@ export type UserDetail = {
     _count :{
         Followers: number;
         Followings: number;
-        Novels: number;
+        Books: number;
         Series: number;
     };
     role: string;
-    novels: novelCard;
+    books: bookCard;
     Series: SeriesCard;
     createdAt: Date;
     updatedAt: Date;
@@ -93,11 +94,12 @@ export type UpdateUser = {
     bio: string;
 }
 
-export type NovelDetails={
+export type BookDetails={
     id: string;
     title: string;
     coverImage: string;
     likes: number;
+    type: string;
     genre: {
         id:string,
         name: string;
@@ -123,12 +125,13 @@ export type NovelDetails={
 }
 
 
-export type novelPageDetails = {
+export type bookPageDetails = {
     id: string;
     title: string;
     coverImage: string;
     likes: number;
     createdAt: Date;
+    type: string;
     genre: {
         id:string,
         name: string;
@@ -163,11 +166,12 @@ export type novelPageDetails = {
     }]
 }
 
-export type novelPageDetail = {
+export type bookPageDetail = {
     id: string;
     title: string;
     coverImage: string;
     likes: number;
+    type: string;
     createdAt: Date;
     genre: {
         id:string,
@@ -271,10 +275,11 @@ export interface addSeries  extends FormData {
     coverImage: string;
 }
 
-export interface addNovel  extends FormData {
+export interface addBook  extends FormData {
     title: string;
     description: string;
     coverImage: string;
+    type: string;
     genreId: string;
     subGenreId: string;
     seriesId: string;
@@ -307,8 +312,9 @@ export type chapter = {
     title: string;
     number: number;
     views : number;
-    novel:{
+    book:{
         title: string;
+        type: string;
         author:{
             username: string;
         }
@@ -321,6 +327,12 @@ export type chapter = {
     }]
     Author: string;
     content: string;
+    ComicImage:[
+        {
+            number: number;
+            image: string;
+        }
+    ]
     thumbnail: string;
     createdAt: Date;
 }
@@ -361,7 +373,7 @@ export type KhaltiCallBack = {
 export type StatsCounts = {
     genreCount: number;
     seriesCount: number;
-    novelCount: number;
+    bookCount: number;
     userCount: number;
 }
 
@@ -375,7 +387,7 @@ export type Series = {
         username: string;
         avatar: string;
     };
-    novels: novelCard;
+    books: bookCard;
     _count:{
         Likes: number;
     }
@@ -402,7 +414,7 @@ export type Genre = {
     name: string;
     description: string;
     coverImage: string;
-    novel:novelCard;
+    book:bookCard;
 }
 
 export type Comment = {

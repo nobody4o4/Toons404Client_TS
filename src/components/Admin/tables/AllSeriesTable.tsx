@@ -25,6 +25,7 @@ import {
 import AllSeriesDetails from "@/Services/Series/getAllSeries.services";
 import { seriesDetails } from "@/types";
 import { Link } from "react-router-dom";
+import Loading from "@/pages/Loading";
 
 export const columns: ColumnDef<seriesDetails>[] = [
   {
@@ -113,7 +114,7 @@ export function SeriesDetailsTable() {
     },
   });
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loading />;
   if (error) return <p>Error : {error}</p>;
   return (
     <div className="w-full">

@@ -1,6 +1,6 @@
 import Chapter from "@/pages/Chapter";
 import Home from "@/pages/Home";
-import Novel from "@/pages/Novel";
+import Book from "@/pages/Book";
 import Register from "@/pages/Register";
 import NotFound from "@/pages/error/NotFound";
 import LoginForm from "@/pages/Login";
@@ -18,6 +18,8 @@ import SeriesHome from "@/pages/Series.home";
 import UserProfile from "@/pages/profile/Userprofile";
 import Loading from "@/pages/Loading";
 import InternalError from "@/pages/error/InternalError";
+import authLayout from "@/layout/authLayout";
+import ComicChapter from "@/pages/chapter.comic";
 
 export const userRoutes = [
     {
@@ -111,9 +113,7 @@ export const userRoutes = [
         id: "register",
         path: "/register",
         component: Register,
-        hasHomeLayout: true,
-        hasAdminLayout: false,
-        layout: HomeLayout,
+        layout: authLayout,
         requiredAuth: false,
     },
     {
@@ -122,13 +122,13 @@ export const userRoutes = [
         component: LoginForm,
         hasHomeLayout: true,
         hasAdminLayout: false,
-        layout: HomeLayout,
+        layout: authLayout,
         requiredAuth: false,
     },
     {
-        id: "novel",
-        path: "/novel/:id",
-        component: Novel,
+        id: "book",
+        path: "/book/:id",
+        component: Book,
         hasHomeLayout: true,
         hasAdminLayout: false,
         layout: HomeLayout,
@@ -151,12 +151,20 @@ export const userRoutes = [
 
     },
     {
-        id: "chapter",
+        id: "novelChapter",
         path: "/novel/:id/:number",
         component: Chapter,
         hasHomeLayout: true,
         hasAdminLayout: false,
         layout: HomeLayout,
+        requiredAuth: true,
+    },
+    {
+        id: "comicChapter",
+        path: "/comic/:id/:number",
+        component: ComicChapter,
+        hasHomeLayout: true,
+        hasAdminLayout: false,
         requiredAuth: true,
     },
     {

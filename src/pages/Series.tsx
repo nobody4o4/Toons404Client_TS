@@ -1,15 +1,16 @@
 import SeriesDetails from "@/components/Series/SeriesDetails";
 import Toonscard from "@/components/Toonscard";
 import GetSeriesDetails from "@/Services/Series/getSeriesDetails.services";
-import { novelCard } from "@/types";
+import { bookCard } from "@/types";
 import { useParams } from "react-router-dom";
+import Loading from "./Loading";
 
 function Series() {
   const { id } = useParams();
 
   console.log(id);
 
-  // Handle the case where NovelTitle is null or undefined
+  // Handle the case where BookTitle is null or undefined
   if (id === null || id === undefined) {
     console.log("No id found in the URL parameter 'title'");
     return null; // or handle the error in an appropriate way
@@ -17,10 +18,10 @@ function Series() {
 
   const { data, loading, error } = GetSeriesDetails(id);
 
-  const novel = data?.novels;
+  const book = data?.books;
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <Loading />;
   }
 
   if (error) {
@@ -59,8 +60,8 @@ function Series() {
       <div className=" md:w-2/3">
         <div key="1" className=" bg-background p-5 text-text">
           <div className=" grid grid-cols-2 gap-x-5 gap-y-4 px-2 pb-10 sm:grid-cols-3 sm:px-8 lg:grid-cols-4 lg:gap-x-5 lg:px-0">
-            {Array.isArray(novel) &&
-              novel?.map((data: novelCard, index: number) => (
+            {Array.isArray(book) &&
+              book?.map((data: bookCard, index: number) => (
                 <Toonscard
                   id={data.id}
                   title={data.title}
@@ -73,8 +74,8 @@ function Series() {
                   Likes={data.Likes}
                 />
               ))}
-            {Array.isArray(novel) &&
-              novel?.map((data: novelCard, index: number) => (
+            {Array.isArray(book) &&
+              book?.map((data: bookCard, index: number) => (
                 <Toonscard
                   id={data.id}
                   title={data.title}
@@ -87,8 +88,8 @@ function Series() {
                   Likes={data.Likes}
                 />
               ))}
-            {Array.isArray(novel) &&
-              novel?.map((data: novelCard, index: number) => (
+            {Array.isArray(book) &&
+              book?.map((data: bookCard, index: number) => (
                 <Toonscard
                   id={data.id}
                   title={data.title}
@@ -101,8 +102,8 @@ function Series() {
                   Likes={data.Likes}
                 />
               ))}
-            {Array.isArray(novel) &&
-              novel?.map((data: novelCard, index: number) => (
+            {Array.isArray(book) &&
+              book?.map((data: bookCard, index: number) => (
                 <Toonscard
                   id={data.id}
                   title={data.title}
@@ -115,8 +116,8 @@ function Series() {
                   Likes={data.Likes}
                 />
               ))}
-            {Array.isArray(novel) &&
-              novel?.map((data: novelCard, index: number) => (
+            {Array.isArray(book) &&
+              book?.map((data: bookCard, index: number) => (
                 <Toonscard
                   id={data.id}
                   title={data.title}
@@ -129,8 +130,8 @@ function Series() {
                   Likes={data.Likes}
                 />
               ))}
-            {Array.isArray(novel) &&
-              novel?.map((data: novelCard, index: number) => (
+            {Array.isArray(book) &&
+              book?.map((data: bookCard, index: number) => (
                 <Toonscard
                   id={data.id}
                   title={data.title}
@@ -143,8 +144,8 @@ function Series() {
                   Likes={data.Likes}
                 />
               ))}
-            {Array.isArray(novel) &&
-              novel?.map((data: novelCard, index: number) => (
+            {Array.isArray(book) &&
+              book?.map((data: bookCard, index: number) => (
                 <Toonscard
                   id={data.id}
                   title={data.title}
@@ -157,8 +158,8 @@ function Series() {
                   Likes={data.Likes}
                 />
               ))}
-            {Array.isArray(novel) &&
-              novel?.map((data: novelCard, index: number) => (
+            {Array.isArray(book) &&
+              book?.map((data: bookCard, index: number) => (
                 <Toonscard
                   id={data.id}
                   title={data.title}
@@ -171,8 +172,8 @@ function Series() {
                   Likes={data.Likes}
                 />
               ))}
-            {Array.isArray(novel) &&
-              novel?.map((data: novelCard, index: number) => (
+            {Array.isArray(book) &&
+              book?.map((data: bookCard, index: number) => (
                 <Toonscard
                   id={data.id}
                   title={data.title}
@@ -185,8 +186,8 @@ function Series() {
                   Likes={data.Likes}
                 />
               ))}
-            {Array.isArray(novel) &&
-              novel?.map((data: novelCard, index: number) => (
+            {Array.isArray(book) &&
+              book?.map((data: bookCard, index: number) => (
                 <Toonscard
                   id={data.id}
                   title={data.title}

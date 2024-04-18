@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Link } from "react-router-dom";
+import { toast } from "sonner";
+import registerCover from "/loginBlue.png";
 
 function LoginForm() {
   const token = getUserData().token;
@@ -29,8 +31,10 @@ function LoginForm() {
             username: user.username,
             token: token,
           });
+          toast.success("Login successful");
           window.location.replace("/");
         } catch (error) {
+          toast.error("Login failed");
           console.error(error);
           // Handle login error
         }
@@ -43,7 +47,7 @@ function LoginForm() {
 
   return (
     <>
-      <div className="flex min-h-screen items-center px-4 sm:px-6 lg:px-8">
+      <div className="grid min-h-screen grid-cols-2 items-center px-4 text-text sm:px-6 lg:px-8">
         <div className="mx-auto w-full max-w-md space-y-8">
           <div className="space-y-2">
             <h1 className="text-3xl font-bold">Login</h1>
@@ -114,6 +118,10 @@ function LoginForm() {
             </Link>
           </div>
         </div>
+        <img
+          src={registerCover}
+          className="absolute right-0 ml-5 h-full w-1/2 object-cover"
+        ></img>
       </div>
       {/* <div className="container mx-auto">
         <div className="mx-auto mt-20 max-w-xl overflow-hidden rounded-lg bg-white shadow-md">

@@ -11,6 +11,7 @@ import GetSeriesById from "@/Services/Series/getSeriesById.services";
 import { AddSeriesValidator } from "@/schema/user.schema";
 import { Textarea } from "../../ui/textarea";
 import { updateSeriesByIdurl } from "@/Services/Series/endPoint.series.services";
+import Loading from "@/pages/Loading";
 
 export default function EditSeriesForm() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -86,6 +87,7 @@ export default function EditSeriesForm() {
     },
   });
 
+  if (loading) return <Loading />;
   return (
     <form onSubmit={handleSubmit} encType="multipart/form-data" className="">
       {/* {data?.content && <pre>{JSON.stringify(values.content, null, 2)}</pre>} */}

@@ -1,12 +1,12 @@
 import Admindashboardlayout from "@/layout/dashboard/Admin.dashboard.layout";
-import AddNovelAdmin from "@/pages/admin/Novel/AddNovel.admin";
+import AddBookAdmin from "@/pages/admin/Book/AddBook.admin";
 import EditChapterAdmin from "@/pages/admin/Chapter/EditChapter.admin";
 import AddChapterAdmin from "@/pages/admin/Chapter/AddChapter.admin";
 import DashBoard from "@/pages/admin/DashBoard";
-import EditNovelAdmin from "@/pages/admin/Novel/EditNovel.admin";
+import EditBookAdmin from "@/pages/admin/Book/EditBook.admin";
 import GenreAdmin from "@/pages/admin/Genre/Genre.admin";
-import NovelAdmin from "@/pages/admin/Novel/Novel.admin";
-import AdminNovelDetails from "@/pages/admin/Novel/NovelDetails.admin";
+import BookAdmin from "@/pages/admin/Book/Book.admin";
+import AdminBookDetails from "@/pages/admin/Book/BookDetails.admin";
 import SeriesAdmin from "@/pages/admin/Series/Series.admin";
 import AddSeries from "@/pages/admin/Series/AddSeries.admin";
 import SeriesDetails from "@/pages/admin/Series/SeriesDetails.admin";
@@ -15,6 +15,7 @@ import AddGenreAdmin from "@/pages/admin/Genre/AddGenre.admin";
 import EditGenreAdmin from "@/pages/admin/Genre/EditGenre.admin";
 import UserAdmin from "@/pages/admin/User/User.admin";
 import AdminUserDetails from "@/pages/admin/User/UserDetails.admin";
+import AddComicChapterAdmin from "@/pages/admin/ComicChapter/AddComicChapter";
 
 export const adminRoutes = [
     {
@@ -72,18 +73,18 @@ export const adminRoutes = [
         requiredAuth: true,
     },
     {
-        id: "novel",
-        path: "/dashboard/admin/novel",
-        component: NovelAdmin,
+        id: "book",
+        path: "/dashboard/admin/book",
+        component: BookAdmin,
         hasHomeLayout: false,
         hasAdminLayout: true,
         layout:Admindashboardlayout,
         requiredAuth: true,
     },
     {
-        id: "novelDetails",
-        path: "/dashboard/admin/novel/:id",
-        component: AdminNovelDetails,
+        id: "bookDetails",
+        path: "/dashboard/admin/book/:id",
+        component: AdminBookDetails,
         hasHomeLayout: false,
         hasAdminLayout: true,
         layout:Admindashboardlayout,
@@ -91,27 +92,32 @@ export const adminRoutes = [
     },
     {
         id: "addchapter",
-        path: "/dashboard/admin/novel/:novelId/add-chapter",
+        path: "/dashboard/admin/book/:bookId/add-chapter",
         component: AddChapterAdmin,
-        hasHomeLayout: false,
+        hasAdminLayout: true,
+        layout:Admindashboardlayout,
+        requiredAuth: true,
+    },
+    {
+        id: "addComicChapter",
+        path: "/dashboard/admin/book/:bookId/add-comic-chapter",
+        component: AddComicChapterAdmin,
         hasAdminLayout: true,
         layout:Admindashboardlayout,
         requiredAuth: true,
     },
     {
         id: "editchapter",
-        path: "/dashboard/admin/novel/:id/edit-chapter/:chapterId",
+        path: "/dashboard/admin/book/:id/edit-chapter/:chapterId",
         component: EditChapterAdmin,
-        hasHomeLayout: false,
         hasAdminLayout: true,
         layout:Admindashboardlayout,
         requiredAuth: true,
     },
     {
-        id: "editNovel",
-        path: "/dashboard/admin/edit/novel/:id",
-        component: EditNovelAdmin,
-        hasHomeLayout: false,
+        id: "editBook",
+        path: "/dashboard/admin/edit/book/:id",
+        component: EditBookAdmin,
         hasAdminLayout: true,
         layout:Admindashboardlayout,
         requiredAuth: true,
@@ -120,7 +126,6 @@ export const adminRoutes = [
         id: "editSeries",
         path: "/dashboard/admin/edit/series/:id",
         component: EditSeriesAdmin,
-        hasHomeLayout: false,
         hasAdminLayout: true,
         layout:Admindashboardlayout,
         requiredAuth: true,
@@ -129,25 +134,22 @@ export const adminRoutes = [
         id: "editGenre",
         path: "/dashboard/admin/edit/genre/:id",
         component: EditGenreAdmin,
-        hasHomeLayout: false,
         hasAdminLayout: true,
         layout:Admindashboardlayout,
         requiredAuth: true,
     },
     {
-        id: "addNovel",
-        path: "/dashboard/admin/novel/add",
-        component: AddNovelAdmin,
-        hasHomeLayout: false,
+        id: "addBook",
+        path: "/dashboard/admin/book/add",
+        component: AddBookAdmin,
         hasAdminLayout: true,
         layout:Admindashboardlayout,
         requiredAuth: true,
     },
     {
         id: "chapter",
-        path: "/dashboard/admin/novel/chapter",
+        path: "/dashboard/admin/book/chapter",
         component: DashBoard,
-        hasHomeLayout: false,
         hasAdminLayout: true,
         layout:Admindashboardlayout,
         requiredAuth: true,
@@ -156,7 +158,6 @@ export const adminRoutes = [
         id: "user",
         path: "/dashboard/admin/user",
         component: UserAdmin,
-        hasHomeLayout: false,
         hasAdminLayout: true,
         layout:Admindashboardlayout,
         requiredAuth: true,  

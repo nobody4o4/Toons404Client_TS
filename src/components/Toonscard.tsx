@@ -1,4 +1,4 @@
-import { novelCard } from "@/types";
+import { bookCard } from "@/types";
 import { FaHeart } from "react-icons/fa6";
 // import cover from "../assets/54.jpg";
 import { Link } from "react-router-dom";
@@ -9,9 +9,10 @@ function Toonscard({
   genre,
   subGenre,
   coverImage,
+  type,
   series,
   _count,
-}: novelCard) {
+}: bookCard) {
   console.log(
     id,
     title,
@@ -19,13 +20,15 @@ function Toonscard({
     _count?.Likes,
     series,
     coverImage,
+    type,
     subGenre,
     "a",
   );
   // const encodedName = encodeURIComponent(title.replace(/\s/g, "_"));
   return (
     <Link
-      to={`/novel/${id}`}
+      // to={type == "Comic" ? `/book/${id}` : `/comic/${id}`}
+      to={`/book/${id}`}
       className="group relative cursor-pointer"
       preventScrollReset
     >

@@ -1,5 +1,5 @@
 
-import { object, string } from "yup";
+import { object, string, ref, array } from "yup";
 
 export const RegisterValidator = object().shape({
   firstName: string()
@@ -7,12 +7,12 @@ export const RegisterValidator = object().shape({
     .required("First name is required.")
     .min(2, "First name must be at least 2 characters.")
     .max(30, "First name must be at most 30 characters."),
-  lastName: string()
+    lastName: string()
     .trim()
     .required("Last name is required.")
     .min(2, "Last name must be at least 2 characters.")
     .max(30, "Last name must be at most 30 characters."),
-  username: string()
+    username: string()
     .trim()
     .required("Username is required.")
     .min(4, "Username must be at least 4 characters.")
@@ -21,7 +21,7 @@ export const RegisterValidator = object().shape({
       /^[a-zA-Z0-9_]+$/,
       "Username can only contain letters, numbers, and underscores."
     ),
-  email: string()
+    email: string()
     .trim()
     .email("Invalid email format.")
     .required("Email is required.")
@@ -43,6 +43,14 @@ export const RegisterValidator = object().shape({
       /^(?=.*[@$!%*?&])/,
       "Password must contain at least one special character."
     ),
+
+    confirmPassword: string()
+    .required("Confirm password is required.")
+    .oneOf([ref("password")], "Passwords must match."),
+
+
+    bio : string().nullable().max(500, "Bio must be at most 500 characters.")
+
 });
 
 export const LoginValidator = object().shape({
@@ -121,7 +129,7 @@ export const AddSeriesValidator = object().shape({
     .max(500, "Description must be at most 500 characters."),
 });
 
-export const AddNovelValidator = object().shape({
+export const AddBookValidator = object().shape({
   title: string()
     .trim()
     .required("Title is required.")
@@ -141,6 +149,11 @@ export const AddNovelValidator = object().shape({
     subGenreId: string()
     .trim()
     .required("Sub Genre is required."),
+    type: string()
+    .trim()
+    .required("Type is required.")
+    .oneOf(["NOVEL", "COMIC"], " Must be Novel or Comic."),
+
 
 
 });
@@ -153,6 +166,19 @@ export const AddChapterValidator = object().shape({
    content: object()
     .required("Content is required.")
 
+});
+export const AddComicChapterValidator = object().shape({
+  title: string()
+    .trim()
+    .required("Title is required.")
+    .min(2, "Title must be at least 2 characters.")
+    .max(30, "Title must be at most 30 characters."),
+
+    Images: array()
+    .required("Images is required.")
+    .min(1, "Images must be at least 1 image.")
+    .max(20, "Images must be at most 20 images."),
+    
 });
 // export { RegisterValidator, LoginValidator };
 

@@ -15,14 +15,14 @@ function SeriesHome() {
     <div>
       <div className=" mx-auto grid max-w-[1100px] grid-cols-2 gap-x-10 gap-y-4 px-2 pb-20 sm:grid-cols-3 sm:px-8 lg:mt-16 lg:grid-cols-4 lg:gap-x-10 lg:px-0">
         {Array.isArray(series) &&
-          series?.map((novel: SeriesCard, index: number) => (
+          series?.map((book: SeriesCard, index: number) => (
             <Seriescard
-              id={novel.id}
-              title={novel.title}
-              coverImage={novel.coverImage}
+              id={book.id}
+              title={book.title}
+              coverImage={book.coverImage}
               key={index}
-              _count={novel._count}
-              Likes={novel.Likes}
+              _count={book._count}
+              Likes={book.Likes}
             />
           ))}
       </div>

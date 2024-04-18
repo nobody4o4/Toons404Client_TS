@@ -11,6 +11,7 @@ import { AddGenreValidator } from "@/schema/user.schema";
 import { Textarea } from "../../ui/textarea";
 import GenreById from "@/Services/Genre/getGenreById";
 import { updateGenreByIdurl } from "@/Services/Genre/endPoint.genre.services";
+import Loading from "@/pages/Loading";
 
 export default function EditGenreForm() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -78,6 +79,7 @@ export default function EditGenreForm() {
     },
   });
 
+  if (loading) return <Loading />;
   return (
     <form onSubmit={handleSubmit} encType="multipart/form-data" className="">
       {/* {data?.content && <pre>{JSON.stringify(values.content, null, 2)}</pre>} */}

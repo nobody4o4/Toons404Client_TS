@@ -8,12 +8,12 @@ function getChapterByIdUrl(id: string){
     return url.get(`/chapter/${id}`);
 }
 
-function getChapterByNumberUrl(novelId:string,number: number){
-    return url.get(`/chapter/${novelId}/${number}`);
+function getChapterByNumberUrl(bookId:string,number: number , type: string){
+    return url.get(`/chapter/${bookId}/${number}`, {params: {type: type}});
 }
 
-function createChapterUrl(chapter: FormData ,novelId: string){
-    return url.post(`/chapter/${novelId}/add`, chapter);
+function createChapterUrl(chapter: FormData ,bookId: string){
+    return url.post(`/chapter/${bookId}/add`, chapter);
 }
 
 function updateChapterByIdUrl(id: string, chapter: FormData){
@@ -24,16 +24,16 @@ function deleteChapterByIdUrl(id: string){
     return url.delete(`/chapter/delete/${id}`);
 }
 
-function getAllChaptersByNovelIdUrl(novelId: string){
-    return url.get(`/chapter/novel/${novelId}`);
+function getAllChaptersByBookIdUrl(bookId: string, type : string){
+    return url.get(`/chapter/book/${bookId}`, {params: {type: type}});
 }
 
-function getNextChapterUrl(novelId: string, currentChapterNumber: number){
-    return url.get(`/chapter/${novelId}/${currentChapterNumber}/next`);
+function getNextChapterUrl(bookId: string, currentChapterNumber: number){
+    return url.get(`/chapter/${bookId}/${currentChapterNumber}/next`);
 }
 
-function getPrevChapterUrl(novelId: string, currentChapterNumber: number){
-    return url.get(`/chapter/${novelId}/${currentChapterNumber}/prev`);
+function getPrevChapterUrl(bookId: string, currentChapterNumber: number){
+    return url.get(`/chapter/${bookId}/${currentChapterNumber}/prev`);
 }
 
-export {getChaptersUrl, getChapterByIdUrl, createChapterUrl, updateChapterByIdUrl, deleteChapterByIdUrl, getAllChaptersByNovelIdUrl, getNextChapterUrl, getPrevChapterUrl, getChapterByNumberUrl};
+export {getChaptersUrl, getChapterByIdUrl, createChapterUrl, updateChapterByIdUrl, deleteChapterByIdUrl, getAllChaptersByBookIdUrl, getNextChapterUrl, getPrevChapterUrl, getChapterByNumberUrl};

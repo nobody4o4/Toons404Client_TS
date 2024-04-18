@@ -1,11 +1,11 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Fragment } from "react";
 import Toonscard from "../Toonscard";
-import AllNovelCard from "@/Services/novel/getAllNovelCard.services";
 import Loading from "@/pages/Loading";
+import AllBookCard from "@/Services/book/getAllBookCard.services";
 
 function Category() {
-  const { data, loading } = AllNovelCard();
+  const { data, loading } = AllBookCard();
   //   const [hover, setHover] = useState<number | null>(null);
   const adata = data;
 
@@ -24,7 +24,7 @@ function Category() {
               <TabsTrigger value="comic" className="px-8  py-4 text-xl">
                 COMICS
               </TabsTrigger>
-              <TabsTrigger value="novel" className="px-8  py-4 text-xl">
+              <TabsTrigger value="book" className="px-8  py-4 text-xl">
                 NOVELS
               </TabsTrigger>
             </TabsList>
@@ -68,7 +68,7 @@ function Category() {
             </div>
           </Fragment>
         </TabsContent>
-        <TabsContent value="novel">
+        <TabsContent value="book">
           <Fragment>
             <div className="mx-72a mx-auto grid max-w-[1100px] grid-cols-2 gap-x-6 gap-y-10 px-2 pb-20 sm:grid-cols-3 sm:px-8 lg:mt-16 lg:grid-cols-4 lg:gap-x-6 lg:px-0">
               {Array.isArray(adata) &&

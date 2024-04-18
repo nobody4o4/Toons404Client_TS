@@ -1,4 +1,4 @@
-// this service is used to get novel by id
+// this service is used to get book by id
 import { useEffect, useState } from "react";
 import { getCurrentUserProfileUrl} from "./endpoint.user.services";
 import { MyProfile } from "@/types";

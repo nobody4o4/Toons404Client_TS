@@ -2,7 +2,8 @@ import { useFormik } from "formik";
 import { registerUser } from "../Services/user/endpoint.user.services";
 import { RegisterValidator } from "../schema/user.schema";
 import { toast } from "sonner";
-import RegisterForm from "@/components/Register";
+import RegisterForm from "@/components/RegisterForm";
+import registerCover from "/registerBlue.png";
 
 function Register() {
   const {
@@ -51,8 +52,16 @@ function Register() {
 
   return (
     <>
-      <RegisterForm />
-      <div className="flex flex-col bg-neutral-100 pb-12">
+      <div className="grid w-screen grid-cols-2 bg-background pr-0">
+        <div className=" left-0 flex lg:p-10  ">
+          <RegisterForm />
+        </div>
+        <img
+          src={registerCover}
+          className="absolute right-0 ml-5 h-full w-1/2 object-cover"
+        ></img>
+      </div>
+      <div className="fle hidden flex-col bg-neutral-100 pb-12">
         {/* Your header and navigation components go here */}
 
         <div className="mt-16 w-[1055px] max-w-full self-center rounded-md bg-white pl-6 max-md:mt-10 max-md:pl-5">

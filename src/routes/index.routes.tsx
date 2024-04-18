@@ -16,10 +16,9 @@ function MainWrapper({
   };
   children: React.ReactNode;
 }) {
-  const LayoutWrpper = route.layout;
-
-  const PrivateWrapper = route.requiredAuth ? AuthChecker : Fragment;
-  const AdminWrapper = route.hasAdminLayout ? AdminChecker : Fragment;
+  const LayoutWrpper = route?.layout ?? Fragment;
+  const PrivateWrapper = route?.requiredAuth ? AuthChecker : Fragment;
+  const AdminWrapper = route?.hasAdminLayout ? AdminChecker : Fragment;
 
   return (
     <PrivateWrapper>

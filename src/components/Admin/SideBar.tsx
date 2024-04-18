@@ -75,11 +75,11 @@ function SideBar() {
             </Link>
             <Link
               className="flex transform items-center rounded-lg px-3 py-2 text-gray-600 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-              to="/dashboard/admin/novel"
+              to="/dashboard/admin/book"
             >
               <GiBlackBook className="h-5 w-5" />
 
-              <span className="mx-2 text-lg font-medium">Novel</span>
+              <span className="mx-2 text-lg font-medium">Book</span>
             </Link>
             <Link
               className="flex transform items-center rounded-lg px-3 py-2 text-gray-600 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-200"
