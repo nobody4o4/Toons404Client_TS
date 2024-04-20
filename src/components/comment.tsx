@@ -113,13 +113,7 @@ import GetAllCommentsByChapter from "@/Services/Comment/getAllCommentsByChapter.
 import { useEffect, useState } from "react";
 import { Comment } from "@/types";
 import CommentList from "./commentList";
-
-const commentSchema = Yup.object().shape({
-  comment: Yup.string()
-    .required("Comment is required.")
-    .min(3, "Comment must be at least 3 characters.")
-    .max(160, "Comment must not be longer than 160 characters."),
-});
+import { comment } from "@/schema/user.schema";
 
 function CommentForm({ chapterId, type }: { chapterId: string; type: string }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -139,7 +133,7 @@ function CommentForm({ chapterId, type }: { chapterId: string; type: string }) {
     initialValues: {
       comment: "",
     },
-    validationSchema: commentSchema,
+    validationSchema: comment,
     onSubmit: async (values) => {
       try {
         setIsSubmitting(true);
@@ -184,19 +178,17 @@ function CommentForm({ chapterId, type }: { chapterId: string; type: string }) {
             onChange={handleChange}
           />
 
-          <div className="text-gray-500">
-            You can <span>@mention</span> other users and organizations.
-          </div>
+          <div className="text-gray-500">Be nice and respectful.</div>
+          {errors.comment && touched.comment && (
+            <div className="text-xs text-red-500">{errors.comment}</div>
+          )}
         </div>
-        {errors.comment && touched.comment && (
-          <div className="text-red-500">{errors.comment}</div>
-        )}
         <Button type="submit" disabled={isSubmitting}>
           {isSubmitting ? "Submitting..." : "Submit"}
         </Button>
       </form>
       {!loading && (
-        <div className="mt-10 space-y-4 ">
+        <div className={` ${type === "COMIC" ? "mb-20" : ""} mt-10 space-y-4`}>
           {Array.isArray(comments) &&
             comments.map((comment: Comment) => (
               <CommentList

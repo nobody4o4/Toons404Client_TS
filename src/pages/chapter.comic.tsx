@@ -1,7 +1,7 @@
 import CommentForm from "@/components/comment";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { format } from "date-fns";
 import {
   FaArrowLeft,
@@ -25,6 +25,7 @@ export default function ComicChapter() {
   const [isLiked, setIsLiked] = useState<boolean>();
   const [likes, setLikes] = useState<number>(0);
   const { number, id } = useParams<{ number: string; id: string }>();
+  const naviagte = useNavigate();
 
   const parsedNumber: number = Number(number || 0);
   useEffect(() => {
@@ -54,10 +55,10 @@ export default function ComicChapter() {
   const formattedDate = format(data.createdAt, "EEE MMM-dd yyyy");
 
   const handleNextChapter = () => {
-    window.location.replace(`/comic/${id}/${parsedNumber + 1}`);
+    naviagte(`/comic/${id}/${data?.nextChapter?.number}`);
   };
   const handlePreviousChapter = () => {
-    window.location.replace(`/comic/${id}/${parsedNumber - 1}`);
+    naviagte(`/comic/${id}/${data?.previousChapter?.number}`);
   };
 
   const handleAddLike = async () => {
@@ -91,10 +92,14 @@ export default function ComicChapter() {
       toast.error("An error occurred while removing the like.");
     }
   };
+
+  const hasPreviousChapter = data?.previousChapter?.number ? true : false;
+  const hasNextChapter = data?.nextChapter?.number ? true : false;
+
   return (
     <div className="flex min-h-screen flex-col bg-background text-text">
       <header className="sticky left-0 right-0 top-0 flex items-center justify-between border-b bg-background p-4">
-        <div>
+        <div className="max-w-80">
           <Link to={`/book/${bookId}`}>
             <Button size="sm" variant="ghost" className="flex gap-2 text-lg">
               <FaArrowLeft />
@@ -102,7 +107,7 @@ export default function ComicChapter() {
             </Button>
           </Link>
         </div>
-        <div className="space-y-1 text-center">
+        <div className="absolute left-1/2 -translate-x-1/2 space-y-1">
           <h1 className="text-xl font-medium tracking-tighter">{data.title}</h1>
           <p className="text-sm leading-none">
             by. {data.book.author.username}
@@ -124,7 +129,6 @@ export default function ComicChapter() {
                   key={index}
                   src={image.image}
                   style={{
-                    aspectRatio: "740/1114",
                     objectFit: "cover",
                   }}
                   width="740"
@@ -169,32 +173,26 @@ export default function ComicChapter() {
               )}
             </div>
             <div className="flex items-center justify-between space-x-2">
-              <Link
-                to={`/book/${id}/${parsedNumber - 1}`}
+              <Button
                 onClick={handlePreviousChapter}
+                disabled={!hasPreviousChapter}
+                className="h-10 items-center"
+                size="lg"
+                variant="outline"
               >
-                <Button
-                  className="h-10 items-center"
-                  size="lg"
-                  variant="outline"
-                >
-                  <FaArrowLeft className="mr-1.5 h-4 w-4" />
-                  Previous Chapter
-                </Button>
-              </Link>
-              <Link
-                to={`/book/${id}/${parsedNumber + 1}`}
+                <FaArrowLeft className="mr-1.5 h-4 w-4" />
+                Previous Chapter
+              </Button>
+              <Button
+                disabled={!hasNextChapter}
                 onClick={handleNextChapter}
+                className="h-10 items-center"
+                size="lg"
+                variant="outline"
               >
-                <Button
-                  className="h-10 items-center"
-                  size="lg"
-                  variant="outline"
-                >
-                  Next Chapter
-                  <FaArrowRight className="ml-1.5 h-4 w-4" />
-                </Button>
-              </Link>
+                Next Chapter
+                <FaArrowRight className="ml-1.5 h-4 w-4" />
+              </Button>
             </div>
           </div>
           <CommentForm chapterId={data.id} type={data.book.type} />

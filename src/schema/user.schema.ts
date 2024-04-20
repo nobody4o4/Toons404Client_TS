@@ -177,16 +177,16 @@ export const AddComicChapterValidator = object().shape({
     Images: array()
     .required("Images is required.")
     .min(1, "Images must be at least 1 image.")
-    .max(20, "Images must be at most 20 images."),
+    .max(40, "Images must be at most 20 images."),
     
 });
 // export { RegisterValidator, LoginValidator };
 
 
 export const comment = object().shape({
-  content: string()
+  comment: string()
     .trim()
-    .required("Comment is required.")
+    .required("")
     .min(2, "Comment must be at least 2 characters.")
     .max(300, "Comment must be at most 300 characters."),
 });

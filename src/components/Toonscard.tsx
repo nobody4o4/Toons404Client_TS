@@ -39,9 +39,10 @@ function Toonscard({
           alt=""
         />
       </div>
+
       <div className="absolute top-0 m-1 rounded-full">
-        <p className="rounded-full bg-black p-1 text-[10px] font-bold uppercase tracking-wide text-white sm:px-3 sm:py-1">
-          {series?.title}
+        <p className="rounded-full bg-primary p-1 text-[10px] font-bold uppercase tracking-wide text-white sm:px-3 sm:py-1">
+          {type}
         </p>
       </div>
       <div className="mt-4 flex items-start justify-between px-2">
@@ -49,7 +50,6 @@ function Toonscard({
           <h3 className="text-pretty text-sm sm:text-sm md:text-base  ">
             <a href="/a" title="" className="line-clamp-1 ">
               {title}
-              <span className="absolute" aria-hidden="true"></span>
             </a>
           </h3>
           <div className="mt-1 flex items-center text-xs text-slate-500 sm:text-sm md:text-base">

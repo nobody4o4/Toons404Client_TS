@@ -11,6 +11,7 @@ import { LogOut } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ModeToggle } from "../mode_toggle";
 import { Button } from "../ui/button";
+import { Logout } from "../Logout";
 
 function SideBar() {
   const [userData, setUserData] = useState({
@@ -24,10 +25,10 @@ function SideBar() {
     setUserData(userDataFromStorage);
   }, []);
 
-  const handleLogout = () => {
-    clearUserData();
-    setUserData({ username: "", avatar: "", token: "" });
-  };
+  // const handleLogout = () => {
+  //   clearUserData();
+  //   setUserData({ username: "", avatar: "", token: "" });
+  // };
 
   const { username, avatar } = userData;
   return (
@@ -77,17 +78,12 @@ function SideBar() {
               className="flex transform items-center rounded-lg px-3 py-2 text-gray-600 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-200"
               to="/dashboard/admin/book"
             >
-              <GiBlackBook className="h-5 w-5" />
+              <GiEvilBook className="h-5 w-5" />
+              {/* <GiBlackBook className="h-5 w-5" /> */}
 
               <span className="mx-2 text-lg font-medium">Book</span>
             </Link>
-            <Link
-              className="flex transform items-center rounded-lg px-3 py-2 text-gray-600 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-              to="#"
-            >
-              <GiEvilBook className="h-5 w-5" />
-              <span className="mx-2 text-lg font-medium">Comics</span>
-            </Link>
+
             <Link
               className="flex transform items-center rounded-lg px-3 py-2 text-gray-600 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-200"
               to="#"
@@ -128,12 +124,13 @@ function SideBar() {
                 </span>
               </Link>
 
-              <Link
+              {/* <Link
                 to="/"
                 className="rotate-180 text-gray-500 transition-colors duration-200 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400 rtl:rotate-0"
               >
                 <LogOut className="h-5 w-5" onClick={handleLogout} />
-              </Link>
+              </Link> */}
+              <Logout />
             </div>
           </div>
         </div>

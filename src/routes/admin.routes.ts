@@ -1,21 +1,43 @@
-import Admindashboardlayout from "@/layout/dashboard/Admin.dashboard.layout";
-import AddBookAdmin from "@/pages/admin/Book/AddBook.admin";
-import EditChapterAdmin from "@/pages/admin/Chapter/EditChapter.admin";
-import AddChapterAdmin from "@/pages/admin/Chapter/AddChapter.admin";
-import DashBoard from "@/pages/admin/DashBoard";
-import EditBookAdmin from "@/pages/admin/Book/EditBook.admin";
-import GenreAdmin from "@/pages/admin/Genre/Genre.admin";
-import BookAdmin from "@/pages/admin/Book/Book.admin";
-import AdminBookDetails from "@/pages/admin/Book/BookDetails.admin";
-import SeriesAdmin from "@/pages/admin/Series/Series.admin";
-import AddSeries from "@/pages/admin/Series/AddSeries.admin";
-import SeriesDetails from "@/pages/admin/Series/SeriesDetails.admin";
-import EditSeriesAdmin from "@/pages/admin/Series/EditSeries.admin";
-import AddGenreAdmin from "@/pages/admin/Genre/AddGenre.admin";
-import EditGenreAdmin from "@/pages/admin/Genre/EditGenre.admin";
-import UserAdmin from "@/pages/admin/User/User.admin";
-import AdminUserDetails from "@/pages/admin/User/UserDetails.admin";
-import AddComicChapterAdmin from "@/pages/admin/ComicChapter/AddComicChapter";
+// import Admindashboardlayout from "@/layout/dashboard/Admin.dashboard.layout";
+// import AddBookAdmin from "@/pages/admin/Book/AddBook.admin";
+// import EditChapterAdmin from "@/pages/admin/Chapter/EditChapter.admin";
+// import AddChapterAdmin from "@/pages/admin/Chapter/AddChapter.admin";
+// import DashBoard from "@/pages/admin/DashBoard";
+// import EditBookAdmin from "@/pages/admin/Book/EditBook.admin";
+// import GenreAdmin from "@/pages/admin/Genre/Genre.admin";
+// import BookAdmin from "@/pages/admin/Book/Book.admin";
+// import AdminBookDetails from "@/pages/admin/Book/BookDetails.admin";
+// import SeriesAdmin from "@/pages/admin/Series/Series.admin";
+// import AddSeries from "@/pages/admin/Series/AddSeries.admin";
+// import SeriesDetails from "@/pages/admin/Series/SeriesDetails.admin";
+// import EditSeriesAdmin from "@/pages/admin/Series/EditSeries.admin";
+// import AddGenreAdmin from "@/pages/admin/Genre/AddGenre.admin";
+// import EditGenreAdmin from "@/pages/admin/Genre/EditGenre.admin";
+// import UserAdmin from "@/pages/admin/User/User.admin";
+// import AdminUserDetails from "@/pages/admin/User/UserDetails.admin";
+// import AddComicChapterAdmin from "@/pages/admin/ComicChapter/AddComicChapter";
+import { lazy } from "react";
+
+const Admindashboardlayout = lazy(() => import("@/layout/dashboard/Admin.dashboard.layout"));
+const AddBookAdmin = lazy(() => import("@/pages/admin/Book/AddBook.admin"));
+const EditChapterAdmin = lazy(() => import("@/pages/admin/Chapter/EditChapter.admin"));
+const AddChapterAdmin = lazy(() => import("@/pages/admin/Chapter/AddChapter.admin"));
+const DashBoard = lazy(() => import("@/pages/admin/DashBoard"));
+const EditBookAdmin = lazy(() => import("@/pages/admin/Book/EditBook.admin"));
+const GenreAdmin = lazy(() => import("@/pages/admin/Genre/Genre.admin"));
+const BookAdmin = lazy(() => import("@/pages/admin/Book/Book.admin"));
+const AdminBookDetails = lazy(() => import("@/pages/admin/Book/BookDetails.admin"));
+const SeriesAdmin = lazy(() => import("@/pages/admin/Series/Series.admin"));
+const AddSeries = lazy(() => import("@/pages/admin/Series/AddSeries.admin"));
+const SeriesDetails = lazy(() => import("@/pages/admin/Series/SeriesDetails.admin"));
+const EditSeriesAdmin = lazy(() => import("@/pages/admin/Series/EditSeries.admin"));
+const AddGenreAdmin = lazy(() => import("@/pages/admin/Genre/AddGenre.admin"));
+const EditGenreAdmin = lazy(() => import("@/pages/admin/Genre/EditGenre.admin"));
+const UserAdmin = lazy(() => import("@/pages/admin/User/User.admin"));
+const AdminUserDetails = lazy(() => import("@/pages/admin/User/UserDetails.admin"));
+const AddComicChapterAdmin = lazy(() => import("@/pages/admin/ComicChapter/AddComicChapter"))
+
+
 
 export const adminRoutes = [
     {

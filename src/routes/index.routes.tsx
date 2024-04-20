@@ -1,8 +1,15 @@
-import { Fragment, ReactComponentElement, Suspense } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import {
+  Fragment,
+  ReactComponentElement,
+  Suspense,
+  useEffect,
+  useMemo,
+} from "react";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { AdminChecker, AuthChecker } from "./AuthChecker.routes";
 import { allRoutes } from "./all.routes";
 import Loading from "@/pages/Loading";
+import { useScrollCtx } from "@/ctx/scroller-context";
 
 function MainWrapper({
   route,
@@ -19,6 +26,23 @@ function MainWrapper({
   const LayoutWrpper = route?.layout ?? Fragment;
   const PrivateWrapper = route?.requiredAuth ? AuthChecker : Fragment;
   const AdminWrapper = route?.hasAdminLayout ? AdminChecker : Fragment;
+
+  const { pathname } = useLocation();
+  const { setPath, path } = useScrollCtx();
+
+  const memoized = useMemo(() => path, [path]);
+
+  useEffect(() => {
+    setPath(pathname);
+  }, [pathname, setPath]);
+
+  useEffect(() => {
+    if (pathname !== memoized) {
+      //scroll to top
+      window.scrollTo({ top: 0, behavior: "instant" });
+      document.title = "Toons404";
+    }
+  }, [memoized, pathname]);
 
   return (
     <PrivateWrapper>

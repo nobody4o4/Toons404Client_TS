@@ -112,6 +112,7 @@ export default function AddComicChapterForm() {
                     id="Images"
                     name="Images"
                     type="file"
+                    className="text-text"
                     multiple // Allow multiple files to be selected
                     onChange={(event) => {
                       const files = event.currentTarget.files; // Get all selected files

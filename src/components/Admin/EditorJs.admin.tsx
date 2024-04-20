@@ -132,19 +132,16 @@ export function Editor({
   }
 
   return (
-    <div className="flex flex-1 flex-col">
-      <div className="flex flex-1 flex-col">
-        <div
-          id={name || "editor"}
-          className={cn("flex w-full flex-1 break-words", className)}
-        />
-        <p className="text-sm text-gray-500">
+    <div className="flex flex-col">
+      <div className="flex  flex-col">
+        <div id={name || "editor"} className={cn(" break-words", className)} />
+        {/* <p className="text-sm text-gray-500">
           Use{" "}
           <kbd className="bg-muted rounded-md border px-1 text-xs uppercase">
             Tab
           </kbd>{" "}
           to open the command menu.
-        </p>
+        </p> */}
       </div>
     </div>
   );

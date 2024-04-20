@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { format } from "date-fns";
 import Blocks, { DataProp } from "editorjs-blocks-react-renderer";
 import { Button } from "@/components/ui/button";
@@ -25,6 +25,7 @@ function Chapter() {
   const [isLiked, setIsLiked] = useState<boolean>();
   const [likes, setLikes] = useState<number>(0);
   const { number, id } = useParams<{ number: string; id: string }>();
+  const naviagte = useNavigate();
 
   const parsedNumber: number = Number(number || 0);
   useEffect(() => {
@@ -45,7 +46,7 @@ function Chapter() {
     if (data?._count.Likes) {
       setLikes(data._count.Likes);
     }
-    setIsLiked(data?.Likes.length > 0 ? true : false);
+    setIsLiked(data?.Likes?.length > 0 ? true : false);
   }, [data]);
 
   if (loading) return <Loading />;
@@ -54,10 +55,10 @@ function Chapter() {
   const formattedDate = format(data.createdAt, "EEE MMM-dd yyyy");
 
   const handleNextChapter = () => {
-    window.location.replace(`/book/${id}/${parsedNumber + 1}`);
+    naviagte(`/book/${id}/${data?.nextChapter?.number}`);
   };
   const handlePreviousChapter = () => {
-    window.location.replace(`/book/${id}/${parsedNumber - 1}`);
+    naviagte(`/book/${id}/${data?.previousChapter?.number}`);
   };
 
   const handleAddLike = async () => {
@@ -91,6 +92,9 @@ function Chapter() {
       toast.error("An error occurred while removing the like.");
     }
   };
+
+  const hasPreviousChapter = data?.previousChapter?.number ? true : false;
+  const hasNextChapter = data?.nextChapter?.number ? true : false;
 
   return (
     <div className="w-full space-y-4 py-6 md:py-12">
@@ -189,32 +193,26 @@ function Chapter() {
               )}
             </div>
             <div className="flex items-center justify-between space-x-2">
-              <Link
-                to={`/book/${id}/${parsedNumber - 1}`}
+              <Button
                 onClick={handlePreviousChapter}
+                disabled={!hasPreviousChapter}
+                className="h-10 items-center"
+                size="lg"
+                variant="outline"
               >
-                <Button
-                  className="h-10 items-center"
-                  size="lg"
-                  variant="outline"
-                >
-                  <FaArrowLeft className="mr-1.5 h-4 w-4" />
-                  Previous Chapter
-                </Button>
-              </Link>
-              <Link
-                to={`/book/${id}/${parsedNumber + 1}`}
+                <FaArrowLeft className="mr-1.5 h-4 w-4" />
+                Previous Chapter
+              </Button>
+              <Button
+                disabled={!hasNextChapter}
                 onClick={handleNextChapter}
+                className="h-10 items-center"
+                size="lg"
+                variant="outline"
               >
-                <Button
-                  className="h-10 items-center"
-                  size="lg"
-                  variant="outline"
-                >
-                  Next Chapter
-                  <FaArrowRight className="ml-1.5 h-4 w-4" />
-                </Button>
-              </Link>
+                Next Chapter
+                <FaArrowRight className="ml-1.5 h-4 w-4" />
+              </Button>
             </div>
           </div>
         </div>

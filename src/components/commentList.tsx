@@ -57,7 +57,7 @@ function CommentList(comment: Comment) {
 
   console.log(isLiked, "isLiked");
   return (
-    <div key={comment?.id} className="flex space-x-4">
+    <div key={comment?.id} className="mb-2 flex space-x-4">
       <Avatar className="h-12 w-12">
         <AvatarImage src={comment?.user?.avatar} className="object-cover" />
         <AvatarFallback>{comment?.user?.username}</AvatarFallback>

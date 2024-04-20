@@ -333,6 +333,8 @@ export type chapter = {
             image: string;
         }
     ]
+    previousChapter:{ number: number }
+    nextChapter: { number: number }
     thumbnail: string;
     createdAt: Date;
 }
