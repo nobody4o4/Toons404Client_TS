@@ -10,12 +10,11 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
-import { clearUserData, setUserData } from "@/utils/authStorage";
+import { clearUserData } from "@/utils/authStorage";
 
 export function Logout() {
   const handleLogout = () => {
     clearUserData();
-    setUserData({ username: "", avatar: "", token: "" });
     window.location.href = "/";
   };
   return (

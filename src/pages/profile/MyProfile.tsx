@@ -33,8 +33,8 @@ export default function MyProfile() {
               </h1>
               <p className="text-gray-500">@{data?.username}</p>
               <div className="flex space-x-8">
-                <span>0 followers</span>
-                <span>0 following</span>
+                <span>{data?._count?.Followers || 0} followers</span>
+                <span>{data?._count?.Following || 0} following</span>
               </div>
               <p>{data?.bio}</p>
             </div>
@@ -46,17 +46,7 @@ export default function MyProfile() {
             <div className=" mx-auto grid max-w-[1100px] grid-cols-2 gap-x-10 gap-y-4 px-2 pb-20 sm:grid-cols-3 sm:px-8 lg:mt-5 lg:grid-cols-4 lg:gap-x-10 lg:px-0">
               {Array.isArray(book) &&
                 book?.map((data: bookCard, index: number) => (
-                  <Toonscard
-                    id={data.id}
-                    title={data.title}
-                    genre={{ name: data.genre.name }}
-                    subGenre={{ name: data.subGenre.name }}
-                    series={{ title: data.series?.title }}
-                    coverImage={data.coverImage}
-                    _count={book._count}
-                    Likes={book?.Likes}
-                    key={index}
-                  />
+                  <Toonscard {...data} key={index} />
                 ))}
             </div>
           </Card>

@@ -6,6 +6,8 @@ import { useParams } from "react-router-dom";
 import Logo from "../../public/logo.svg";
 import Loading from "./Loading";
 import { ComicChapterList } from "@/components/Comic/Chapterlist.comic";
+import RecommendationCard from "@/components/RecommendationCard";
+import RecommendationList from "@/components/recommendationList";
 
 function Book() {
   const { id } = useParams();
@@ -71,11 +73,18 @@ function Book() {
         _count={{ Likes: 0 }}
         hasLiked={isLiked}
       />
-      {data?.type === "COMIC" ? (
-        <ComicChapterList BookId={data?.id ?? ""} />
-      ) : (
-        <ChapterList BookId={data?.id ?? ""} />
-      )}
+      <div className="grid grid-cols-7">
+        <div className="col-span-3 col-start-2">
+          {data?.type === "COMIC" ? (
+            <ComicChapterList BookId={data?.id ?? ""} />
+          ) : (
+            <ChapterList BookId={data?.id ?? ""} />
+          )}
+        </div>
+        <div className="col-span-2 col-start-5 mt-5">
+          <RecommendationList />
+        </div>
+      </div>
       {/* <ChapterList BookId={data?.id ?? ""} /> */}
     </div>
   );

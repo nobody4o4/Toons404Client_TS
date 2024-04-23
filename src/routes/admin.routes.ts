@@ -16,6 +16,7 @@
 // import UserAdmin from "@/pages/admin/User/User.admin";
 // import AdminUserDetails from "@/pages/admin/User/UserDetails.admin";
 // import AddComicChapterAdmin from "@/pages/admin/ComicChapter/AddComicChapter";
+import Request from "@/pages/admin/Request";
 import { lazy } from "react";
 
 const Admindashboardlayout = lazy(() => import("@/layout/dashboard/Admin.dashboard.layout"));
@@ -188,6 +189,15 @@ export const adminRoutes = [
         id: "user",
         path: "/dashboard/admin/user/details/:id",
         component: AdminUserDetails,
+        hasHomeLayout: false,
+        hasAdminLayout: true,
+        layout:Admindashboardlayout,
+        requiredAuth: true, 
+    },
+    {
+        id: "request",
+        path: "/dashboard/admin/request",
+        component: Request,
         hasHomeLayout: false,
         hasAdminLayout: true,
         layout:Admindashboardlayout,

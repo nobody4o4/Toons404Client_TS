@@ -4,6 +4,8 @@ import { RegisterValidator } from "../schema/user.schema";
 import { toast } from "sonner";
 import RegisterForm from "@/components/RegisterForm";
 import registerCover from "/registerBlue.png";
+import { getUserData } from "@/utils/authStorage";
+import { Navigate } from "react-router-dom";
 
 function Register() {
   const {
@@ -49,6 +51,14 @@ function Register() {
       }
     },
   });
+  const userData = getUserData();
+  const token = userData?.token;
+
+  const authentication = token ? true : false;
+
+  if (authentication) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <>

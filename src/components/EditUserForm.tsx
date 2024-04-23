@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import GetCurrentUserProfile from "@/Services/user/getCurrentUserProfile.services";
 import { Label } from "./ui/label";
 import { FaX } from "react-icons/fa6";
-import { setUserData } from "@/utils/authStorage";
+import { setUserData, UserData } from "@/utils/authStorage";
 import { UserProfile } from "@/types";
 
 function EditUserForm() {
@@ -60,13 +60,9 @@ function EditUserForm() {
         if (values.avatar) {
           formData.append("Single_file", values.avatar); // Append avatar to FormData
         }
-        const response: UserProfile = (await updateUserByIdUrl(formData)).data;
+        const response: UserData = (await updateUserByIdUrl(formData)).data;
         console.log("response", response);
-        setUserData({
-          avatar: response.avatar,
-          username: values.username,
-          token: (localStorage.getItem("token") || "").replace(/"/g, ""),
-        });
+        setUserData({ ...response });
         toast.success("Your details have been updated successfully.");
         resetForm();
         window.location.replace("/my-profile");

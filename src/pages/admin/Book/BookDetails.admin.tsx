@@ -99,9 +99,7 @@ export default function AdminBookDetails() {
                     {data?.author?.username}
                   </h3>
                   <div className="prose prose-sm">
-                    <p>
-                      Brandon Sanderson is an American author of epic eries.
-                    </p>
+                    <p>{data?.author?.bio}</p>
                   </div>
                 </div>
               </div>

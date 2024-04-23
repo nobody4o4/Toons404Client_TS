@@ -3,7 +3,7 @@ import logo from "/ToonsLogov2.png";
 
 import { Input } from "./ui/input";
 import { useEffect, useState } from "react";
-import { clearUserData, getUserData } from "../utils/authStorage";
+import { clearUserData, getUserData, setUserData } from "../utils/authStorage";
 import { Link } from "react-router-dom";
 import { ModeToggle } from "./mode_toggle";
 import {
@@ -12,12 +12,7 @@ import {
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuPortal,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -27,27 +22,26 @@ function NavBar() {
     username: "",
     avatar: "",
     token: "",
+    role: "",
+    isSubscribed: false,
   });
-
-  const { username, avatar } = userData;
+  const { username, avatar, role, isSubscribed } = userData;
 
   useEffect(() => {
     const userDataFromStorage = getUserData();
-    setUserData(userDataFromStorage);
-  }, [username]);
+    if (userDataFromStorage) {
+      setUserData(userDataFromStorage);
+    }
+    console.log(role, "role");
+  }, []);
 
   const handleLogout = () => {
     clearUserData();
-    setUserData({ username: "", avatar: "", token: "" });
   };
 
   return (
-    <header className=" sticky top-0 z-20 flex h-20 w-full justify-between gap-5 border-b-2 border-gray-200 bg-background px-9 py-4 text-text max-md:max-w-full max-md:flex-wrap max-md:px-5">
-      <Link to="/" className="navbar">
-        {/* <h1 className="my-auto grow self-stretch whitespace-nowrap font-logoFont  text-4xl">
-          TOONS<span className="text-primary">404</span>
-        </h1> */}
-
+    <header className=" sticky top-0 z-20 flex w-full justify-between gap-5 border-b-2 border-gray-200 bg-background px-9 py-4 text-text max-md:max-w-full max-md:flex-wrap max-md:px-5">
+      <Link to="/" className="h-14 ">
         <img src={logo} alt="logo" className=" h-full w-full object-cover" />
       </Link>
       <nav className="my-auto flex justify-between gap-5 self-stretch">
@@ -69,7 +63,6 @@ function NavBar() {
         <Input placeholder="Search" className="mr-3" />
         {avatar || username ? (
           <div className="flex justify-end">
-            {/* <div className="text-lg text-black">{username}</div> */}
             <DropdownMenu>
               <DropdownMenuTrigger>
                 <Avatar>
@@ -86,57 +79,34 @@ function NavBar() {
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
                   <Link to={`/my-profile`}>
-                    <DropdownMenuItem>
-                      {/* <User className="mr-2 h-4 w-4" /> */}
-                      Profile
-                    </DropdownMenuItem>
+                    <DropdownMenuItem>Profile</DropdownMenuItem>
                   </Link>
-                  {/* <DropdownMenuItem>
-                    <span>Billing</span>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <span>Settings</span>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <span>Keyboard shortcuts</span>
-                  </DropdownMenuItem> */}
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
-                <DropdownMenuGroup>
-                  <Link to="/dashboard/admin">
-                    <DropdownMenuItem>
-                      {/* <Users className="mr-2 h-4 w-4" /> */}
-                      <Link to="/dashboard/admin">Dashboard</Link>
-                    </DropdownMenuItem>
-                  </Link>
-                  {/* <DropdownMenuSub>
-                    <DropdownMenuSubTrigger>
-                      <span>Invite users</span>
-                    </DropdownMenuSubTrigger>
-                    <DropdownMenuPortal>
-                      <DropdownMenuSubContent>
+                {
+                  /* If the user is an admin, show the admin dashboard link */
+                  role === "ADMIN" && (
+                    <DropdownMenuGroup>
+                      <Link to="/dashboard/admin">
                         <DropdownMenuItem>
-                          <span>Email</span>
+                          <Link to="/dashboard/admin">Dashboard</Link>
                         </DropdownMenuItem>
-                        <DropdownMenuItem>
-                          <span>Message</span>
-                        </DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem>
-                          <span>More...</span>
-                        </DropdownMenuItem>
-                      </DropdownMenuSubContent>
-                    </DropdownMenuPortal>
-                  </DropdownMenuSub>
-                  <DropdownMenuItem>
-                    <span>New Team</span>
-                    <DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>
-                  </DropdownMenuItem> */}
-                </DropdownMenuGroup>
-
-                <DropdownMenuSeparator />
+                      </Link>
+                      <DropdownMenuSeparator />
+                    </DropdownMenuGroup>
+                  )
+                }
+                {role === "AUTHOR" && (
+                  <DropdownMenuGroup>
+                    <Link to="/dashboard/author">
+                      <DropdownMenuItem>
+                        <Link to="/dashboard/author">Dashboard</Link>
+                      </DropdownMenuItem>
+                    </Link>
+                    <DropdownMenuSeparator />
+                  </DropdownMenuGroup>
+                )}
                 <DropdownMenuItem onClick={handleLogout}>
-                  {/* <LogOut className="mr-2 h-4 w-4" /> */}
                   <span>Log out</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>

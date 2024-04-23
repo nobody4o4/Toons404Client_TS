@@ -20,6 +20,8 @@ import Loading from "@/pages/Loading";
 import InternalError from "@/pages/error/InternalError";
 import authLayout from "@/layout/authLayout";
 import ComicChapter from "@/pages/chapter.comic";
+import ContinueReading from "@/pages/profile/ContineReading";
+import Forum from "@/pages/forum/forum";
 
 export const userRoutes = [
     {
@@ -93,6 +95,16 @@ export const userRoutes = [
         ,path: '/reading-list',
         key : 'redingList',
         component: ReadingList, 
+        hasHomeLayout: true,
+        hasAdminLayout: false,
+        layout: HomeLayout,
+        requiredAuth: true
+    },
+    {
+        id: "continue-reading"
+        ,path: '/continue-reading',
+        key : 'continuereading',
+        component: ContinueReading, 
         hasHomeLayout: true,
         hasAdminLayout: false,
         layout: HomeLayout,
@@ -178,6 +190,16 @@ export const userRoutes = [
         
     },
     {
+        id: "forum",
+        path: "/forum",
+        component: Forum,
+        hasHomeLayout: true,
+        hasAdminLayout: false,
+        layout: HomeLayout,
+        requiredAuth: false,
+        
+    },
+    {
         id: "loading",
         path: "/load",
         component: Loading,
@@ -205,6 +227,7 @@ export const userRoutes = [
         hasAdminLayout: false,
         layout: Fragment,
         requiredAuth: false,
-    }
+    },
+    
 ]
 

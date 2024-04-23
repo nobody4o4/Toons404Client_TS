@@ -3,6 +3,10 @@ export type bookCard = {
     title: string;
     coverImage: string;
     type: string;
+    isPremium: boolean;
+    author: {
+        username: string;
+    };
     genre: {
         name: string;
     };
@@ -15,12 +19,12 @@ export type bookCard = {
     _count: {
         Likes: number;
     };
-    Likes:[{
+    Likes: [{
         userId: string;
     }]
 }
 
-export type MyProfile={
+export type MyProfile = {
     id: string;
     username: string;
     firstName: string;
@@ -28,9 +32,13 @@ export type MyProfile={
     email: string;
     avatar: string;
     bio: string;
+    _count: {
+        Followers: number;
+        Followings: number;
+    }
     books: bookCard;
 }
-export type UserProfile={
+export type UserProfile = {
     id: string;
     username: string;
     firstName: string;
@@ -39,8 +47,8 @@ export type UserProfile={
     avatar: string;
     bio: string;
     books: bookCard;
-    isFollowing : boolean;
-    _count :{
+    isFollowing: boolean;
+    _count: {
         Followers: number;
         Followings: number
     }
@@ -54,7 +62,7 @@ export type UserTable = {
     email: string;
     avatar: string;
     bio: string;
-    _count :{
+    _count: {
         Followers: number;
         Followings: number;
         Books: number;
@@ -73,7 +81,7 @@ export type UserDetail = {
     email: string;
     avatar: string;
     bio: string;
-    _count :{
+    _count: {
         Followers: number;
         Followings: number;
         Books: number;
@@ -94,32 +102,33 @@ export type UpdateUser = {
     bio: string;
 }
 
-export type BookDetails={
+export type BookDetails = {
     id: string;
     title: string;
     coverImage: string;
     likes: number;
     type: string;
+    isPremium: boolean;
     genre: {
-        id:string,
+        id: string,
         name: string;
     };
     subGenre: {
-        id:string,
+        id: string,
         name: string;
     };
     series: {
-        id:string,
+        id: string,
         title: string;
     };
     author: {
         username: string;
     };
     description: string;
-    _count :{
+    _count: {
         chapters: number;
     }
-    Likes:[{
+    Likes: [{
         userId: string;
     }]
 }
@@ -132,16 +141,17 @@ export type bookPageDetails = {
     likes: number;
     createdAt: Date;
     type: string;
+    isPremium: boolean;
     genre: {
-        id:string,
+        id: string,
         name: string;
     };
     subGenre: {
-        id:string,
+        id: string,
         name: string;
     };
     series: {
-        id:string,
+        id: string,
         title: string;
         coverImage: string;
         description: string;
@@ -158,10 +168,10 @@ export type bookPageDetails = {
         thumbnail: string;
         createdAt: string;
     };
-    _count :{
+    _count: {
         Likes: number;
     }
-    Likes:[{
+    Likes: [{
         userId: string;
     }]
 }
@@ -174,15 +184,17 @@ export type bookPageDetail = {
     type: string;
     createdAt: Date;
     genre: {
-        id:string,
+        id: string,
         name: string;
     };
     subGenre: {
-        id:string,
+        id: string,
         name: string;
     };
+    isPremium: boolean;
+
     series: {
-        id:string,
+        id: string,
         title: string;
         coverImage: string;
         description: string;
@@ -199,7 +211,7 @@ export type bookPageDetail = {
         thumbnail: string;
         createdAt: string;
     };
-    _count :{
+    _count: {
         Likes: number;
     }
     hasLiked: boolean;
@@ -214,14 +226,14 @@ export type SeriesPageDetail = {
         username: string;
         avatar: string;
     };
-    _count :{
+    _count: {
         Likes: number;
     }
     hasLiked: boolean;
 }
 
 
-export type genreDetails ={
+export type genreDetails = {
     id: string;
     name: string;
     coverImage: string;
@@ -230,7 +242,7 @@ export type genreDetails ={
     updatedAt: string;
 }
 
-export type seriesDetails ={
+export type seriesDetails = {
     id: string;
     title: string;
     coverImage: string;
@@ -255,7 +267,7 @@ export type genre = {
     coverImage: string;
 }
 
-export interface addGenre  extends FormData {
+export interface addGenre extends FormData {
     name: string;
     description: string;
     coverImage: string;
@@ -269,13 +281,13 @@ export interface EditUser extends FormData {
     bio: string;
 }
 
-export interface addSeries  extends FormData {
+export interface addSeries extends FormData {
     name: string;
     description: string;
     coverImage: string;
 }
 
-export interface addBook  extends FormData {
+export interface addBook extends FormData {
     title: string;
     description: string;
     coverImage: string;
@@ -285,7 +297,7 @@ export interface addBook  extends FormData {
     seriesId: string;
 }
 
-export interface addChapter  extends FormData {
+export interface addChapter extends FormData {
     title: string;
     content: string;
     coverImage: string;
@@ -299,10 +311,13 @@ export type chapterCard = {
     views: number;
     thumbnail: string;
     createdAt: string;
+    book: {
+        isPremium: boolean;
+    }
     _count: {
         Likes: number;
     };
-    Likes:[{
+    Likes: [{
         userId: string;
     }]
 }
@@ -311,35 +326,49 @@ export type chapter = {
     id: string;
     title: string;
     number: number;
-    views : number;
-    book:{
+    views: number;
+    book: {
         title: string;
         type: string;
-        author:{
+        author: {
             username: string;
         }
+        isPremium: boolean;
     }
-    _count:{
+    _count: {
         Likes: number;
     }
-    Likes:[{
+    Likes: [{
         userId: string;
     }]
     Author: string;
     content: string;
-    ComicImage:[
+    ComicImage: [
         {
             number: number;
             image: string;
         }
     ]
-    previousChapter:{ number: number }
+    previousChapter: { number: number }
     nextChapter: { number: number }
     thumbnail: string;
     createdAt: Date;
 }
 
-export type MyFunctionType = () => Promise<JSON>; 
+export type RequestCardType = {
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    user: {
+        username: string;
+        avatar: string;
+        email: string;
+    };
+    status: string;
+}
+
+
+export type MyFunctionType = () => Promise<JSON>;
 
 
 // export interface ScrollToTopProps extends Routerp {
@@ -390,10 +419,10 @@ export type Series = {
         avatar: string;
     };
     books: bookCard;
-    _count:{
+    _count: {
         Likes: number;
     }
-    Likes:[{
+    Likes: [{
         userId: string;
     }]
     createdAt: Date;
@@ -416,7 +445,7 @@ export type Genre = {
     name: string;
     description: string;
     coverImage: string;
-    book:bookCard;
+    book: bookCard;
 }
 
 export type Comment = {
@@ -430,7 +459,7 @@ export type Comment = {
     _count: {
         Likes: number;
     };
-    Likes:[{
+    Likes: [{
         userId: string;
     }]
 

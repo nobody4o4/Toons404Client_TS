@@ -94,7 +94,7 @@ function CommentList(comment: Comment) {
               disabled={isLiking}
             >
               <FaHeart className="h-4 w-4 text-red-600" />
-              {comment?._count.Likes}
+              {likes}
               <span className="sr-only">Like</span>
             </Button>
           ) : (
@@ -105,8 +105,7 @@ function CommentList(comment: Comment) {
               disabled={isLiking}
             >
               <FaRegHeart className="h-4 w-4" />
-              {likes}
-              <span className="sr-only">Like</span>
+              {likes}a<span className="sr-only">Like</span>
             </Button>
           )}
         </div>

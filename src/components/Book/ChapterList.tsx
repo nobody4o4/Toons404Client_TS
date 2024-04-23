@@ -17,10 +17,11 @@ const ChapterList = (BookId: { BookId: string }) => {
   }
 
   return (
-    <div className="mx-32 flex w-1/2 flex-col  border-solid border-r-neutral-100  px-5 py-2.5 max-md:pr-5">
+    <div className=" flex flex-col  border-solid border-r-neutral-100  px-5 py-2.5 max-md:pr-5">
       {Array.isArray(data) &&
         data?.map((chapters: chapterCard, index: number) => (
           <ChapterCardMain
+            book={chapters.book}
             key={index}
             id={chapters.id}
             title={chapters.title}

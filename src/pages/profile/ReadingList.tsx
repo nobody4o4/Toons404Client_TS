@@ -19,15 +19,7 @@ function ReadingList() {
           <div className=" grid grid-cols-2 gap-x-10 gap-y-4 px-2 pb-20 sm:grid-cols-3 sm:px-8 lg:mt-10 lg:grid-cols-4 lg:gap-x-10 lg:px-0">
             {Array.isArray(book) &&
               book?.map((data: bookCard, index: number) => (
-                <Toonscard
-                  id={data.id}
-                  title={data.title}
-                  genre={{ name: data.genre.name }}
-                  subGenre={{ name: data.subGenre.name }}
-                  series={{ title: data.series?.title }}
-                  coverImage={data.coverImage}
-                  key={index}
-                />
+                <Toonscard {...data} key={index} />
               ))}
           </div>
         </div>

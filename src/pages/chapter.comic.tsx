@@ -18,6 +18,7 @@ import { toast } from "sonner";
 import { Link } from "react-router-dom";
 import Loading from "./Loading";
 import { ModeToggle } from "@/components/mode_toggle";
+import { SubAuth } from "@/utils/SubAuth";
 
 export default function ComicChapter() {
   const [bookId, setBookId] = useState<string>();
@@ -41,6 +42,14 @@ export default function ComicChapter() {
     parsedNumber,
     "COMIC",
   );
+
+  console.log("data premium", data?.book?.isPremium);
+  const isAccessable = SubAuth(data?.book?.isPremium);
+  console.log("isAccessable", isAccessable);
+
+  if (!isAccessable) {
+    naviagte(`/`);
+  }
 
   useEffect(() => {
     if (data?._count.Likes) {

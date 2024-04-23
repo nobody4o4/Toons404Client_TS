@@ -36,9 +36,8 @@ function ProfileSidebar() {
               Reading list
             </Button>
           </Link>
-          <Link to="#">
+          <Link to="/continue-reading">
             <Button
-              disabled
               variant="outline"
               className={`${isActive("/continue-reading")} w-full`}
             >

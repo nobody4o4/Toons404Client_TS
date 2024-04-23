@@ -102,6 +102,13 @@ function SideBar() {
             </Link>
             <Link
               className="flex transform items-center rounded-lg px-3 py-2 text-gray-600 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+              to="/dashboard/admin/request"
+            >
+              <FaRegUser className="h-5 w-5" />
+              <span className="mx-2 text-lg font-medium">Request</span>
+            </Link>
+            <Link
+              className="flex transform items-center rounded-lg px-3 py-2 text-gray-600 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-200"
               to="#"
             >
               <MdOutlineReport className="h-5 w-5" />

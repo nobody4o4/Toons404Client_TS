@@ -11,32 +11,37 @@ import { toast } from "sonner";
 import registerCover from "/loginBlue.png";
 
 function LoginForm() {
-  const token = getUserData().token;
+  const userData = getUserData();
+  const token = userData?.token;
 
   const authentication = token ? true : false;
 
   const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
     useFormik({
       initialValues: {
-        email: "email@admin",
+        email: "email@email",
         password: "Password1@",
       },
       validationSchema: LoginValidator,
       onSubmit: async (values) => {
         try {
           const response = await loginUser(values);
-          const { user, token } = response.data;
+          console.log(response.data, "response");
+          const user = response.data;
+          console.log(user, "user");
           setUserData({
-            avatar: user.avatar,
-            username: user.username,
-            token: token,
+            avatar: user?.avatar,
+            username: user?.username,
+            token: user?.token,
+            role: user?.role,
+            isSubscribed: !!user?.isSubscribed,
+            id: user?.id,
           });
           toast.success("Login successful");
           window.location.replace("/");
         } catch (error) {
           toast.error("Login failed");
           console.error(error);
-          // Handle login error
         }
       },
     });
@@ -123,79 +128,6 @@ function LoginForm() {
           className="absolute right-0 ml-5 h-full w-1/2 object-cover"
         ></img>
       </div>
-      {/* <div className="container mx-auto">
-        <div className="mx-auto mt-20 max-w-xl overflow-hidden rounded-lg bg-white shadow-md">
-          <div className="p-6">
-            <header className="mb-4 text-center text-3xl uppercase text-gray-800">
-              Login
-            </header>
-            <form onSubmit={handleSubmit}>
-              <div className="mb-4">
-                <label
-                  htmlFor="email"
-                  className="mb-2 block text-sm font-bold text-gray-700"
-                >
-                  Email
-                </label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="text"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.email}
-                  className="block w-full px-3 py-2  "
-                />
-                {errors.email && touched.email && (
-                  <div className="text-red-500">{errors.email}</div>
-                )}
-              </div>
-              <div className="mb-4">
-                <label
-                  htmlFor="password"
-                  className="mb-2 block text-sm font-bold text-gray-700"
-                >
-                  Password
-                </label>
-                <Input
-                  id="password"
-                  name="password"
-                  type="password"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.password}
-                  className="block w-full px-3 py-2 "
-                />
-                {errors.password && touched.password && (
-                  <div className="text-red-500">{errors.password}</div>
-                )}
-              </div>
-              <div className="mb-4 flex items-center justify-between">
-                <Button type="submit" className="px-4 py-2 ">
-                  Login
-                </Button>
-                <p
-                  className="cursor-pointer text-gray-600"
-                  onClick={navigateToRegister}
-                >
-                  Don't have an account? Register here
-                </p>
-              </div>
-              {username && (
-                <div className="flex items-center">
-                  <div className="mr-2 text-gray-800">{username}</div>
-                  <Button
-                    onClick={handleLogout}
-                    className="rounded-md bg-red-500 px-2 py-1 text-white hover:bg-red-600 focus:bg-red-600 focus:outline-none"
-                  >
-                    Logout
-                  </Button>
-                </div>
-              )}
-            </form>
-          </div>
-        </div>
-      </div> */}
     </>
   );
 }

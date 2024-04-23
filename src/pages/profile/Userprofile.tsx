@@ -50,7 +50,7 @@ export default function UserProfile() {
     try {
       setIsFollowing(true);
       setFollowers((prevLikes) => prevLikes + 1);
-      await followUrl(data.id);
+      await followUrl(data?.id);
       setHasFollowed(true);
       setIsFollowing(false);
       toast.success("Successfully followed.", {
@@ -70,7 +70,7 @@ export default function UserProfile() {
     try {
       setIsFollowing(true);
       setFollowers((prevLikes) => prevLikes - 1);
-      await unfollowUrl(data.id);
+      await unfollowUrl(data?.id);
       setHasFollowed(false);
       setIsFollowing(false);
       toast.success("Unfollowed successfully.", {

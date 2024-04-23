@@ -1,24 +1,55 @@
-function setUserData({avatar, username, token }: { avatar:string, username: string, token: string }) {
-    console.log(token, "token");
-    console.log(username, "username");
-    console.log(avatar, "avatar");
-    localStorage.setItem("avatar", JSON.stringify(avatar));
-    localStorage.setItem("username", JSON.stringify(username));
-    localStorage.setItem("token", JSON.stringify(token));
-} 
+import CryptoJS from 'crypto-js';
 
-function getUserData() {
-    const username = JSON.parse(localStorage.getItem("username") as string);
-    const token = JSON.parse(localStorage.getItem("token") as string);
-    const avatar = JSON.parse(localStorage.getItem("avatar") as string);
+export type UserData = {
+  avatar: string;
+  username: string;
+  token: string;
+  role: string;
+  isSubscribed: boolean;
+  id: string;
+}
 
+function decryptUserData(encryptedData: string): UserData | null {
+  try {
+    const bytes = CryptoJS.AES.decrypt(encryptedData,   "secretkey123");
+    const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
 
-    return { avatar, username, token };
+    return decryptedData;
+  } catch (error) {
+    console.error('Error decrypting user data:', error);
+    return null;
+  }
+}
+
+function setUserData(user: UserData) {
+  console.log(user.token, "token");
+  console.log(user.username, "username");
+  console.log(user.avatar, "avatar");
+  console.log(user.role, "role");
+  console.log(user.isSubscribed, "isSubscribed");
+
+  // Encrypt all user data with the secret key
+  const encryptedDetails = CryptoJS.AES.encrypt(
+    JSON.stringify(user),
+   "secretkey123"
+  ).toString();
+
+  // Store the encrypted data in localStorage
+  localStorage.setItem("encryptedData", encryptedDetails);
+}
+
+function getUserData(): UserData | null {
+  const encryptedData = localStorage.getItem("encryptedData");
+
+  if (encryptedData) {
+    return decryptUserData(encryptedData);
+  }
+
+  return null;
 }
 
 function clearUserData() {
-    localStorage.clear();
+  localStorage.clear();
 }
-  
-  export { setUserData, getUserData, clearUserData };
-  
+
+export { setUserData, getUserData, clearUserData };

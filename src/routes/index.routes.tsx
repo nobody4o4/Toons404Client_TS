@@ -6,7 +6,7 @@ import {
   useMemo,
 } from "react";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
-import { AdminChecker, AuthChecker } from "./AuthChecker.routes";
+import { AdminChecker, AuthChecker, AuthorChecker } from "./AuthChecker.routes";
 import { allRoutes } from "./all.routes";
 import Loading from "@/pages/Loading";
 import { useScrollCtx } from "@/ctx/scroller-context";
@@ -19,6 +19,7 @@ function MainWrapper({
     hasHomeLayout: boolean;
     hasAdminLayout: boolean;
     requiredAuth: boolean;
+    requireAuthor: boolean;
     layout: ReactComponentElement;
   };
   children: React.ReactNode;
@@ -26,6 +27,7 @@ function MainWrapper({
   const LayoutWrpper = route?.layout ?? Fragment;
   const PrivateWrapper = route?.requiredAuth ? AuthChecker : Fragment;
   const AdminWrapper = route?.hasAdminLayout ? AdminChecker : Fragment;
+  const AuthorWrapper = route?.requireAuthor ? AuthorChecker : Fragment;
 
   const { pathname } = useLocation();
   const { setPath, path } = useScrollCtx();
@@ -47,7 +49,9 @@ function MainWrapper({
   return (
     <PrivateWrapper>
       <AdminWrapper>
-        <LayoutWrpper>{children}</LayoutWrpper>
+        <AuthorWrapper>
+          <LayoutWrpper>{children}</LayoutWrpper>
+        </AuthorWrapper>
       </AdminWrapper>
     </PrivateWrapper>
   );

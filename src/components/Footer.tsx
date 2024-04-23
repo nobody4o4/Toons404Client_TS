@@ -1,33 +1,71 @@
 import { FaFacebook } from "react-icons/fa6";
-
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { requestUrl } from "@/Services/Request/endpoints.request.services";
+import { getUserData } from "@/utils/authStorage";
+import { toast } from "sonner";
 function Footer() {
+  const userdata = getUserData();
+  const userId = userdata?.id;
+
+  const handleApply = async () => {
+    if (!userId) {
+      toast.error("Please Login First");
+      return;
+    }
+    try {
+      await requestUrl();
+      toast.success("Request Sent Successfully");
+    } catch {
+      toast.error("Request Failed");
+      console.log("Error");
+    }
+    console.log("Apply Now");
+  };
+
   return (
     <div className=" max-w-screen-xla flex w-full flex-col border-t-2 border-gray-300 bg-white px-4 py-4 dark:bg-gray-900 sm:px-6 lg:px-32">
       <div className="flex flex-col items-center gap-4 rounded-lg bg-primary p-6 shadow-lg sm:flex-row sm:justify-between">
         <strong className="text-xl text-white sm:text-xl">
-          Make Your Next Career Move!
+          Make Your Next Career Move! Become a Author
         </strong>
-        <a
-          className="inline-flex items-center gap-2 rounded-full border border-white bg-white px-8 py-3 text-primary hover:bg-transparent hover:text-white focus:outline-none focus:ring active:bg-white/90"
-          href="#"
-        >
-          <span className="text-sm font-medium"> Let's Get Started </span>
 
-          <svg
-            className="size-5 rtl:rotate-180"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
+        <AlertDialog>
+          <AlertDialogTrigger
+            asChild
+            className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-white bg-white px-8 py-3 text-primary hover:bg-transparent hover:text-white focus:outline-none focus:ring active:bg-white/90"
           >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M17 8l4 4m0 0l-4 4m4-4H3"
-            />
-          </svg>
-        </a>
+            <span className="text-lg font-medium"> Apply Now</span>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle className="dark:text-text">
+                Want to Become a Author?
+              </AlertDialogTitle>
+              <AlertDialogDescription>
+                Share you infinite creativity with the world. Join us now!!
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel className="dark:text-text">
+                Cancel
+              </AlertDialogCancel>
+              <AlertDialogAction onClick={handleApply} className="bg-primary">
+                Apply
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+        {/* <span className="text-sm font-medium"> Apply Now</span> */}
       </div>
 
       <div className="mt-12 grid grid-cols-1 gap-8  sm:grid-cols-2 lg:grid-cols-4">
