@@ -1,4 +1,4 @@
-import { FaFacebook } from "react-icons/fa6";
+import logo from "/ToonsLogov2.png";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { requestUrl } from "@/Services/Request/endpoints.request.services";
 import { getUserData } from "@/utils/authStorage";
+import { Link } from "react-router-dom";
 import { toast } from "sonner";
 function Footer() {
   const userdata = getUserData();
@@ -68,241 +69,40 @@ function Footer() {
         {/* <span className="text-sm font-medium"> Apply Now</span> */}
       </div>
 
-      <div className="mt-12 grid grid-cols-1 gap-8  sm:grid-cols-2 lg:grid-cols-4">
-        <div className="text-center sm:text-left">
-          <p className="text-lg font-medium text-gray-900 dark:text-white">
-            About Us
-          </p>
-
-          <ul className="mt-4 space-y-4 text-sm">
-            <li>
-              <a
-                className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
-                href="#"
-              >
-                Company History
-              </a>
-            </li>
-
-            <li>
-              <a
-                className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
-                href="#"
-              >
-                Meet the Team
-              </a>
-            </li>
-
-            <li>
-              <a
-                className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
-                href="#"
-              >
-                Employee Handbook
-              </a>
-            </li>
-
-            <li>
-              <a
-                className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
-                href="#"
-              >
-                Careers
-              </a>
-            </li>
-          </ul>
+      <footer className="pt-10">
+        <div className="mx-auto max-w-screen-xl px-4 text-gray-600 md:px-8">
+          <div className="justify-between sm:flex">
+            <div className="space-y-6">
+              <img src={logo} className="w-32" />
+              <p className="max-w-md">
+                Nulla auctor metus vitae lectus iaculis, vel euismod massa
+                efficitur.
+              </p>
+              <ul className="flex flex-wrap items-center gap-4 text-sm sm:text-base">
+                <li className="text-gray-800 duration-150 hover:text-gray-500">
+                  <Link to="">Home</Link>
+                </li>
+                <li className="text-gray-800 duration-150 hover:text-gray-500">
+                  <Link to="">Comic</Link>
+                </li>
+                <li className="text-gray-800 duration-150 hover:text-gray-500">
+                  <Link to="">Novel</Link>
+                </li>
+                <li className="text-gray-800 duration-150 hover:text-gray-500">
+                  <Link to="">Club</Link>
+                </li>
+              </ul>
+            </div>
+            <div className="mt-6">
+              <p className="font-semibold text-gray-700">Get the app</p>
+              <div className="mt-3 flex items-center gap-3 sm:block"></div>
+            </div>
+          </div>
+          <div className="mt-10 border-t py-10 md:text-center">
+            <p>© 2024 Toons404. All rights reserved.</p>
+          </div>
         </div>
-
-        <div className="text-center sm:text-left">
-          <p className="text-lg font-medium text-gray-900 dark:text-white">
-            Our Services
-          </p>
-
-          <ul className="mt-4 space-y-4 text-sm">
-            <li>
-              <a
-                className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
-                href="#"
-              >
-                Web Development
-              </a>
-            </li>
-
-            <li>
-              <a
-                className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
-                href="#"
-              >
-                Web Design
-              </a>
-            </li>
-
-            <li>
-              <a
-                className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
-                href="#"
-              >
-                Marketing
-              </a>
-            </li>
-
-            <li>
-              <a
-                className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
-                href="#"
-              >
-                Google Ads
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div className="text-center sm:text-left">
-          <p className="text-lg font-medium text-gray-900 dark:text-white">
-            Resources
-          </p>
-
-          <ul className="mt-4 space-y-4 text-sm">
-            <li>
-              <a
-                className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
-                href="#"
-              >
-                Online Guides
-              </a>
-            </li>
-
-            <li>
-              <a
-                className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
-                href="#"
-              >
-                Conference Notes
-              </a>
-            </li>
-
-            <li>
-              <a
-                className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
-                href="#"
-              >
-                Forum
-              </a>
-            </li>
-
-            <li>
-              <a
-                className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
-                href="#"
-              >
-                Downloads
-              </a>
-            </li>
-
-            <li>
-              <a
-                className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
-                href="#"
-              >
-                Upcoming Events
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div className="text-center sm:text-left">
-          <p className="text-lg font-medium text-gray-900 dark:text-white">
-            Helpful Links
-          </p>
-
-          <ul className="mt-8 space-y-4 text-sm">
-            <li>
-              <a
-                className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
-                href="#"
-              >
-                FAQs
-              </a>
-            </li>
-
-            <li>
-              <a
-                className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
-                href="#"
-              >
-                Support
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div className="mt-10">
-        <ul className="flex justify-center gap-6 sm:justify-end">
-          <li>
-            <a
-              href="#"
-              rel="noreferrer"
-              target="_blank"
-              className="text-primary transition hover:text-secondary"
-            >
-              <span className="sr-only">Facebook</span>
-            </a>
-          </li>
-
-          <li>
-            <a
-              href="#"
-              rel="noreferrer"
-              target="_blank"
-              className="text-primary transition hover:text-secondary"
-            >
-              <span className="sr-only">Instagram</span>
-            </a>
-          </li>
-
-          <li>
-            <a
-              href="#"
-              rel="noreferrer"
-              target="_blank"
-              className="text-primary transition hover:text-secondary"
-            >
-              <span className="sr-only">Twitter</span>
-            </a>
-          </li>
-
-          <li>
-            <a
-              href="#"
-              rel="noreferrer"
-              target="_blank"
-              className="text-primary transition hover:text-secondary"
-            >
-              <span className="sr-only">GitHub</span>
-            </a>
-          </li>
-
-          <li>
-            <a
-              href="#"
-              rel="noreferrer"
-              target="_blank"
-              className="text-primary transition hover:text-secondary"
-            >
-              <FaFacebook className="h-6 w-6" />
-            </a>
-          </li>
-        </ul>
-
-        <div className="mt-10 sm:flex sm:items-center sm:justify-between">
-          <div className="flex justify-center text-primary sm:justify-start"></div>
-
-          <p className="mt-4 text-center text-sm text-gray-500 dark:text-gray-400 sm:mt-0 sm:text-right">
-            Copyright &copy; 2022. All rights reserved.
-          </p>
-        </div>
-      </div>
+      </footer>
     </div>
   );
 }

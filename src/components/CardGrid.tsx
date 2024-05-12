@@ -3,13 +3,18 @@ import Toonscard from "./Toonscard";
 import { bookCard } from "@/types";
 import AllBookCard from "@/Services/book/getAllBookCard.services";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import InternalError from "@/pages/error/InternalError";
 
 function CardGrid() {
-  const { data, loading } = AllBookCard();
+  const { data, loading, error } = AllBookCard();
   //   const [hover, setHover] = useState<number | null>(null);
 
+  console.log(data, "hsdbvhjds");
   if (loading) {
     return <p>Loading...</p>; //  render a loading indicator while fetching data
+  }
+  if (error) {
+    return <InternalError />;
   }
 
   //   const handleHover = (index: number) => {
@@ -22,7 +27,7 @@ function CardGrid() {
 
   return (
     <Fragment>
-      <Card className=" mx-auto max-w-[1100px] gap-y-4 border-0 bg-transparent  shadow-none sm:grid-cols-3  lg:mt-5 lg:grid-cols-4 lg:gap-x-5">
+      <Card className=" containera mx-auto max-w-[1200px] gap-y-4 border-0 bg-transparent  shadow-none sm:grid-cols-3  lg:mt-5 lg:grid-cols-4 lg:gap-x-5">
         <CardHeader>
           <CardTitle> Books </CardTitle>
         </CardHeader>

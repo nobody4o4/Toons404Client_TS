@@ -7,7 +7,7 @@ import { toast } from "sonner";
 import { FaX } from "react-icons/fa6";
 
 import { Textarea } from "../../ui/textarea";
-import { AddSeriesValidator } from "@/schema/user.schema";
+import { AddSeriesValidator } from "@/schema/index.schema";
 import { useState } from "react";
 import { createSeriesurl } from "@/Services/Series/endPoint.series.services";
 

@@ -12,7 +12,7 @@ import Subscribtion from "@/pages/Subscription";
 import CongratsForSub from "@/pages/SuccessSubscribtion";
 import Test from "@/pages/Test";
 import ReadingList from "@/pages/profile/ReadingList";
-import Feed from "@/pages/forum/feed";
+import Feed from "@/pages/club/feed";
 import Series from "@/pages/Series";
 import SeriesHome from "@/pages/Series.home";
 import UserProfile from "@/pages/profile/Userprofile";
@@ -21,7 +21,9 @@ import InternalError from "@/pages/error/InternalError";
 import authLayout from "@/layout/authLayout";
 import ComicChapter from "@/pages/chapter.comic";
 import ContinueReading from "@/pages/profile/ContineReading";
-import Forum from "@/pages/forum/forum";
+import Club from "@/pages/club/club";
+import AddClub from "@/pages/club/AddClub";
+import FullPostCard from "@/components/Club/FullPostCard";
 
 export const userRoutes = [
     {
@@ -189,10 +191,40 @@ export const userRoutes = [
         requiredAuth: false,
         
     },
+    // {
+    //     id: "club",
+    //     path: "/club",
+    //     component: Club,
+    //     hasHomeLayout: true,
+    //     hasAdminLayout: false,
+    //     layout: HomeLayout,
+    //     requiredAuth: false,
+        
+    // },
     {
-        id: "forum",
-        path: "/forum",
-        component: Forum,
+        id: "club",
+        path: "/club/:id",
+        component: Club,
+        hasHomeLayout: true,
+        hasAdminLayout: false,
+        layout: HomeLayout,
+        requiredAuth: false,
+        
+    },
+    {
+        id: "addclub",
+        path: "/create-club",
+        component: AddClub,
+        hasHomeLayout: true,
+        hasAdminLayout: false,
+        layout: HomeLayout,
+        requiredAuth: false,
+        
+    },
+    {
+        id: "fullPost",
+        path: "/post/:id",
+        component: FullPostCard,
         hasHomeLayout: true,
         hasAdminLayout: false,
         layout: HomeLayout,

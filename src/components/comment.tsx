@@ -104,7 +104,6 @@
 // export default CommentForm;
 
 import { useFormik } from "formik";
-import * as Yup from "yup";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
@@ -113,7 +112,7 @@ import GetAllCommentsByChapter from "@/Services/Comment/getAllCommentsByChapter.
 import { useEffect, useState } from "react";
 import { Comment } from "@/types";
 import CommentList from "./commentList";
-import { comment } from "@/schema/user.schema";
+import { comment } from "@/schema/index.schema";
 
 function CommentForm({ chapterId, type }: { chapterId: string; type: string }) {
   const [isSubmitting, setIsSubmitting] = useState(false);

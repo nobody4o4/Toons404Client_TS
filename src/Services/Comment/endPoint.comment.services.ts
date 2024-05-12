@@ -1,8 +1,8 @@
 // import { genre } from "@/types";
 import {url} from "../index/index.services";
 
-export function addCommenturl(chapterId : string, content :{comment: string , type: string})  {
-  return url.post(`/comment/add/${chapterId}`, content);
+export function addCommenturl(commentedItemId : string, content :{comment: string , type: string})  {
+  return url.post(`/comment/add/${commentedItemId}`, content);
 }
 
 export function removeCommenturl(commentId : string)  {
@@ -10,6 +10,7 @@ export function removeCommenturl(commentId : string)  {
 }
 
 export function getCommentsurl(chapterId : string, type : string)  {
+  console.log(chapterId,"jsdncdjhsncks")
   return url.get(`/comment/get/${chapterId}/${type}`);
 }
 

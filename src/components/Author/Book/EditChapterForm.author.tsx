@@ -2,7 +2,7 @@ import { CardHeader, CardContent, Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { AddChapterValidator } from "@/schema/user.schema";
+import { AddChapterValidator } from "@/schema/index.schema";
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";

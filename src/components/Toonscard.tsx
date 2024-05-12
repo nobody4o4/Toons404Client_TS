@@ -13,6 +13,7 @@ function Toonscard({
   series,
   _count,
   author,
+  isPremium,
 }: bookCard) {
   console.log(
     id,
@@ -24,6 +25,7 @@ function Toonscard({
     type,
     subGenre,
     author,
+    isPremium,
     "a",
   );
   // const encodedName = encodeURIComponent(title.replace(/\s/g, "_"));
@@ -83,6 +85,14 @@ function Toonscard({
             {type}
           </p>
         </div>
+        {isPremium && (
+          <span className="absolute right-0 top-0 w-[120px]  translate-x-7 translate-y-4 rotate-45 border border-white bg-yellow-500 py-1 text-center text-sm font-medium text-white dark:text-black">
+            Premium
+          </span>
+        )}
+        {/* <span className="absolute right-0 top-0 w-[120px]  translate-x-7 translate-y-4 rotate-45 border border-white bg-yellow-500 py-1 text-center text-sm font-medium text-white dark:text-black">
+          {isPremium}
+        </span> */}
         <div className=" bg-white p-4 dark:bg-gray-950">
           <h3 className=" line-clamp-1 font-bold">{title}</h3>
           <p className="text-sm text-gray-500 dark:text-gray-400">

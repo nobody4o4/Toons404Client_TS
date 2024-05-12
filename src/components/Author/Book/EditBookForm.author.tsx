@@ -18,7 +18,7 @@ import { toast } from "sonner";
 import AllGenreNames from "@/Services/Genre/getAllGenreNames";
 import AllSeriesNames from "@/Services/Series/getAllSeriesName.services";
 import { useNavigate, useParams } from "react-router-dom";
-import { AddBookValidator, UpdateBookValidator } from "@/schema/user.schema";
+import { AddBookValidator, UpdateBookValidator } from "@/schema/index.schema";
 import { FaX } from "react-icons/fa6";
 import GetBookDetails from "@/Services/book/getBookDetailsById";
 import { updateBookByIdurl } from "@/Services/book/endPoint.book.services";

@@ -447,6 +447,23 @@ export type Genre = {
     coverImage: string;
     book: bookCard;
 }
+export type Reply= {
+    id: string;
+    content: string;
+    commentId:string;
+    user: {
+        username: string;
+        avatar: string;
+    };
+    createdAt: string;
+    _count: {
+        Likes: number;
+    };
+    Likes: [{
+        userId: string;
+    }]
+
+}
 
 export type Comment = {
     id: string;
@@ -462,6 +479,30 @@ export type Comment = {
     Likes: [{
         userId: string;
     }]
+    Reply: Reply[];
+
+
+}
+
+export type Post = {
+    id: string;
+    title:string;
+    content: string;
+    user: {
+        id:string;
+        username: string;
+        avatar: string;
+        firstName: string;
+        lastName: string;
+    };
+    createdAt: string;
+    _count: {
+        Likes: number;
+    };
+    Likes: [{
+        userId?: string;
+    }]
+    Comments?: Comments[];
 
 }
 
@@ -477,6 +518,7 @@ export type Comments = {
         Likes: number;
     };
     hasLiked: boolean;
+    Reply: Reply[];
 }
 
 export type LikedList = {

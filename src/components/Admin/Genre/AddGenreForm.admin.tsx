@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { AddGenreValidator } from "@/schema/user.schema";
+import { AddGenreValidator } from "@/schema/index.schema";
 import { useFormik } from "formik";
 import { createGenreurl } from "@/Services/Genre/endPoint.genre.services";
 import { Card, CardContent, CardHeader } from "../../ui/card";
@@ -62,7 +62,7 @@ export default function AddGenreForm() {
   console.log(data);
   return (
     <form onSubmit={handleSubmit} encType="multipart/form-data" className="">
-      <pre>{JSON.stringify(errors, null, 2)}</pre>
+      {/* <pre>{JSON.stringify(errors, null, 2)}</pre> */}
       <Card className="w-full">
         <CardHeader>
           <div className="space-y-1.5">

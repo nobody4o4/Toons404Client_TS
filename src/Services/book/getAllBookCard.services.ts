@@ -5,7 +5,7 @@
  
  function AllBookCard(){
  
-     const [data, setdata] = useState<bookCard>();
+     const [data, setdata] = useState<bookCard[]>();
      const [loading, setloading] = useState(true);
      const [error, seterror] = useState("");
  

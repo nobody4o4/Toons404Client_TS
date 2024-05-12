@@ -127,7 +127,7 @@ export default function ComicChapter() {
         </div>
       </header>
       <main className="flex-1">
-        <div className=" h-[calc(100vh-56px)]a h-full w-full items-center overflow-scroll  border-b border-t">
+        <div className=" h-ful h-[calc(100vh-56px)] w-full items-center overflow-scroll  border-b border-t">
           <div className="grid w-full grid-cols-3 px-4">
             {Array.isArray(data.ComicImage) &&
               data.ComicImage.map((image, index) => (

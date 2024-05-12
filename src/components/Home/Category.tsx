@@ -4,7 +4,7 @@ import Toonscard from "../Toonscard";
 import Loading from "@/pages/Loading";
 import AllBookCard from "@/Services/book/getAllBookCard.services";
 import { Link } from "react-router-dom";
-import { bookCard } from "@/types";
+import { bookCard, chapterCard } from "@/types";
 
 function Category() {
   const { data, loading } = AllBookCard();

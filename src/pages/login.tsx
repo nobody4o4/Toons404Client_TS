@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
 import { Navigate } from "react-router-dom";
 import { loginUser } from "../Services/user/endpoint.user.services";
-import { LoginValidator } from "../schema/user.schema";
+import { LoginValidator } from "../schema/index.schema";
 import { getUserData, setUserData } from "../utils/authStorage";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -19,8 +19,10 @@ function LoginForm() {
   const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
     useFormik({
       initialValues: {
-        email: "email@email",
-        password: "Password1@",
+        // email: "email@email",
+        // password: "Password1@",
+        email: "",
+        password: "",
       },
       validationSchema: LoginValidator,
       onSubmit: async (values) => {
@@ -37,10 +39,14 @@ function LoginForm() {
             isSubscribed: !!user?.isSubscribed,
             id: user?.id,
           });
-          toast.success("Login successful");
+          toast.success("Login successful", {
+            description: "You are now logged in",
+          });
           window.location.replace("/");
         } catch (error) {
-          toast.error("Login failed");
+          toast.error("Incorrect login credentials", {
+            description: "Please try again",
+          });
           console.error(error);
         }
       },
@@ -67,7 +73,7 @@ function LoginForm() {
               </Label>
               <Input
                 id="email"
-                placeholder="m@example.com"
+                placeholder="loveade@example.com"
                 required
                 type="email"
                 name="email"
@@ -91,6 +97,7 @@ function LoginForm() {
                 id="password"
                 name="password"
                 type="password"
+                placeholder="********"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.password}

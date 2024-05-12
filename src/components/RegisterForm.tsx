@@ -7,10 +7,11 @@ import { Button } from "./ui/button";
 import { Card, CardTitle } from "./ui/card";
 import { useFormik } from "formik";
 import { registerUser } from "../Services/user/endpoint.user.services";
-import { RegisterValidator } from "../schema/user.schema";
+import { RegisterValidator } from "../schema/index.schema";
 import { toast } from "sonner";
 import { FaUser, FaX } from "react-icons/fa6";
 import registerCover from "/registerBlue.png";
+import { Link } from "react-router-dom";
 
 function RegisterForm() {
   const {
@@ -121,6 +122,7 @@ function RegisterForm() {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.firstName}
+                placeholder="Ada"
                 type="text"
               />
               {errors?.firstName && touched.firstName ? (
@@ -173,7 +175,7 @@ function RegisterForm() {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.email}
-                placeholder="m@example.com"
+                placeholder="loveada@example.com"
                 required
                 type="email"
               />
@@ -251,6 +253,12 @@ function RegisterForm() {
         <Button className=" w-full" type="submit">
           Sign Up
         </Button>
+        <div className="text-center text-sm">
+          Already have an account?
+          <Link className="underline" to="/login">
+            Sign In
+          </Link>
+        </div>
       </form>
     </Card>
   );

@@ -7,6 +7,7 @@ import { FaArrowLeft } from "react-icons/fa6";
 import { chapterCard } from "@/types";
 import ChapterCardAdmin from "@/components/Admin/Book/chapterCard.admin";
 import GetBookDetails from "@/Services/book/getBookDetailsById";
+import { toast } from "sonner";
 
 export default function AdminBookDetails() {
   const params = useParams();
@@ -20,6 +21,10 @@ export default function AdminBookDetails() {
   if (data?.createdAt) {
     formattedDate = format(data.createdAt, " MMM-dd, yyyy");
   }
+
+  const handletoast = () => {
+    toast.success("Chaoter added successfully.");
+  };
   return (
     <>
       <div className="px-4">
@@ -49,7 +54,10 @@ export default function AdminBookDetails() {
               </figure>
               <div className="items-centera flex p-8">
                 <div className=" flex flex-col space-y-4">
-                  <h2 className=" text-xl font-bold leading-none">
+                  <h2
+                    className=" text-xl font-bold leading-none"
+                    onClick={handletoast}
+                  >
                     {data?.title}
                   </h2>
                   <div className=" flex flex-col space-y-5">

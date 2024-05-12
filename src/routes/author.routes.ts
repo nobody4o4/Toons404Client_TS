@@ -108,7 +108,6 @@ export const authorRoutes = [
         id: "chapter",
         path: "/dashboard/author/book/chapter",
         component: DashBoard,
-         
         layout: AuthorDashboardLayout,
         requiredAuth: true,
         requireAuthor: true,

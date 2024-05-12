@@ -67,6 +67,11 @@ export const columns: ColumnDef<BookDetails>[] = [
   {
     accessorKey: "description",
     header: "Description",
+    cell: ({ row }) => (
+      <p className="line-clamp-3 text-sm text-gray-600">
+        {row.getValue("description")}
+      </p>
+    ),
   },
   {
     accessorKey: "type",
@@ -79,6 +84,10 @@ export const columns: ColumnDef<BookDetails>[] = [
   {
     accessorKey: "_count.chapters",
     header: "No. of Chapter",
+  },
+  {
+    accessorKey: "_count.ComicChapter",
+    header: "No. of Comic Chapter",
   },
   {
     accessorKey: "likes",
@@ -149,6 +158,7 @@ export const columns: ColumnDef<BookDetails>[] = [
 
 export function BookDetailsTable() {
   const { data, loading, error } = AllBookDetails();
+  const [isActive, setIsActive] = React.useState<string>("all");
 
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
@@ -183,17 +193,31 @@ export function BookDetailsTable() {
     <div className="w-full">
       {/* Pagination */}
       <div className="flex space-x-5">
-        <Button onClick={() => table.getColumn("type")?.setFilterValue("")}>
+        <Button
+          className={isActive == "all" ? "bg-primary" : ""}
+          onClick={() => {
+            table.getColumn("type")?.setFilterValue("");
+            setIsActive("all");
+          }}
+        >
           {" "}
           All
         </Button>
         <Button
-          onClick={() => table.getColumn("type")?.setFilterValue("NOVEL")}
+          className={isActive == "novel" ? "bg-primary" : ""}
+          onClick={() => {
+            table.getColumn("type")?.setFilterValue("NOVEL");
+            setIsActive("novel");
+          }}
         >
           Novel
         </Button>
         <Button
-          onClick={() => table.getColumn("type")?.setFilterValue("COMIC")}
+          className={isActive == "comic" ? "bg-primary" : ""}
+          onClick={() => {
+            table.getColumn("type")?.setFilterValue("COMIC");
+            setIsActive("comic");
+          }}
         >
           Comic
         </Button>

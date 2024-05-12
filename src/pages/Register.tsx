@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import { registerUser } from "../Services/user/endpoint.user.services";
-import { RegisterValidator } from "../schema/user.schema";
+import { RegisterValidator } from "../schema/index.schema";
 import { toast } from "sonner";
 import RegisterForm from "@/components/RegisterForm";
 import registerCover from "/registerBlue.png";

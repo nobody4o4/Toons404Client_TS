@@ -61,23 +61,36 @@ const BookDetails = (book: bookPageDetail) => {
       toast.error("An error occurred while removing the like.");
     }
   };
-  console.log(book, "bookklll");
+
   return (
     <div className="flex bg-primary p-20">
-      <div className="mx-48 flex h-52 w-full gap-5 rounded-md  bg-white p-4 max-md:mt-10 max-md:max-w-full max-md:flex-col max-md:gap-0 max-md:pr-5">
+      <div className="mx-48 flex h-52 w-full gap-5 rounded-md bg-white p-4 max-md:mt-10 max-md:max-w-full max-md:flex-col max-md:gap-0 max-md:pr-5">
         <div className="flex h-[240px] w-[200px] flex-col rounded-sm max-md:ml-0 max-md:w-full">
           <img
             loading="lazy"
             src={book.coverImage}
-            // src="https://cdn.builder.io/api/v1/image/assets/TEMP/b6c09bf1d7cda3f81f5f9b9cfc9f17dd89312a6a87f60653470248bad1d0f952?apiKey=3969ba43007a4a76b36a3bcb3912a1e3&"
-            alt="Billie Eilish"
+            alt={book.title}
             className="h-[900px] w-[200px] max-w-full grow origin-bottom -translate-y-16 rounded-sm object-cover max-md:mt-0"
           />
         </div>
         <div className="ml-5 flex w-full flex-col max-md:ml-0 max-md:w-full">
           <div className="my-auto flex flex-col self-stretch text-black max-md:mt-10 max-md:max-w-full">
-            <h3 className="text-2xl max-md:max-w-full">{book.title}</h3>
-            <p className="mt-2 text-sm max-md:max-w-full">{book.description}</p>
+            <div className="flex items-center justify-between gap-3">
+              <h3 className="text-2xl max-md:max-w-full">{book.title}</h3>
+              <div className=" flex h-full items-center ">
+                <span className="text-base capitalize text-gray-600">
+                  {book.author.username}
+                </span>
+                <span className="mx-2 text-gray-400">•</span>
+                <span className=" text-gray-600">
+                  {new Date(book.createdAt).toLocaleDateString()}
+                </span>
+              </div>
+            </div>
+            <p className="mt-2 line-clamp-4 text-sm max-md:max-w-full">
+              {book.description}
+            </p>
+
             <div className="mt-4 flex w-full justify-between gap-5 whitespace-nowrap text-white max-md:max-w-full max-md:flex-wrap">
               <div className="flex gap-2.5 self-start text-xs">
                 <GenreBadge genre={book.genre.name} />
@@ -94,10 +107,10 @@ const BookDetails = (book: bookPageDetail) => {
 
                 {isLiked ? (
                   <Button
-                    variant={"outline"}
+                    variant="outline"
                     onClick={handleRemoveLike}
                     disabled={isLiking}
-                    className="justify-center rounded-md  px-4 text-center text-sm font-medium leading-10 text-black dark:bg-transparent dark:text-black dark:hover:bg-primary  "
+                    className="justify-center rounded-md px-4 text-center text-sm font-medium leading-10 text-black dark:bg-transparent dark:text-black dark:hover:bg-primary"
                   >
                     Subscribed
                   </Button>

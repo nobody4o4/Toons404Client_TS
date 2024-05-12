@@ -105,7 +105,8 @@ function CommentList(comment: Comment) {
               disabled={isLiking}
             >
               <FaRegHeart className="h-4 w-4" />
-              {likes}a<span className="sr-only">Like</span>
+              {likes}
+              <span className="sr-only">Like</span>
             </Button>
           )}
         </div>

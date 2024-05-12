@@ -210,3 +210,16 @@ export const comment = object().shape({
     .min(2, "Comment must be at least 2 characters.")
     .max(300, "Comment must be at most 300 characters."),
 });
+
+export const post = object().shape({
+  title: string()
+    .trim()
+    .required("Title is required.")
+    .min(1, "Title must be at least 1 characters.")
+    .max(50, "Title must be at most 50 characters."),
+  content: string()
+    .trim()
+    .required("Content is required.")
+    .min(1, "Content must be at least 1 characters.")
+    .max(500, "Content must be at most 500 characters."),
+});

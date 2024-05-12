@@ -8,7 +8,7 @@ import { toast } from "sonner";
 import { FaX } from "react-icons/fa6";
 import { useParams } from "react-router-dom";
 import GetSeriesById from "@/Services/Series/getSeriesById.services";
-import { AddSeriesValidator } from "@/schema/user.schema";
+import { AddSeriesValidator } from "@/schema/index.schema";
 import { Textarea } from "../../ui/textarea";
 import { updateSeriesByIdurl } from "@/Services/Series/endPoint.series.services";
 import Loading from "@/pages/Loading";

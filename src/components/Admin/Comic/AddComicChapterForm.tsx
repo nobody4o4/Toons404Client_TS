@@ -2,7 +2,7 @@ import { CardHeader, CardContent, Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { AddComicChapterValidator } from "@/schema/user.schema";
+import { AddComicChapterValidator } from "@/schema/index.schema";
 import { useFormik } from "formik";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -62,23 +62,22 @@ export default function AddComicChapterForm() {
         }
         const response = await createChapterUrl(formData, bookId);
         console.log("response", response);
-        toast.success("Book Added successfully.");
+        toast.success("CHapter Added successfully.");
         resetForm();
         // navigate(-1);
       } catch (error) {
         console.error(error);
-        toast.error("Failed to add book.", {
+        toast.error("Failed to add Chapter.", {
           description: "Please Try Again",
         });
       }
-
       setIsLoading(false);
     },
   });
 
   return (
     <form onSubmit={handleSubmit} encType="multipart/form-data" className="">
-      <pre>{JSON.stringify(errors, null, 2)}</pre>
+      {/* <pre>{JSON.stringify(errors, null, 2)}</pre> */}
       <Card className="w-full">
         <CardHeader>
           <div className="space-y-1.5">

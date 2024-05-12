@@ -13,9 +13,11 @@ function RequestCard(request: RequestCardType) {
   const handleAccept = async () => {
     try {
       await acceptRequestUrl(request.id);
-      toast.success("Request Accepted Successfully");
+      toast.success("Request Accepted Successfully", {
+        description: "Email is sent to the user.",
+      });
     } catch {
-      toast.error("Request Failed");
+      toast.error("Failed to accept the request");
       console.log("Error");
     }
   };
@@ -23,11 +25,17 @@ function RequestCard(request: RequestCardType) {
   const handleReject = async () => {
     try {
       await rejectRequestUrl(request.id);
-      toast.success("Request Accepted Successfully");
+      toast.success("The request is rejected Successfully");
     } catch {
-      toast.error("Request Failed");
+      toast.error(" Failed to reject the request");
       console.log("Error");
     }
+  };
+
+  const handleToast = () => {
+    toast.success("Request Accepted Successfully", {
+      description: "Email is sent to the user.",
+    });
   };
 
   return (
@@ -51,7 +59,10 @@ function RequestCard(request: RequestCardType) {
 
       <div className="ml-5 flex flex-1 flex-col justify-between">
         <div className="border-s border-gray-900/10 sm:border-l-transparent sm:pl-3">
-          <p className="text-xl font-medium text-gray-900">
+          <p
+            className="text-xl font-medium text-gray-900"
+            onClick={handleToast}
+          >
             {request.user.username}
             {/* Samir Gautam */}
           </p>

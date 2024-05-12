@@ -44,7 +44,7 @@ function NavBar() {
       <Link to="/" className="h-14 ">
         <img src={logo} alt="logo" className=" h-full w-full object-cover" />
       </Link>
-      <nav className="my-auto flex justify-between gap-5 self-stretch">
+      <nav className=" left-0 my-auto  flex translate-x-1/2 justify-between gap-5 self-stretch">
         <Link to="#" className="link">
           Comics
         </Link>
@@ -55,14 +55,14 @@ function NavBar() {
           Series
         </Link>
         <Link to="/feed" className="link">
-          Feed
+          Club
         </Link>
       </nav>
 
-      <div className="flex w-fit justify-between bg-background">
+      <div className="my-auto flex h-fit w-fit justify-between bg-background">
         <Input placeholder="Search" className="mr-3" />
         {avatar || username ? (
-          <div className="flex justify-end">
+          <div className="top-0 mt-0 flex justify-end">
             <DropdownMenu>
               <DropdownMenuTrigger>
                 <Avatar>
@@ -117,9 +117,15 @@ function NavBar() {
             <Button className="bg-sky-500 hover:bg-sky-300"> Sign In</Button>
           </Link>
         )}
-        <Link to="/subscribtion" className="mx-2 ">
-          <Button>Subscribtion</Button>
-        </Link>
+        {isSubscribed ? (
+          <Link to="/subscribtion" className="mx-2 ">
+            <Button>Subscribed</Button>
+          </Link>
+        ) : (
+          <Link to="/subscribtion" className="mx-2 ">
+            <Button>Subscribe</Button>
+          </Link>
+        )}
         <div className="ml-3">
           <ModeToggle />
         </div>

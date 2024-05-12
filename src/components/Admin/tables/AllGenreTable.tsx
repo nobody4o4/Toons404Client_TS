@@ -26,6 +26,7 @@ import AllGenreDetails from "@/Services/Genre/getAllGenreServices";
 import { genreDetails } from "@/types";
 import { Link } from "react-router-dom";
 import Loading from "@/pages/Loading";
+import { toast } from "sonner";
 
 // Modify the Payment type to Genre
 export type Genre = {
@@ -43,7 +44,11 @@ export const columns: ColumnDef<genreDetails>[] = [
     accessorKey: "name",
     header: "Name",
     // You can render coverImage here if you want
-    cell: ({ row }) => <div className="capitalize">{row.getValue("name")}</div>,
+    cell: ({ row }) => (
+      <div onClick={handlegenre} className="capitalize">
+        {row.getValue("name")}
+      </div>
+    ),
   },
   {
     accessorKey: "coverImage",
@@ -64,13 +69,13 @@ export const columns: ColumnDef<genreDetails>[] = [
   },
   {
     accessorKey: "createdAt",
-    header: "Created At",
-    cell: ({ row }) => <div>{row.getValue("createdAt")}</div>,
+    header: "Created at",
+    cell: ({ row }) => new Date(row.getValue("createdAt")).toLocaleDateString(),
   },
   {
     accessorKey: "updatedAt",
-    header: "Updated At",
-    cell: ({ row }) => <div>{row.getValue("updatedAt")}</div>,
+    header: "Updated at",
+    cell: ({ row }) => new Date(row.getValue("updatedAt")).toLocaleDateString(),
   },
   {
     id: "actions",
@@ -87,6 +92,10 @@ export const columns: ColumnDef<genreDetails>[] = [
     },
   },
 ];
+
+const handlegenre = () => {
+  toast.success("Genre Added successfully.");
+};
 
 export function GenreDetailsTable() {
   const { data, loading, error } = AllGenreDetails();

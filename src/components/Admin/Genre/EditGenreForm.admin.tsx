@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { FaX } from "react-icons/fa6";
 import { useNavigate, useParams } from "react-router-dom";
-import { AddGenreValidator } from "@/schema/user.schema";
+import { AddGenreValidator } from "@/schema/index.schema";
 import { Textarea } from "../../ui/textarea";
 import GenreById from "@/Services/Genre/getGenreById";
 import { updateGenreByIdurl } from "@/Services/Genre/endPoint.genre.services";

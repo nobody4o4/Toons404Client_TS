@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { AddBookValidator } from "@/schema/user.schema";
+import { AddBookValidator } from "@/schema/index.schema";
 import { useFormik } from "formik";
 import { useState } from "react";
 import { toast } from "sonner";

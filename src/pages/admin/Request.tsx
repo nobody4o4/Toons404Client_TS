@@ -21,7 +21,9 @@ function Request() {
 
   return (
     <div className="flex flex-col gap-y-5 bg-background">
-      <h1 className="text-4xl underline underline-offset-8">Requests</h1>
+      <h1 className="mb-5 text-4xl font-medium underline underline-offset-8">
+        Author Requests
+      </h1>
       <div>
         <Button
           onClick={() => handleFilterChange("all")}

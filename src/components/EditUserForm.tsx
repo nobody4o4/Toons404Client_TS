@@ -3,7 +3,7 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { updateUserByIdUrl } from "@/Services/user/endpoint.user.services";
-import { UpdateUserValidator } from "@/schema/user.schema";
+import { UpdateUserValidator } from "@/schema/index.schema";
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
 import GetCurrentUserProfile from "@/Services/user/getCurrentUserProfile.services";

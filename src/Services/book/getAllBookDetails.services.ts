@@ -5,7 +5,7 @@
  
  function AllBookDetails(){
  
-     const [data, setdata] = useState<BookDetails>();
+     const [data, setdata] = useState<BookDetails[]>();
      const [loading, setloading] = useState(true);
      const [error, seterror] = useState("");
  

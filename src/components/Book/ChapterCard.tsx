@@ -11,6 +11,7 @@ const ChapterCard = (chapter: chapterCard) => {
       to={`/book/${bookId.id}/${chapter.number}`}
       className="flex w-full items-center justify-between gap-5 border-b border-t border-solid border-b-neutral-100 border-t-neutral-100 p-2 sm:flex-wrap"
     >
+      a
       <div className="flex items-center justify-between gap-2 self-stretch px-5">
         <img
           loading="lazy"

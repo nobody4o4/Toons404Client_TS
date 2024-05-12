@@ -3,7 +3,7 @@ import ProfileSidebar from "@/components/ProfileSidebar";
 import GetCurrentUserProfile from "@/Services/user/getCurrentUserProfile.services";
 import Toonscard from "@/components/Toonscard";
 import { bookCard } from "@/types";
-import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardTitle } from "@/components/ui/card";
 import Loading from "../Loading";
 
 export default function MyProfile() {
@@ -33,8 +33,8 @@ export default function MyProfile() {
               </h1>
               <p className="text-gray-500">@{data?.username}</p>
               <div className="flex space-x-8">
-                <span>{data?._count?.Followers || 0} followers</span>
-                <span>{data?._count?.Following || 0} following</span>
+                <span>{data?._count?.Followings || 0} followers</span>
+                <span>{data?._count?.Followers || 0} following</span>
               </div>
               <p>{data?.bio}</p>
             </div>

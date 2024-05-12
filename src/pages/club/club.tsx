@@ -1,4 +1,4 @@
-function Forum() {
+function Club() {
   return (
     <div>
       <section>
@@ -63,7 +63,7 @@ function Forum() {
     </div>
   );
 }
-export default Forum;
+export default Club;
 
 // documentation ko format kasari garda thik hunxa ani tesko kun kun topic ra section lai badi focus ra priority dida thik hunxa
 // kun kun diagrams haru complusory ho

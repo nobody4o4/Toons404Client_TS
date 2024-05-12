@@ -14,7 +14,7 @@ import { Label } from "@/components/ui/label";
 //   SheetTrigger,
 // } from "@/components/ui/sheet";
 // import { Input } from "@/components/ui/input";
-import { AddSeriesValidator } from "@/schema/user.schema";
+import { AddSeriesValidator } from "@/schema/index.schema";
 import { useFormik } from "formik";
 import { createSeriesurl } from "@/Services/Series/endPoint.series.services";
 import { useState } from "react";

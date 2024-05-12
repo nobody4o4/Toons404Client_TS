@@ -4,7 +4,7 @@ import {  Comment } from "@/types";
 import { getCommentsurl } from "./endPoint.comment.services";
 
 function GetAllCommentsByChapter(chapterId : string , type : string) {
-    const [data, setdata] = useState<Comment>();
+    const [data, setdata] = useState<Comment[]>();
     const [loading, setloading] = useState(true);
     const [error, seterror] = useState("");
     
