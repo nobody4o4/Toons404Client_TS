@@ -44,24 +44,6 @@ function ProfileSidebar() {
               Continue Reading
             </Button>
           </Link>
-          <Link to="#">
-            <Button
-              disabled
-              variant="outline"
-              className={`${isActive("/notification")} w-full`}
-            >
-              Notification
-            </Button>
-          </Link>
-          <Link to="#">
-            <Button
-              disabled
-              variant="outline"
-              className={`${isActive("/connection")} w-full`}
-            >
-              Connection
-            </Button>
-          </Link>
         </div>
       </div>
     </>

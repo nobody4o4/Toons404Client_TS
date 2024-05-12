@@ -24,6 +24,7 @@ import ContinueReading from "@/pages/profile/ContineReading";
 import Club from "@/pages/club/club";
 import AddClub from "@/pages/club/AddClub";
 import FullPostCard from "@/components/Club/FullPostCard";
+import BookSearchPage from "@/pages/SearchResult";
 
 export const userRoutes = [
     {
@@ -45,8 +46,17 @@ export const userRoutes = [
         requiredAuth: false,
     }, 
     {
-        id: "subscribtion",
-        path: "/subscribtion",
+        id: "search",
+        path: "/search/",
+        component: BookSearchPage, 
+        hasHomeLayout: true,
+        hasAdminLayout: false,
+        layout: HomeLayout,
+        requiredAuth: false,
+    }, 
+    {
+        id: "subscription",
+        path: "/subscription",
         component: Subscribtion, 
         hasHomeLayout: true,
         hasAdminLayout: false,
@@ -54,7 +64,7 @@ export const userRoutes = [
         requiredAuth: false,
     }, 
     {
-        id: "subscribtion",
+        id: "subscription",
         path: "/subscribtion/success",
         component: CongratsForSub, 
         hasHomeLayout: true,

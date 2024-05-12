@@ -1,7 +1,5 @@
-import { Button } from "./ui/button";
 import logo from "/ToonsLogov2.png";
 
-import { Input } from "./ui/input";
 import { useEffect, useState } from "react";
 import { clearUserData, getUserData, setUserData } from "../utils/authStorage";
 import { Link } from "react-router-dom";
@@ -16,6 +14,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "./ui/button";
+import { FaSearch } from "react-icons/fa";
 
 function NavBar() {
   const [userData, setUserData] = useState({
@@ -36,6 +36,7 @@ function NavBar() {
   }, []);
 
   const handleLogout = () => {
+    window.location.replace("/");
     clearUserData();
   };
 
@@ -44,23 +45,21 @@ function NavBar() {
       <Link to="/" className="h-14 ">
         <img src={logo} alt="logo" className=" h-full w-full object-cover" />
       </Link>
-      <nav className=" left-0 my-auto  flex translate-x-1/2 justify-between gap-5 self-stretch">
-        <Link to="#" className="link">
-          Comics
-        </Link>
-        <Link to="#" className="link">
-          Books
-        </Link>
-        <Link to="/series" className="link">
-          Series
-        </Link>
-        <Link to="/feed" className="link">
-          Club
-        </Link>
-      </nav>
-
       <div className="my-auto flex h-fit w-fit justify-between bg-background">
-        <Input placeholder="Search" className="mr-3" />
+        <nav className=" my-auto flex justify-between gap-5 self-stretch">
+          <Link to="/series" className="link">
+            Series
+          </Link>
+          <Link to="/feed" className="link">
+            Club
+          </Link>
+        </nav>
+        <Link to="/search" className="mx-5">
+          <Button variant={"outline"}>
+            {" "}
+            <FaSearch />
+          </Button>
+        </Link>
         {avatar || username ? (
           <div className="top-0 mt-0 flex justify-end">
             <DropdownMenu>
@@ -68,7 +67,7 @@ function NavBar() {
                 <Avatar>
                   <AvatarImage
                     src={avatar}
-                    alt="@shadcn"
+                    alt="avatar"
                     className="h-full w-full object-cover"
                   />
                   <AvatarFallback>{username}</AvatarFallback>
@@ -118,11 +117,11 @@ function NavBar() {
           </Link>
         )}
         {isSubscribed ? (
-          <Link to="/subscribtion" className="mx-2 ">
+          <Link to="/subscription" className="mx-2 ">
             <Button>Subscribed</Button>
           </Link>
         ) : (
-          <Link to="/subscribtion" className="mx-2 ">
+          <Link to="/subscription" className="mx-2 ">
             <Button>Subscribe</Button>
           </Link>
         )}

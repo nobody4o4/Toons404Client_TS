@@ -60,21 +60,18 @@ function CommentForm({ postId }: { postId: string }) {
   const handleReplySubmit = async (commentId: string, replyContent: string) => {
     try {
       const response = await addReplyurl(commentId, { content: replyContent });
-      if (response.status === 201) {
-        const updatedComments = comments.map((comment) => {
-          if (comment.id === commentId) {
-            return {
-              ...comment,
-              replies: [...(comment.Reply || []), response.data],
-            };
-          }
-          return comment;
-        });
-        setComments(updatedComments);
-        toast.success("Reply added successfully.");
-      } else {
-        toast.error("An error occurred. Please try again.");
-      }
+
+      const updatedComments = comments.map((comment) => {
+        if (comment.id === commentId) {
+          return {
+            ...comment,
+            replies: [...(comment.Reply || []), response.data],
+          };
+        }
+        return comment;
+      });
+      setComments(updatedComments);
+      toast.success("Reply added successfully.");
     } catch (error) {
       console.error(error);
       toast.error("An error occurred. Please try again.");

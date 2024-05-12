@@ -15,6 +15,7 @@ import InternalError from "../error/InternalError";
 
 import { getUserData } from "@/utils/authStorage";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { subscribe } from "diagnostics_channel";
 
 export default function Feed() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -22,6 +23,9 @@ export default function Feed() {
   const [posts, setPosts] = useState<Post[]>([]);
 
   const user = getUserData();
+  if (!user?.isSubscribed) {
+    window.location.replace("/subscription");
+  }
   const { handleSubmit, handleChange, handleBlur, values, resetForm } =
     useFormik({
       initialValues: {
@@ -56,7 +60,7 @@ export default function Feed() {
   }
 
   if (error) {
-    return <InternalError />;
+    return window.location.replace("/subscription");
   }
 
   return (

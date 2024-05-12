@@ -1,6 +1,5 @@
 import { bookCard } from "@/types";
 import { FaHeart } from "react-icons/fa6";
-import { Link } from "react-router-dom";
 
 function RecommendationCard({
   id,
@@ -13,8 +12,14 @@ function RecommendationCard({
   _count,
   author,
 }: bookCard) {
+  const handleClick = () => {
+    window.location.replace(`/book/${id}`);
+  };
   return (
-    <div className="grid h-24 w-full grid-cols-4 rounded-lg bg-white dark:bg-gray-900">
+    <div
+      onClick={handleClick}
+      className="grid h-24 w-full cursor-pointer grid-cols-4 rounded-lg bg-white dark:bg-gray-900"
+    >
       <div className="col-span-1 overflow-hidden rounded-l-lg">
         <img
           alt="Cover Image"

@@ -5,6 +5,7 @@ import {
   Card,
   CardDescription,
 } from "@/components/ui/card";
+import RegisteredCount from "@/Services/Dashboard/getRegistedCount.services";
 import Stats from "@/Services/Dashboard/getStats.services";
 import { ResponsivePie } from "@nivo/pie";
 import { BiCategory } from "react-icons/bi";
@@ -15,6 +16,8 @@ export default function Dashboard() {
   console.log(data, "data");
   console.log(loading, "loading");
   console.log(error, "error");
+
+  const { count } = RegisteredCount();
 
   return (
     <div className="flex min-h-screen w-full">
@@ -62,7 +65,7 @@ export default function Dashboard() {
               </CardContent>
             </Card>
           </div>
-          <div className="grid gap-4 md:grid-cols-2">
+          {/* <div className="grid gap-4 md:grid-cols-2">
             <Card>
               <CardHeader>
                 <CardTitle>Donut Pie Chart</CardTitle>
@@ -72,7 +75,7 @@ export default function Dashboard() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="flex justify-center">
-                <DonutpieChart className="aspect-square w-full" />
+                <DonutpieChart className="aspect-square w-full" {...count} />
               </CardContent>
             </Card>
             <Card>
@@ -158,7 +161,7 @@ export default function Dashboard() {
                 </div>
               </CardContent>
             </Card>
-          </div>
+          </div> */}
         </main>
       </div>
     </div>
@@ -169,14 +172,7 @@ function DonutpieChart(props) {
   return (
     <div {...props}>
       <ResponsivePie
-        data={[
-          { id: "Jan", value: 111 },
-          { id: "Feb", value: 157 },
-          { id: "Mar", value: 129 },
-          { id: "Apr", value: 150 },
-          { id: "May", value: 119 },
-          { id: "Jun", value: 72 },
-        ]}
+        data={[props]}
         sortByValue
         margin={{ top: 10, right: 10, bottom: 10, left: 10 }}
         cornerRadius={3}

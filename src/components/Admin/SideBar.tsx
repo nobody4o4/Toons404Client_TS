@@ -86,15 +86,6 @@ function SideBar() {
 
             <Link
               className="flex transform items-center rounded-lg px-3 py-2 text-gray-600 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-              to="#"
-            >
-              <BsFilePost className="h-5 w-5" />
-
-              <span className="mx-2 text-lg font-medium">Post</span>
-            </Link>
-
-            <Link
-              className="flex transform items-center rounded-lg px-3 py-2 text-gray-600 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-200"
               to="/dashboard/admin/user"
             >
               <FaRegUser className="h-5 w-5" />
@@ -106,13 +97,6 @@ function SideBar() {
             >
               <FaRegUser className="h-5 w-5" />
               <span className="mx-2 text-lg font-medium">Request</span>
-            </Link>
-            <Link
-              className="flex transform items-center rounded-lg px-3 py-2 text-gray-600 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-              to="#"
-            >
-              <MdOutlineReport className="h-5 w-5" />
-              <span className="mx-2 text-lg font-medium">Report</span>
             </Link>
           </nav>
           <div className="mt-6 w-1/2">

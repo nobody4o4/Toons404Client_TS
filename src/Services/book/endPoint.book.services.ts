@@ -40,6 +40,11 @@ function deleteBookByIdurl(id: string) {
   return url.delete(`/book/delete/${id}`);
 }
 
+function searchBookByTitleUrl(searchQuery:string){
+  return url.get(`/book/search/${searchQuery}`)
+
+}
+
 export {
   getReadingListurl,
   getAllBooksurl,
@@ -51,6 +56,7 @@ export {
   updateBookByIdurl,
   deleteBookByIdurl,
   getBookDetailsByIdurl,
+  searchBookByTitleUrl
 
 };
 

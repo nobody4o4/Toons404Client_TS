@@ -110,14 +110,6 @@ function LoginForm() {
               ) : (
                 <div className="h-3"></div>
               )}
-              <div className="flex">
-                <Link
-                  className="right-0 ml-auto inline-block text-sm underline"
-                  to="#"
-                >
-                  Forgot your password?
-                </Link>
-              </div>
             </div>
             <Button className="w-full" type="submit">
               Login

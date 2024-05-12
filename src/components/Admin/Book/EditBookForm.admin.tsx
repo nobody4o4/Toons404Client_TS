@@ -129,14 +129,13 @@ export default function EditBookForm() {
                 <div className="space-y-2">
                   <Label htmlFor="genreId">Genre</Label>
                   <Select
-                    defaultValue={data?.genre?.id}
+                    value={values.genreId}
                     name="genreId"
                     onValueChange={(value) => {
-                      console.log("value", value);
                       setFieldValue("genreId", value);
                     }}
                   >
-                    <SelectTrigger className="w-[180px]">
+                    <SelectTrigger disabled className="w-[180px]">
                       <SelectValue placeholder="Select a genre" />
                     </SelectTrigger>
                     <SelectContent>
@@ -145,11 +144,7 @@ export default function EditBookForm() {
                         {Array.isArray(genre) &&
                           genre.map((item, index) => {
                             return (
-                              <SelectItem
-                                key={index}
-                                value={item.id}
-                                id="genreId"
-                              >
+                              <SelectItem key={index} value={item.id}>
                                 {item.name}
                               </SelectItem>
                             );
@@ -157,18 +152,21 @@ export default function EditBookForm() {
                       </SelectGroup>
                     </SelectContent>
                   </Select>
+                  {errors?.genreId && touched.genreId && (
+                    <div className="text-sm text-red-500">{errors.genreId}</div>
+                  )}
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="subGenreId">Sub Genre</Label>
                   <Select
-                    defaultValue={data?.subGenre?.id}
+                    value={values.subGenreId}
                     onValueChange={(value) => {
                       setFieldValue("subGenreId", value);
                     }}
                     name="subGenreId"
                   >
-                    <SelectTrigger className="w-[180px]">
-                      <SelectValue placeholder="Select a genre" />
+                    <SelectTrigger disabled className="w-[180px]">
+                      <SelectValue placeholder="Select a sub genre" />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectGroup>
@@ -184,45 +182,24 @@ export default function EditBookForm() {
                       </SelectGroup>
                     </SelectContent>
                   </Select>
+                  {errors?.subGenreId && touched.subGenreId && (
+                    <div className="text-sm text-red-500">
+                      {errors.subGenreId}
+                    </div>
+                  )}
                 </div>
-                {/* <div className="space-y-2">
-                  <Label htmlFor="subGenreId">Genre</Label>
-                  <Select
-                    defaultValue={data?.genre.id}
-                    onValueChange={(value) => {
-                      setFieldValue("genreId", value, true);
-                    }}
-                    name="genreId"
-                  >
-                    <SelectTrigger className="w-[180px]">
-                      <SelectValue placeholder="Select a genre" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectGroup>
-                        <SelectLabel>Sub Genre</SelectLabel>
-                        {Array.isArray(genre) &&
-                          genre.map((item, index) => {
-                            return (
-                              <SelectItem key={index} value={item.id}>
-                                {item.name}
-                              </SelectItem>
-                            );
-                          })}
-                      </SelectGroup>
-                    </SelectContent>
-                  </Select>
-                </div> */}
                 <div className="space-y-2">
-                  <Label htmlFor="series">Series</Label>
+                  <Label htmlFor="seriesId">Series</Label>
                   <Select
+                    disabled
+                    value={values.seriesId}
                     onValueChange={(value) => {
                       setFieldValue("seriesId", value);
                     }}
-                    defaultValue={data?.series?.id}
                     name="seriesId"
                   >
-                    <SelectTrigger className="w-[180px]">
-                      <SelectValue placeholder="Select a Series" />
+                    <SelectTrigger disabled className="w-[180px]">
+                      <SelectValue placeholder="Select a series" />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectGroup>
@@ -238,6 +215,11 @@ export default function EditBookForm() {
                       </SelectGroup>
                     </SelectContent>
                   </Select>
+                  {errors?.seriesId && touched.seriesId && (
+                    <div className="text-sm text-red-500">
+                      {errors.seriesId}
+                    </div>
+                  )}
                 </div>
               </div>
               <div className="space-y-2">

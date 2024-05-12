@@ -1,20 +1,19 @@
 import { Button } from "@/components/ui/button";
-import { createSubscriptionurl } from "@/Services/Subscription/endPoints.services.subscription";
+
 import GetSubscriptionById from "@/Services/Subscription/getSubscriptionById.services";
 import { FaCheck } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import Loading from "./Loading";
 
-export default function Subscribtion() {
-  const planId: string = "b14b54ca-47a3-499a-84d4-a04d32a94ecf";
-  const handleClick = async () => {
-    const response = await createSubscriptionurl(planId);
-    console.log(response);
-    window.location.href = response.data.data.payment_url;
-    console.log("Clicked");
-  };
+import { Plans } from "@/types";
+import InternalError from "./error/InternalError";
+import GetAllPlans from "@/Services/Plan/getAllPlans.plan.services";
+import PlanCard from "@/components/PlanCard";
 
+export default function Subscribtion() {
   const { data, loading } = GetSubscriptionById();
+
+  const { plans, isLoading, error } = GetAllPlans();
 
   console.log("data", data?.message);
 
@@ -43,6 +42,13 @@ export default function Subscribtion() {
   if (loading) {
     return <Loading />;
   }
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return <InternalError />;
+  }
 
   return (
     <div className="h-screen w-full">
@@ -57,34 +63,9 @@ export default function Subscribtion() {
               </p>
             </div>
             <div className="mx-auto grid max-w-sm gap-4 lg:max-w-4xl lg:grid-cols-2 xl:gap-8">
-              <div className="relative flex flex-col items-center space-y-2 rounded-lg border border-gray-200 p-4 dark:border-gray-800">
-                <div className="absolute inset-x-0 top-0 -mt-6 flex items-center justify-center p-2">
-                  <div className="h-6 w-6 text-blue-600" />
-                </div>
-                <h2 className="font-semibold">Monthly</h2>
-                <div className="text-2xl font-bold">$5</div>
-                <ul className="list-inside list-disc text-sm text-gray-500 dark:text-gray-400">
-                  <li>Access to all web comics</li>
-                  <li>Exclusive behind-the-scenes content</li>
-                  <li>Monthly Q&A with our artists</li>
-                </ul>
-                <Button onClick={handleClick} className="w-full max-w-xs">
-                  Subscribe
-                </Button>
-              </div>
-              <div className="relative flex flex-col items-center space-y-2 rounded-lg border border-gray-200 p-4 dark:border-gray-800">
-                <div className="absolute inset-x-0 top-0 -mt-6 flex items-center justify-center p-2">
-                  <div className="h-6 w-6 text-blue-600" />
-                </div>
-                <h2 className="font-semibold">Annual</h2>
-                <div className="text-2xl font-bold">$50</div>
-                <ul className="list-inside list-disc text-sm text-gray-500 dark:text-gray-400">
-                  <li>Access to all web comics</li>
-                  <li>Exclusive behind-the-scenes content</li>
-                  <li>Monthly Q&A with our artists</li>
-                </ul>
-                <Button className="w-full max-w-xs">Subscribe</Button>
-              </div>
+              {plans.map((plan: Plans) => (
+                <PlanCard {...plan} />
+              ))}
             </div>
           </section>
           <section className="bottom-0 border-b border-t py-6">

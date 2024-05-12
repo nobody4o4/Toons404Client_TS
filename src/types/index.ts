@@ -526,3 +526,13 @@ export type LikedList = {
     title: string;
     coverImage: string;
 }
+
+
+export type Plans = {
+    id: string;
+    name: string;
+    price: number;
+    description: string;
+    bliiingInterval: string ;
+    featues:string;
+}

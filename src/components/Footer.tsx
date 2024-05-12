@@ -83,7 +83,7 @@ function Footer() {
                   <Link to="">Home</Link>
                 </li>
                 <li className="text-gray-800 duration-150 hover:text-gray-500">
-                  <Link to="">Comic</Link>
+                  <Link to="/Subscription">Subscription</Link>
                 </li>
                 <li className="text-gray-800 duration-150 hover:text-gray-500">
                   <Link to="">Novel</Link>

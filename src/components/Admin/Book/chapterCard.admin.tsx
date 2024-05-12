@@ -38,6 +38,8 @@ function ChapterCardAdmin({
           </p>
         </div>
       </div>
+      {}
+
       <Link to={`edit-chapter/${id}`}>
         <Button variant="outline">Edit</Button>
       </Link>
